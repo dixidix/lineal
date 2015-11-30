@@ -1,0 +1,1 @@
+var mylsl = angular.module('mylsl', []);
