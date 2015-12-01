@@ -1,0 +1,633 @@
+[{
+    "usuarioID": 1,
+    "nombre": "Administrador",
+    "email": "data@otul.com.ar",
+    "usuario": "admin",
+    "clave": "3dXZ2Q==",
+    "fecha_baja": null,
+    "pagina": ""
+}, {
+    "usuarioID": 2,
+    "nombre": "Demo",
+    "email": "info@linealsoluciones.com",
+    "usuario": "lineal",
+    "clave": "39vV48jK29rO4Q==",
+    "fecha_baja": "2010-06-02 17:12:17",
+    "pagina": "demoexpo.php, demoimpo.php, demolocal.php"
+}, {
+    "usuarioID": 3,
+    "nombre": "Otul ",
+    "email": "info@otul.com.ar",
+    "usuario": "adrian",
+    "clave": "2srT2w==",
+    "fecha_baja": "2010-06-02 17:12:08",
+    "pagina": "cliente.php"
+}, {
+    "usuarioID": 4,
+    "nombre": "Demo",
+    "email": "info@linealsoluciones.com",
+    "usuario": "lineal",
+    "clave": "39vV48jK29rO4Q==",
+    "fecha_baja": "2009-08-10 11:49:20",
+    "pagina": "demoimpo.php"
+}, {
+    "usuarioID": 5,
+    "nombre": "Borrar",
+    "email": "b@borrar.com",
+    "usuario": "borrar",
+    "clave": "1NHh5NPT",
+    "fecha_baja": "2009-08-10 12:03:50",
+    "pagina": "borrar.php"
+}, {
+    "usuarioID": 6,
+    "nombre": "Jas Petroleo SRL",
+    "email": "adriana.abalsamo@jas-petroleo.com.ar",
+    "usuario": "jas",
+    "clave": "1M7T3MvP1A==",
+    "fecha_baja": null,
+    "pagina": "jashome.php, jasexpo.php, jasimpo.php, jastemp.php"
+}, {
+    "usuarioID": 7,
+    "nombre": "Cavotec",
+    "email": "veronica.pawlak@cavotec.com",
+    "usuario": "cavotec",
+    "clave": "2cjT5d3dyMQ=",
+    "fecha_baja": "2011-09-07 18:14:01",
+    "pagina": "cavotecexpo.php, cavotecimpo.php, cavoteclocal.php"
+}, {
+    "usuarioID": 8,
+    "nombre": "Hiper Tehuelche",
+    "email": "nadiaa@hipertehuelche.com",
+    "usuario": "hipertehuelche",
+    "clave": "08nN2cY=",
+    "fecha_baja": null,
+    "pagina": "hiperhomena.php, hiperimpona.php, hiperexpona.php"
+}, {
+    "usuarioID": 9,
+    "nombre": "Metal Pint SRL",
+    "email": "carolina.hernandez@metal-pint.com",
+    "usuario": "metalpint",
+    "clave": "187X483V3so=",
+    "fecha_baja": "2011-09-07 18:13:15",
+    "pagina": "metalphome.php, metalpexpo.php, metalpimpo.php"
+}, {
+    "usuarioID": 10,
+    "nombre": "Cross Shipping",
+    "email": "mtaylor@crosshipping.com",
+    "usuario": "crosshipping",
+    "clave": "1MzZ5Njf",
+    "fecha_baja": null,
+    "pagina": "crosshome.php, crossexpo.php, crossimpo.php"
+}, {
+    "usuarioID": 11,
+    "nombre": "Twin Medical SA",
+    "email": "lrecupero@twinmedical.com.ar",
+    "usuario": "twinmedical",
+    "clave": "1unY1w==",
+    "fecha_baja": null,
+    "pagina": "twinhome.php, twinexpo.php, twinimpo.php "
+}, {
+    "usuarioID": 12,
+    "nombre": "Femar",
+    "email": "info@linealsoluciones.com",
+    "usuario": "femar",
+    "clave": "2dLG0drl",
+    "fecha_baja": null,
+    "pagina": "femarhome.php, femarexpo.php, femarimpo.php"
+}, {
+    "usuarioID": 13,
+    "nombre": "Provaldes",
+    "email": "gustavo@provaldes.com.ar",
+    "usuario": "provaldes",
+    "clave": "2uXl49fX2w==",
+    "fecha_baja": null,
+    "pagina": "provahome.php, provaexpo.php, provaimpo.php"
+}, {
+    "usuarioID": 14,
+    "nombre": "Buhlmann",
+    "email": "marina.fabregas@buhlmann-group.com",
+    "usuario": "buhlmann",
+    "clave": "28Pn0drO",
+    "fecha_baja": null,
+    "pagina": "buhlhome.php, buhlimpo.php, buhlexpo.php, buhlcostos.php, buhlvideos.php"
+}, {
+    "usuarioID": 15,
+    "nombre": "Total Vision",
+    "email": "martin_iglesias9@hotmail.com",
+    "usuario": "totalvision",
+    "clave": "19vb2dTV19w=",
+    "fecha_baja": null,
+    "pagina": "totalvhome.php, totalvimpo.php, totalvexpo.php"
+}, {
+    "usuarioID": 16,
+    "nombre": "Lineal",
+    "email": "info@linealsoluciones.com",
+    "usuario": "lineal",
+    "clave": "397V",
+    "fecha_baja": null,
+    "pagina": "lineal.php, lineal1.php, lineal2.php"
+}, {
+    "usuarioID": 44,
+    "nombre": "Afixis",
+    "email": "afixis@hotmail.com",
+    "usuario": "andclau",
+    "clave": "59DbzdHN",
+    "fecha_baja": null,
+    "pagina": "afixishome.php, afixisexpo.php, afixisimpo.php"
+}, {
+    "usuarioID": 17,
+    "nombre": "Block",
+    "email": "Josefina@blockstrong.com",
+    "usuario": "blockstrong",
+    "clave": "0dHf1MnU4dU=",
+    "fecha_baja": null,
+    "pagina": "blockhome.php, blockexpo.php, blockimpo.php"
+}, {
+    "usuarioID": 18,
+    "nombre": "Kras",
+    "email": "eduardo@industriaskras.com",
+    "usuario": "kras",
+    "clave": "2M/nwuXP4Q==",
+    "fecha_baja": null,
+    "pagina": "krashome.php, krasexpo.php, krasimpo.php"
+}, {
+    "usuarioID": 19,
+    "nombre": "Nodos",
+    "email": "paulam@nodos.com.ar",
+    "usuario": "nodos",
+    "clave": "48/k0NA=",
+    "fecha_baja": "2011-08-19 19:07:51",
+    "pagina": "nodosexpo.php, nodosimpo.php, nodoslocal.php"
+}, {
+    "usuarioID": 20,
+    "nombre": "Rectificadores",
+    "email": "eduardo@industriaskras.com",
+    "usuario": "rectificadores",
+    "clave": "2NbaxObN1Q==",
+    "fecha_baja": null,
+    "pagina": "rectifichome.php, rectificexpo.php, rectificimpo.php "
+}, {
+    "usuarioID": 21,
+    "nombre": "El Tornillo",
+    "email": "alfredo.moreale@traxionargentina.com",
+    "usuario": "eltornillo",
+    "clave": "0NHS5tTW3Q==",
+    "fecha_baja": null,
+    "pagina": "traxhome.php, traxexpo.php, traximpo.php"
+}, {
+    "usuarioID": 22,
+    "nombre": "Cleanfix",
+    "email": "reparaciones@intercleanargentina.com.ar",
+    "usuario": "cleanfix",
+    "clave": "5cTeyMbaxw==",
+    "fecha_baja": null,
+    "pagina": "cleanhome.php, cleanexpo.php, cleanimpo.php"
+}, {
+    "usuarioID": 23,
+    "nombre": "Logistica Global",
+    "email": "dquindt@loglobal.com.ar",
+    "usuario": "loglobal",
+    "clave": "0M3d0NHb",
+    "fecha_baja": null,
+    "pagina": "loglobahome.php, loglobaexpo.php, loglobaimpo.php "
+}, {
+    "usuarioID": 24,
+    "nombre": "Hiper Tehuelche pon",
+    "email": "alejandrop@hipertehuelche.com",
+    "usuario": "hipertehuelche",
+    "clave": "1dfX08o=",
+    "fecha_baja": null,
+    "pagina": "hiperhomepo.php, hiperimpopo.php, hiperexpopo.php"
+}, {
+    "usuarioID": 25,
+    "nombre": "Conserman",
+    "email": "compras@conserman.com",
+    "usuario": "conserman",
+    "clave": "08/Y6NTH1+HJ",
+    "fecha_baja": null,
+    "pagina": "conserhome.php, conserexpo.php, conserimpo.php "
+}, {
+    "usuarioID": 26,
+    "nombre": "Papel Tecnica",
+    "email": "gciageneral@papeltecnica.com.ar",
+    "usuario": "papeltecnica",
+    "clave": "zdnN2cba1Q==",
+    "fecha_baja": null,
+    "pagina": "papelhome.php, papelexpo.php, papelimpo.php"
+}, {
+    "usuarioID": 27,
+    "nombre": "Sato",
+    "email": "paulam@nodos.com.ar",
+    "usuario": "sato",
+    "clave": "39TW4NA=",
+    "fecha_baja": null,
+    "pagina": "satohome.php, satoexpo.php, satoimpo.php"
+}, {
+    "usuarioID": 28,
+    "nombre": "Les Gants",
+    "email": "info@carpinchonet.com.ar",
+    "usuario": "lesgants",
+    "clave": "29HI59bT",
+    "fecha_baja": null,
+    "pagina": "lesgahome.php, lesgaexpo.php, lesgaimpo.php"
+}, {
+    "usuarioID": 29,
+    "nombre": "Saenz",
+    "email": "mariano@saenzdynos.com.ar",
+    "usuario": "saenz",
+    "clave": "59TTzs/o4g==",
+    "fecha_baja": null,
+    "pagina": "saenzhome.php, saenzexpo.php, saenzimpo.php"
+}, {
+    "usuarioID": 30,
+    "nombre": "Mallinckrodt",
+    "email": "rodrigo.rodriguez@covidien.com",
+    "usuario": "mallinckrodt",
+    "clave": "3NLT2s3X",
+    "fecha_baja": null,
+    "pagina": "mallinhome.php, mallinexpo.php, mallinimpo.php "
+}, {
+    "usuarioID": 31,
+    "nombre": "Cocca",
+    "email": "sac.bolivar@gmail.com",
+    "usuario": "cocca",
+    "clave": "xMThz9LU",
+    "fecha_baja": null,
+    "pagina": "coccahome.php, coccaexpo.php, coccaimpo.php"
+}, {
+    "usuarioID": 32,
+    "nombre": "Fresenius",
+    "email": "Julieta.caminos@fmc-ag.com",
+    "usuario": "fresenius",
+    "clave": "3dveztjZzw==",
+    "fecha_baja": null,
+    "pagina": "fresehome.php, freseexpo.php, freseimpo.php "
+}, {
+    "usuarioID": 33,
+    "nombre": "Repas",
+    "email": "info@linealsoluciones.com",
+    "usuario": "repas",
+    "clave": "5tvR5srU",
+    "fecha_baja": null,
+    "pagina": "repashome.php, repasexpo.php, repasimpo.php"
+}, {
+    "usuarioID": 34,
+    "nombre": "Wobben",
+    "email": "fernando.petrucci@wobben.com.br",
+    "usuario": "wobben",
+    "clave": "1Nzh0MPT0uY=",
+    "fecha_baja": null,
+    "pagina": "wobbenhome.php, wobbenexpo.php, wobbenimpo.php"
+}, {
+    "usuarioID": 35,
+    "nombre": "JB",
+    "email": "gonzalez.gabriel@jbconstrucciones.com",
+    "usuario": "jbconstrucciones",
+    "clave": "2svE1djT3w==",
+    "fecha_baja": null,
+    "pagina": "jbhome.php, jbexpo.php, jbimpo.php"
+}, {
+    "usuarioID": 36,
+    "nombre": "Yesecco",
+    "email": "mbegino@cpn.org.ar",
+    "usuario": "mariana",
+    "clave": "w9LI29fQ",
+    "fecha_baja": null,
+    "pagina": "yesehome.php, yeseexpo.php, yeseimpo.php"
+}, {
+    "usuarioID": 37,
+    "nombre": "juan",
+    "email": "info@otul.com.ar",
+    "usuario": "juan",
+    "clave": "3s/nxug=",
+    "fecha_baja": null,
+    "pagina": "juanexpo.php, juanimpo.php, juantemp.php"
+}, {
+    "usuarioID": 38,
+    "nombre": "Esco",
+    "email": "rbodnarin@escoarg.com.ar",
+    "usuario": "esco",
+    "clave": "4drVyN0=",
+    "fecha_baja": null,
+    "pagina": "escohome.php, escoexpo.php, escoimpo.php "
+}, {
+    "usuarioID": 39,
+    "nombre": "HF & UH",
+    "email": "gelsa@uolsinectis.com.ar",
+    "usuario": "hfuh",
+    "clave": "0NfY1svR1Q==",
+    "fecha_baja": null,
+    "pagina": "hfuhhome.php, hfuhexpo.php, hfuhimpo.php"
+}, {
+    "usuarioID": 40,
+    "nombre": "JCDeux",
+    "email": "mpetruccelli@jcdecaux.com.uy",
+    "usuario": "jcdecaux",
+    "clave": "5cvVx8rP0A==",
+    "fecha_baja": null,
+    "pagina": "decahome.php, decaexpo.php, decaimpo.php"
+}, {
+    "usuarioID": 41,
+    "nombre": "Advocare",
+    "email": "gnavarrane@advocaretools.com.ar",
+    "usuario": "advocare",
+    "clave": "zMLG6NjIzdM=",
+    "fecha_baja": null,
+    "pagina": "advohome.php, advoexpo.php, advoimpo.php "
+}, {
+    "usuarioID": 42,
+    "nombre": "JasH",
+    "email": "horacionavarro@jas-petroleo.com.ar",
+    "usuario": "jas",
+    "clave": "29nT1M3K4g==",
+    "fecha_baja": null,
+    "pagina": "jashome.php, jasexpo.php, jasimpo.php, jastemp.php"
+}, {
+    "usuarioID": 43,
+    "nombre": "Hiper Tehuelche sil",
+    "email": "silvanaz@hipertehuelche.com",
+    "usuario": "hipertehuelche",
+    "clave": "2NHV5sbg1Q==",
+    "fecha_baja": null,
+    "pagina": "hiperhome.php, hiperimpo.php, hiperexpo.php"
+}, {
+    "usuarioID": 45,
+    "nombre": "La Nirva vicente",
+    "email": "titioconde@productoslanirva.com.ar",
+    "usuario": "lanirva",
+    "clave": "19XE09fm2w==",
+    "fecha_baja": null,
+    "pagina": "nirvahome.php, nirvaexpo.php, nirvaimpo.php"
+}, {
+    "usuarioID": 46,
+    "nombre": "La Nirva nicolas",
+    "email": "nicolas@productoslanirva.com.ar",
+    "usuario": "lanirva",
+    "clave": "z9XE3dXT6Q==",
+    "fecha_baja": null,
+    "pagina": "nirvahomeni.php, nirvaexponi.php, nirvaimponi.php"
+}, {
+    "usuarioID": 47,
+    "nombre": "La Nirva andrea",
+    "email": "pedidos@productoslanirva.com.ar",
+    "usuario": "lanirva",
+    "clave": "wtrF4M7T",
+    "fecha_baja": null,
+    "pagina": "nirvahomean.php, nirvaexpoan.php, nirvaimpoan.php"
+}, {
+    "usuarioID": 48,
+    "nombre": "Common Rail",
+    "email": "jpgonzalez@arpex.com",
+    "usuario": "commonrail",
+    "clave": "1sjh3NvY2+E=",
+    "fecha_baja": null,
+    "pagina": "crailhome.php, crailexpo.php, crailimpo.php"
+}, {
+    "usuarioID": 49,
+    "nombre": "Delta",
+    "email": "bbasconcel@deltasi.com.ar",
+    "usuario": "delta",
+    "clave": "w8nG4ObK3g==",
+    "fecha_baja": null,
+    "pagina": "deltahome.php, deltaimpo.php, deltaexpo.php"
+}, {
+    "usuarioID": 50,
+    "nombre": "FCS",
+    "email": "cristianortiz@fcs-international.com.ar",
+    "usuario": "fcs",
+    "clave": "1tjM5trM1NQ=",
+    "fecha_baja": null,
+    "pagina": "fcshome.php, fcsimpo.php, fcsexpo.php"
+}, {
+    "usuarioID": 51,
+    "nombre": "Ormay",
+    "email": "contable@ormay.com.ar",
+    "usuario": "soriano",
+    "clave": "0ODU3tLC",
+    "fecha_baja": null,
+    "pagina": "ormahome.php, ormaimpo.php, ormaexpo.php "
+}, {
+    "usuarioID": 52,
+    "nombre": "Daddona",
+    "email": "daddona.sa@daddona.com.ar",
+    "usuario": "daddona",
+    "clave": "x8nT0sXd0tA=",
+    "fecha_baja": null,
+    "pagina": "daddohome.php, daddoimpo.php, daddoexpo.php"
+}, {
+    "usuarioID": 53,
+    "nombre": "Moretti",
+    "email": "diegos@moretti.com.ar",
+    "usuario": "moretti",
+    "clave": "zdbU2dQ=",
+    "fecha_baja": null,
+    "pagina": "morehome.php, moreimpo.php, moreexpo.php"
+}, {
+    "usuarioID": 54,
+    "nombre": "Moretti2",
+    "email": "ValeriaT@moretti.com.ar",
+    "usuario": "moretti",
+    "clave": "387b19fd1Q==",
+    "fecha_baja": null,
+    "pagina": "morehome.php, moreimpo.php, moreexpo.php"
+}, {
+    "usuarioID": 55,
+    "nombre": "Cerysan",
+    "email": "compras.convergencia@gmail.com",
+    "usuario": "cerysan",
+    "clave": "2sTa5N7Uz90=",
+    "fecha_baja": null,
+    "pagina": "ceryhome.php, ceryimpo.php, ceryexpo.php"
+}, {
+    "usuarioID": 56,
+    "nombre": "Domus",
+    "email": "info@linealsoluciones.com",
+    "usuario": "domus",
+    "clave": "5snh1N7i",
+    "fecha_baja": null,
+    "pagina": "domushome.php, domusimpo.php, domusexpo.php "
+}, {
+    "usuarioID": 57,
+    "nombre": "DomusW",
+    "email": "info@linealsoluciones.com",
+    "usuario": "domus",
+    "clave": "6sXb4drl",
+    "fecha_baja": null,
+    "pagina": "domuswhome.php, domuswimpo.php, domuswexpo.php"
+}, {
+    "usuarioID": 58,
+    "nombre": "Musso",
+    "email": "info@linealsoluciones.com.ar",
+    "usuario": "musso",
+    "clave": "0tnW6NfY3A==",
+    "fecha_baja": null,
+    "pagina": "mussohome.php, mussoimpo.php, mussoexpo.php"
+}, {
+    "usuarioID": 59,
+    "nombre": "Louro",
+    "email": "manueljlouro@gmail.com",
+    "usuario": "louro",
+    "clave": "3M3d6tfb",
+    "fecha_baja": null,
+    "pagina": "lourohome.php, louroimpo.php, louroexpo.php"
+}, {
+    "usuarioID": 60,
+    "nombre": "Catavorello",
+    "email": "roberto@catavorello.com.ar",
+    "usuario": "catavorello",
+    "clave": "4dLD2dPq3g==",
+    "fecha_baja": null,
+    "pagina": "catahome.php, cataimpo.php, cataexpo.php"
+}, {
+    "usuarioID": 61,
+    "nombre": "Felder",
+    "email": "S.Lerman@felder-group.com.ar",
+    "usuario": "felder",
+    "clave": "5cvHzdfZ28fT",
+    "fecha_baja": null,
+    "pagina": "felderhome.php, felderimpo.php, felderexpo.php"
+}, {
+    "usuarioID": 62,
+    "nombre": "La Plata Ceramicos",
+    "email": "vero@laplataceramicos.com",
+    "usuario": "laplata",
+    "clave": "19HT39rK18I=",
+    "fecha_baja": null,
+    "pagina": "laplahome.php, laplaimpo.php, laplaexpo.php"
+}, {
+    "usuarioID": 63,
+    "nombre": "Felpar",
+    "email": "daniel.felpar@gmail.com",
+    "usuario": "felpar",
+    "clave": "1sfT1dXN",
+    "fecha_baja": null,
+    "pagina": "felparhome.php, felparimpo.php, felparexpo.php"
+}, {
+    "usuarioID": 64,
+    "nombre": "Dentalmax",
+    "email": "pmazza@dentalmax.com.ar",
+    "usuario": "dentalmax",
+    "clave": "6MXH2uM=",
+    "fecha_baja": null,
+    "pagina": "dentalhome.php, dentalimpo.php, dentalexpo.php"
+}, {
+    "usuarioID": 65,
+    "nombre": "Prindco",
+    "email": "comex@prind-co.com",
+    "usuario": "prindco",
+    "clave": "4tHgzeDF",
+    "fecha_baja": null,
+    "pagina": "prindhome.php, prindimpo.php, prindexpo.php"
+}, {
+    "usuarioID": 66,
+    "nombre": "Capitol City ",
+    "email": "alexandre08@capitolcity.com.ar",
+    "usuario": "capitol",
+    "clave": "zc/G6Mri097I",
+    "fecha_baja": null,
+    "pagina": "capihome.php, capifact.php"
+}, {
+    "usuarioID": 67,
+    "nombre": "El Colesa",
+    "email": "contacto@bus-one.com.ar",
+    "usuario": "elcolesa",
+    "clave": "wsnezNDa",
+    "fecha_baja": null,
+    "pagina": "elcohome.php, elcoimpo.php, elcoexpo.php"
+}, {
+    "usuarioID": 68,
+    "nombre": "Zeroseven SRL",
+    "email": "infodalidesigns@gmail.com",
+    "usuario": "zeroseven",
+    "clave": "3OPI4dvU2A==",
+    "fecha_baja": null,
+    "pagina": "zerohome.php, zeroimpo.php, zeroexpo.php"
+}, {
+    "usuarioID": 69,
+    "nombre": "Kolortec SRL",
+    "email": "gastonyardin@gmail.com",
+    "usuario": "kolortec",
+    "clave": "yszi4N7g",
+    "fecha_baja": null,
+    "pagina": "kolorhome.php, kolorimpo.php, kolorexpo.php"
+}, {
+    "usuarioID": 70,
+    "nombre": "Pretoria",
+    "email": "sleiva@pretorean.com",
+    "usuario": "pretorian",
+    "clave": "4dXUxufj28rP",
+    "fecha_baja": null,
+    "pagina": "pretohome.php, pretoimpo.php, pretoexpo.php"
+}, {
+    "usuarioID": 71,
+    "nombre": "Tecnoautomat",
+    "email": "administracion@tecnoutomat.com",
+    "usuario": "oniszczuk",
+    "clave": "3tTQyubuzNvj",
+    "fecha_baja": null,
+    "pagina": "tecnohome.php, tecnoimpo.php, tecnoexpo.php"
+}, {
+    "usuarioID": 72,
+    "nombre": "Domanideco",
+    "email": "grisel@domanideco.com.ar",
+    "usuario": "imprendetori",
+    "clave": "0NvW49fR",
+    "fecha_baja": null,
+    "pagina": "domanihome.php, domaniimpo.php, domaniexpo.php"
+}, {
+    "usuarioID": 73,
+    "nombre": "Juan",
+    "email": "juanmanuel.perez@linealsoluciones.com",
+    "usuario": "jmp",
+    "clave": "2t/O3g==",
+    "fecha_baja": null,
+    "pagina": "juanimpo.php"
+}, {
+    "usuarioID": 74,
+    "nombre": "Victor",
+    "email": "victor.muniz@linealsoluciones.com",
+    "usuario": "lsl",
+    "clave": "4tXW4Nvl",
+    "fecha_baja": null,
+    "pagina": "victorimpo.php"
+}, {
+    "usuarioID": 75,
+    "nombre": "Manicone SA",
+    "email": "gabriel@manicone.com.ar",
+    "usuario": "manicone",
+    "clave": "yc7P187P",
+    "fecha_baja": null,
+    "pagina": "manichome.php, manicimpo.php, manicexpo.php"
+}, {
+    "usuarioID": 76,
+    "nombre": "Della Bitta ",
+    "email": "erik@dellabitta.com.ar",
+    "usuario": "dellabitta",
+    "clave": "xtbO1w==",
+    "fecha_baja": null,
+    "pagina": "dellahome.php, dellaimpo.php, dellaexpo.php"
+}, {
+    "usuarioID": 77,
+    "nombre": "APESA",
+    "email": "apesa_admin@arnetbiz.com.ar",
+    "usuario": "apesa",
+    "clave": "ztDpxuHQ",
+    "fecha_baja": null,
+    "pagina": "apesahome.php, apesaimpo.php, apesaexpo.php"
+}, {
+    "usuarioID": 78,
+    "nombre": "Nevi Corp",
+    "email": "apaduch@nevicorp.com.ar",
+    "usuario": "nevicorp",
+    "clave": "0dLX38rR",
+    "fecha_baja": null,
+    "pagina": "nevicohome.php, nevicoimpo.php, nevicoexpo.php"
+}, {
+    "usuarioID": 79,
+    "nombre": "Prestige MKT",
+    "email": "info@prestigemkt.com.ar",
+    "usuario": "prestige",
+    "clave": "0tHk0Njo0tXM",
+    "fecha_baja": null,
+    "pagina": "presthome.php, prestimpo.php, prestexpo.php"
+}]
