@@ -3,9 +3,8 @@ require 'db.php';
 
 session_start();
 $client_id = $_GET['client_id'];
-$op_type = $_GET['op_type'];
 
-$res = MysqliDB::getInstance()->query("SELECT * from operation where clientId='".$client_id."' and operationTypeId='".$op_type."'");
+$res = MysqliDB::getInstance()->query("SELECT * from operation where clientId='".$client_id."'");
 $outp="";
 while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "") {$outp .= ",";}
@@ -26,6 +25,7 @@ while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"custom_document_djai":"'   . $rs["custom_document_djai"].'",';
     $outp .= '"arrival_date":"'   . $arrival_date .'",';
     $outp .= '"release_date":"'   . $release_date .'",';
+    $outp .= '"opTypeId":"'   . $rs["operationTypeId"] .'",';
     $outp .= '"lsl_bill":"'. $rs["lsl_bill"].'"}'; 
 }
 $outp ='{"operations":['.$outp.']}';

@@ -1,10 +1,10 @@
-mylsl.controller('export_controller', function ($scope, $http) {
+mylsl.controller('export_controller', function ($scope, $http,$rootScope) {
     'use strict';
     $scope.client_id = "2";
     $scope.op_type = "1";
     $http.get("php/get_operations.php", {
         params: {
-            client_id: $scope.client_id,
+            client_id: $rootScope.client_id,
             op_type: $scope.op_type
         }
     }).then(function (response) {
