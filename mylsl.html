@@ -12,14 +12,15 @@
 <body ng-app="mylsl">
 
     <div class="container" ng-controller="main_controller">
-        <div ng-repeat="user in users">
-        <b>Usuario:</b> {{user.username}}<br>
-            <b>Nombre:</b> {{user.name}}<br>
-            <b>Apellido:</b> {{user.surname}}<br>
-            <b>roles:</b> {{user.role}}<br>
-            <b>teléfono:</b> {{user.tel}}<br>
-        <b>empresa:</b> {{user.client_desc}}<br>
-            <hr>
+      <div class="importation" ng-controller="import_controller">
+        <div ng-repeat="import in operations_imp">
+          {{import.ref_client}}
+        </div>
+        </div>
+            <div class="export" ng-controller="export_controller">
+        <div ng-repeat="export in operations_exp">
+          {{export.ref_client}}
+        </div>
         </div>
     </div>
 
@@ -28,6 +29,9 @@
     <script src="bower_components/angular/angular.min.js" type="application/javascript"></script>
     <script src="scripts/base.js" type="application/javascript"></script>
     <script src="scripts/main_controller.js" type="application/javascript"></script>
+    <script src="scripts/import_controller.js" type="application/javascript"></script>
+    <script src="scripts/export_controller.js" type="application/javascript"></script>
+  
     <script>
     </script>
 
