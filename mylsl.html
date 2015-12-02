@@ -12,7 +12,9 @@
 <body ng-app="mylsl">
 
     <div ng-controller="main_controller">
-        <div ng-controller="import_controller">
+        <uib-tabset justified="true" style="margin-top:5%;">
+    <uib-tab heading="Importación">
+            <div class="import" ng-controller="import_controller">
             <div class="table-responsive">
                 <h3>Importación</h3>
                 <table class="table table-striped table-curved table-condensed table-hover">
@@ -52,6 +54,9 @@
                 </pagination>
             </div>
         </div>
+    </uib-tab>
+    <uib-tab heading="Exportación">
+    
         <div class="export" ng-controller="export_controller">
             <div class="table-responsive">
                 <h3>exportación</h3>
@@ -81,7 +86,14 @@
                 <pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
                 </pagination>
             </div>
-        </div>
+        </div>        
+    </uib-tab>
+             <uib-tab heading="opción 3"><h2>Opción 3</h2></uib-tab>
+             <uib-tab heading="opción 4"><h2>Opción 4</h2></uib-tab>
+             <uib-tab heading="opción 5"><h2>Opción 5</h2></uib-tab>
+             <uib-tab heading="opción 6"><h2>Opción 6</h2></uib-tab>
+  </uib-tabset>
+
     </div>
 
     <script src="bower_components/jquery/dist/jquery.min.js" type="application/javascript"></script>
