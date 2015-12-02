@@ -4,76 +4,95 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
     <title>myLSL</title>
 </head>
 
 <body ng-app="mylsl">
 
-<div ng-controller="main_controller">
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12" ng-controller="import_controller">
-        <div class="table-responsive">
-            <table class="table table-striped table-curved table-condensed table-hover" >
-                <thead>
-                  <tr>
-                      <th class="col-lg-1">Ref Clientes</th>
-                      <th class="col-lg-1">Ref LSL</th>
-                      <th class="col-lg-1">Mercader&iacute;a</th> 
-                      <th class="col-lg-1">Transporte</th> 
-                      <th class="col-lg-1">embarque origen</th> 
-                      <th class="col-lg-1">arribo estimado</th> 
-                      <th class="col-lg-2">Documento Aduanero</th>
-                      <th class="col-lg-2">Documento Aduanero DJAI</th>
-                      <th class="col-lg-1">Fecha arribo</th> 
-                      <th class="col-lg-2">Fecha liberaci&oacute;n</th> 
-                      <th class="col-lg-2">Factura LSL</th> 
-                  </tr>
-              </thead>
-             
-              <tbody>
-                <tr ng-repeat="import in operations_imp | filter : paginate">
-                  <td>{{ import.ref_client }}</td>
-                  <td>{{ import.ref_lsl }}</td>
-                  <td>{{ import.merchandise }}</td>
-                  <td>{{ import.transport }}</td>
-                  <td>{{ import.shipment_origin }}</td>
-                  <td>{{ import.estimated_arrival }}</td>
-                  <td>{{ import.custom_document }}</td>
-                  <td>{{ import.custom_document_djai }}</td>
-                  <td>{{ import.arrival_date }}</td>
-                  <td>{{ import.release_date }}</td>
-                  <td>{{ import.lsl_bill }}</td>
-                </tr>
-              </tbody>  
-            </table>
-          <pagination total-items="totalItems" ng-model="currentPage"
-          max-size="5" boundary-links="true"
-          items-per-page="numPerPage" class="pagination-sm">
-        </pagination>
+    <div ng-controller="main_controller">
+        <div ng-controller="import_controller">
+            <div class="table-responsive">
+                <h3>Importación</h3>
+                <table class="table table-striped table-curved table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ref Clientes</th>
+                            <th>Ref LSL</th>
+                            <th>Mercader&iacute;a</th>
+                            <th>Transporte</th>
+                            <th>embarque origen</th>
+                            <th>arribo estimado</th>
+                            <th>Documento Aduanero</th>
+                            <th>Documento Aduanero DJAI</th>
+                            <th>Fecha arribo</th>
+                            <th>Fecha liberaci&oacute;n</th>
+                            <th>Factura LSL</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="import in operations_imp | filter : paginate">
+                            <td>{{ import.ref_client }}</td>
+                            <td>{{ import.ref_lsl }}</td>
+                            <td>{{ import.merchandise }}</td>
+                            <td>{{ import.transport }}</td>
+                            <td>{{ import.shipment_origin }}</td>
+                            <td>{{ import.estimated_arrival }}</td>
+                            <td>{{ import.custom_document }}</td>
+                            <td>{{ import.custom_document_djai }}</td>
+                            <td>{{ import.arrival_date }}</td>
+                            <td>{{ import.release_date }}</td>
+                            <td>{{ import.lsl_bill }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+                </pagination>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-            <div class="export" ng-controller="export_controller">
-        <div ng-repeat="export in operations_exp">
-          {{export.ref_client}}
-        </div>
+        <div class="export" ng-controller="export_controller">
+            <div class="table-responsive">
+                <h3>exportación</h3>
+                <table class="table table-striped table-curved table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ref Clientes</th>
+                            <th>Ref LSL</th>
+                            <th>Mercader&iacute;a</th>
+                            <th>embarque</th>
+                            <th>Documento Aduanero</th>
+                            <th>Factura LSL</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="export in operations_exp | filter : paginate">
+                            <td>{{ export.ref_client }}</td>
+                            <td>{{ export.ref_lsl }}</td>
+                            <td>{{ export.merchandise }}</td>
+                            <td>{{ export.shipment }}</td>
+                            <td>{{ export.custom_document }}</td>
+                            <td>{{ export.lsl_bill }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+                </pagination>
+            </div>
         </div>
     </div>
 
     <script src="bower_components/jquery/dist/jquery.min.js" type="application/javascript"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="application/javascript"></script>
-    <script src="bower_components/angular/angular.min.js" type="application/javascript"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="scripts/base.js" type="application/javascript"></script>
     <script src="scripts/main_controller.js" type="application/javascript"></script>
     <script src="scripts/import_controller.js" type="application/javascript"></script>
     <script src="scripts/export_controller.js" type="application/javascript"></script>
-  
-    <script>
-    </script>
+
 
 </body>
 

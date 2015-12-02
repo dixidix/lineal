@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.12
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2015 a las 02:40:35
--- Versión del servidor: 5.6.25
--- Versión de PHP: 5.6.11
+-- Tiempo de generación: 02-12-2015 a las 14:34:35
+-- Versión del servidor: 10.1.8-MariaDB
+-- Versión de PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `client`
 --
 
-CREATE TABLE IF NOT EXISTS `client` (
+CREATE TABLE `client` (
   `clientId` int(10) NOT NULL,
   `name_desc` varchar(65) NOT NULL,
   `username` varchar(65) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `web` varchar(150) NOT NULL,
   `clientLogoPath` varchar(150) NOT NULL,
   `cuit` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `client`
@@ -50,10 +50,22 @@ INSERT INTO `client` (`clientId`, `name_desc`, `username`, `address`, `manager`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `client_email`
+--
+
+CREATE TABLE `client_email` (
+  `emailId` int(10) NOT NULL,
+  `clientId` int(10) NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `document`
 --
 
-CREATE TABLE IF NOT EXISTS `document` (
+CREATE TABLE `document` (
   `documentId` int(10) NOT NULL,
   `clientId` int(10) NOT NULL,
   `ref_lsl` int(15) NOT NULL,
@@ -67,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `document` (
 -- Estructura de tabla para la tabla `operation`
 --
 
-CREATE TABLE IF NOT EXISTS `operation` (
+CREATE TABLE `operation` (
   `ref_lsl` int(10) NOT NULL,
   `ref_client` varchar(45) NOT NULL,
   `merchandise` varchar(45) NOT NULL,
@@ -82,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `operation` (
   `lsl_bill` varchar(45) DEFAULT NULL,
   `clientId` int(10) NOT NULL,
   `operationTypeId` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operation`
@@ -98,10 +110,10 @@ INSERT INTO `operation` (`ref_lsl`, `ref_client`, `merchandise`, `transport`, `s
 -- Estructura de tabla para la tabla `operation_type`
 --
 
-CREATE TABLE IF NOT EXISTS `operation_type` (
+CREATE TABLE `operation_type` (
   `operationTypeId` int(1) NOT NULL,
   `operation_desc` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operation_type`
@@ -117,7 +129,7 @@ INSERT INTO `operation_type` (`operationTypeId`, `operation_desc`) VALUES
 -- Estructura de tabla para la tabla `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `userId` int(10) NOT NULL,
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
@@ -126,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `role` varchar(100) NOT NULL,
   `tel` varchar(45) NOT NULL,
   `clientId` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `users`
@@ -146,6 +158,12 @@ INSERT INTO `users` (`userId`, `username`, `password`, `name`, `surname`, `role`
 ALTER TABLE `client`
   ADD PRIMARY KEY (`clientId`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indices de la tabla `client_email`
+--
+ALTER TABLE `client_email`
+  ADD PRIMARY KEY (`emailId`);
 
 --
 -- Indices de la tabla `document`
@@ -181,7 +199,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `client`
 --
 ALTER TABLE `client`
-  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `document`
 --
@@ -191,17 +209,17 @@ ALTER TABLE `document`
 -- AUTO_INCREMENT de la tabla `operation`
 --
 ALTER TABLE `operation`
-  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `operation_type`
 --
 ALTER TABLE `operation_type`
-  MODIFY `operationTypeId` int(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `operationTypeId` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
