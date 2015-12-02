@@ -1,1 +1,1 @@
-var mylsl = angular.module('mylsl', []);
+var mylsl = angular.module('mylsl', ['ui.bootstrap']);
