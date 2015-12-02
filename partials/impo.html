@@ -1,26 +1,20 @@
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    <title>myLSL</title>
-</head>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<div class="jumbotron text-center" style="box-shadow:0px 1px 7px 1px #2e2e2e;">
+        <h3>Impo</h3>
+        <p>{{ message }}</p>
+  <a href="/clientes">Volver</a> 
+</div>
 
-<body ng-app="mylsl">
-
-<div ng-controller="main_controller">
-<div class="container-fluid">
+<div class="container">
     <div class="row">
       <div class="col-lg-12" ng-controller="import_controller">
         <div class="table-responsive">
             <table class="table table-striped table-curved table-condensed table-hover" >
                 <thead>
                   <tr>
-                      <th class="col-lg-1">Ref Clientes</th>
-                      <th class="col-lg-1">Ref LSL</th>
+                      <th class="col-lg-2">Ref Clientes</th>
+                      <th class="col-lg-2">Ref LSL</th>
                       <th class="col-lg-1">Mercader&iacute;a</th> 
                       <th class="col-lg-1">Transporte</th> 
                       <th class="col-lg-1">embarque origen</th> 
@@ -28,7 +22,7 @@
                       <th class="col-lg-2">Documento Aduanero</th>
                       <th class="col-lg-2">Documento Aduanero DJAI</th>
                       <th class="col-lg-1">Fecha arribo</th> 
-                      <th class="col-lg-2">Fecha liberaci&oacute;n</th> 
+                      <th class="col-lg-1">Fecha liberaci&oacute;n</th> 
                       <th class="col-lg-2">Factura LSL</th> 
                   </tr>
               </thead>
@@ -57,24 +51,4 @@
       </div>
     </div>
   </div>
-            <div class="export" ng-controller="export_controller">
-        <div ng-repeat="export in operations_exp">
-          {{export.ref_client}}
-        </div>
-        </div>
-    </div>
 
-    <script src="bower_components/jquery/dist/jquery.min.js" type="application/javascript"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="application/javascript"></script>
-    <script src="bower_components/angular/angular.min.js" type="application/javascript"></script>
-    <script src="scripts/base.js" type="application/javascript"></script>
-    <script src="scripts/main_controller.js" type="application/javascript"></script>
-    <script src="scripts/import_controller.js" type="application/javascript"></script>
-    <script src="scripts/export_controller.js" type="application/javascript"></script>
-  
-    <script>
-    </script>
-
-</body>
-
-</html>
