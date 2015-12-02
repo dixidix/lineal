@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-12-2015 a las 16:20:49
+-- Tiempo de generación: 02-12-2015 a las 20:09:05
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -109,7 +109,9 @@ INSERT INTO `operation` (`ref_lsl`, `ref_client`, `merchandise`, `transport`, `s
 (7, 'OC SCHMIDT-94', 'Actuador Neumatico', 'Avion', NULL, '2015-06-10', '2015-06-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-13', '2015-06-13', '0001-00002527', 1, 2),
 (8, 'OC SCHMIDT-96', 'Actuador Neumatico', 'Avion', NULL, '2015-06-10', '2015-06-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-13', '2015-06-13', '0001-00002527', 1, 2),
 (9, 'OC SCHMIDT-97', 'Actuador Neumatico', 'Avion', NULL, '2015-06-10', '2015-06-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-13', '2015-06-13', '0001-00002527', 1, 2),
-(10, 'OC SCHMIDT-98', 'Actuador Neumatico', 'Avion', NULL, '2015-06-10', '2015-06-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-13', '2015-06-13', '0001-00002527', 1, 2);
+(10, 'OC SCHMIDT-98', 'Actuador Neumatico', 'Avion', NULL, '2015-06-10', '2015-06-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-13', '2015-06-13', '0001-00002527', 1, 2),
+(16, 'OB SCHMIDT-91', 'Actuador', 'Avion', NULL, '2015-06-12', '2015-06-12', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-12', '2015-06-12', '0001-00002527', 2, 2),
+(17, 'ON-200', 'Caudal', NULL, '2015-06-17', NULL, NULL, '15 073 IC04 097571 X', NULL, NULL, NULL, '0001-00002524', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -216,7 +218,7 @@ ALTER TABLE `document`
 -- AUTO_INCREMENT de la tabla `operation`
 --
 ALTER TABLE `operation`
-  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `operation_type`
 --
