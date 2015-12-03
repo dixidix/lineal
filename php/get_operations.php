@@ -3,8 +3,9 @@ require 'db.php';
 
 session_start();
 $client_id = $_GET['client_id'];
+$optype = $_GET['op_type'];
 
-$res = MysqliDB::getInstance()->query("SELECT * from operation where clientId='".$client_id."'");
+$res = MysqliDB::getInstance()->query("SELECT * from operation where clientId='".$client_id."' and operationTypeId='".$optype."'");
 $outp="";
 while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "") {$outp .= ",";}

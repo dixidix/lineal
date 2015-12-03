@@ -1,25 +1,29 @@
-mylsl.controller('main_controller', function ($scope, $http) {
-    'use strict';
-    $scope.search = function () {
-        $scope.op_type = "2";
-        $http.get("php/get_operations.php", {
-            params: {
-                client_id: $scope.client_id,
-                op_type: $scope.op_type
-            }
-        }).then(function (response) {
-            $scope.operations = response.data.operations;
-            $scope.totalItems = $scope.operations.length;
-            $scope.currentPage = 1;
-            $scope.numPerPage = 5;
+mylsl.controller('login_controller', function ($scope, $http, $rootScope, $cookieStore, $location) {
+  $scope.submit_login = function () {
+    $http({
+      method: 'POST',
+      url: 'php/login.php',
+      data: {
+        username: $scope.username,
+        password: $scope.password
+      }
+    }).success(function (data) {
+      if (data.errors) {
+        // Showing errors.
+        $scope.usernameError = data.errors.usernameError;
+        $scope.passwordError = data.errors.passwordError;
+        $scope.loginError = data.errors.loginError;
+      } else {
+        $rootScope.userLoggedin = data.userId;
+        $rootScope.mail = data.email;
+        $rootScope.isLogged = true;
+        $cookieStore.put('user_id', data.userId);
+        $location.path( "/mylsl" );
+      }
+    });
+  };
+});
 
-            $scope.paginate = function (value) {
-                var begin, end, index;
-                begin = ($scope.currentPage - 1) * $scope.numPerPage;
-                end = begin + $scope.numPerPage;
-                index = $scope.operations.indexOf(value);
-                return (begin <= index && index < end);
-            };
-        });
-    }
+mylsl.controller('main_controller', function ($scope, $http, $rootScope, $cookieStore) {
+
 });

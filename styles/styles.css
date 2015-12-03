@@ -1,7 +1,6 @@
 th {
   color:#fff;
   background:#337ab7;
-    font-size:0.9em;
   text-align: center;
   vertical-align: middle; 
   
@@ -45,4 +44,17 @@ th {
 }
 .pagination{
     margin-left:40%;
+}
+.import, .export {
+  padding:2%;
+}
+
+.nav-tabs{
+   background-color:#eee;
+    color:#2e2e2e;
+}
+.nav-tabs li {
+    border-top: 1px #ddd solid;
+  border-right: 1px #ddd solid;
+  border-radius: 5px 5px 0 0;
 }

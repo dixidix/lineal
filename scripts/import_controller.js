@@ -1,10 +1,11 @@
-mylsl.controller('import_controller', function ($scope, $http) {
+mylsl.controller('import_controller', function ($rootScope, $scope, $http) {
     'use strict';
-    $scope.client_id = "1";
+  
     $scope.op_type = "2";
+  
     $http.get("php/get_operations.php", {
         params: {
-            client_id: $scope.client_id,
+            client_id: $rootScope.userLoggedin,
             op_type: $scope.op_type
         }
     }).then(function (response) {

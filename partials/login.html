@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <title>myLSL</title>
+</head>
+
+<body ng-app="mylsl">
+
+    <div ng-controller="login_controller">
+    <div class="container-fluid" style="margin:10% 20%;">
+      <div class="row" >
+        <div class="col-lg-12" >
+          <form>
+           <label>usuario: </label><input class="form-control" type="text" ng-model="username">
+            {{usernameError}}<br>
+           <label>Contraseña: </label><input class="form-control" type="password" ng-model="password">
+            {{passwordError}}
+            <br>
+            {{loginError}}
+            <button class="btn btn-primary" style="width:100%" ng-click="submit_login()">Entrar</button>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js" type="application/javascript"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="scripts/base.js" type="application/javascript"></script>
+    <script src="scripts/main_controller.js" type="application/javascript"></script>
+    <script src="scripts/import_controller.js" type="application/javascript"></script>
+    <script src="scripts/export_controller.js" type="application/javascript"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.min.js" type="application/javascript"></script>
+
+</body>
+
+</html>
