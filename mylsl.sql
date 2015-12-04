@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2015 a las 04:11:43
+-- Tiempo de generación: 04-12-2015 a las 11:55:19
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `client` (
 --
 
 INSERT INTO `client` (`clientId`, `name_desc`, `username`, `address`, `manager`, `tel`, `fax`, `web`, `clientLogoPath`, `cuit`) VALUES
-(1, 'esco s.a', 'escosa', 'tabanera 3385', 1, '4294555', '14654156', 'www.google.com', 'public/client/logo/logo.jpg', '1012311231'),
+(1, 'esco s.a', 'escosa', 'tabanera 3385', 1, '4294555', '14654156', 'www.google.com', 'logos/jas.jpg', '1012311231'),
 (2, 'cisco srl', 'ciscosrl', 'cadetes chilenos 173', NULL, '153013907', '42374541', 'www.ciscosrl.com.ar', 'public/cisco/logo/cisco.png', '123456789');
 
 -- --------------------------------------------------------
