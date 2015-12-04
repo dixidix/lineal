@@ -5,12 +5,12 @@
         <div class="col-lg-12" >
           <form>
            <label>usuario: </label><input class="form-control" type="text" ng-model="username">
-            {{usernameError}}<br>
+            <span class="error">{{usernameError}}</span><br>
            <label>Contraseña: </label><input class="form-control" type="password" ng-model="password">
-            {{passwordError}}
+            <span class="error">{{passwordError}}</span>
             <br>
-            {{loginError}}
-            <button class="btn btn-primary" style="width:100%" ng-click="submit_login()">Entrar</button>
+            <span class="error">{{loginError}}</span><br>
+            <button class="btn btn-primary" style="width:100%" ng-click="submit_login()">Ingresar</button>
           </form>
         </div>
         </div>

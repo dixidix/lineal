@@ -1,27 +1,58 @@
 <div ng-controller="mylsl_controller">
-  
-  <div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-2" style="background-color:#fff;height:100vh;border-right:1px #ddd solid;padding:0;">
-    <img ng-src="{{client_logo_path}}" style="padding:5%;">
-    <div style="margin-top:30%">
-    <button class="btn btn-default" style="margin:0;width:100%;height:50px;border-radius:0;" ui-sref=".export"><i class="glyphicon glyphicon-export"></i>Exportaciones</button>
-    <button class="btn btn-default" style="margin:0;width:100%;height:50px;border-radius:0;" ui-sref=".import"><i class="glyphicon glyphicon-import"></i>Importaciones</button>
-    <button class="btn btn-default" style="margin:0;width:100%;height:50px;border-radius:0;">Seguimiento</button>
-    <button class="btn btn-default" style="margin:0;width:100%;height:50px;border-radius:0;">Reintegros</button>
-    <button class="btn btn-default" style="margin:0;width:100%;height:50px;border-radius:0;">Courrier imp</button>
-    <button class="btn btn-default" ng-click="logout()" style="margin:0;width:100%;height:50px;border-radius:0;">Salir</button>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 menu-left">
+                <div class="client_logo_container" style="padding:15% 15% 0% 15%">
+                    <img ng-src="{{client_logo_path}}">
+                </div>
+                <div style="margin-top:30%">
+                    <ul class="menu">
+
+                        <a ng-show="show_import" href="#" ui-sref=".import">
+                            <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Importaciones</span></li>
+                        </a>
+                        <a ng-show="show_export" href="#" ui-sref=".export">
+                            <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Exportaciones</span></li>
+                        </a>
+                        <a ng-show="show_following" href="#" ui-sref=".export">
+                            <li class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Seguimiento</span></li>
+                        </a>
+                        <a ng-show="show_refund" href="#" ui-sref=".export">
+                            <li class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Reintegros</span></li>
+                        </a>
+                        <a ng-show="show_courrier" href="#" ui-sref=".export">
+                            <li class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Courrier Imp.</span></li>
+                        </a>
+                        <a ng-show="show_add_op" href="#" ui-sref=".new_import">
+                            <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Agregar Importación</span></li>
+                        </a>
+                        <a ng-show="show_add_op" href="#" ui-sref=".new_export">
+                            <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Agregar Exportación</span></li>
+                        </a>
+
+                        <a ng-show="show_add_op" href="#" ui-sref=".new_user">
+                            <li class="list-item"><i class="glyphicon glyphicon-user"></i><span>Agregar Usuario</span></li>
+                        </a>
+                        <a ng-show="show_add_op" href="#" ui-sref=".new_client">
+                            <li class="list-item"><i class="glyphicon glyphicon-briefcase"></i><span>Agregar Cliente</span></li>
+                        </a>
+                        <a ng-show="show_add_op" href="#" ui-sref=".new_document">
+                            <li class="list-item"><i class="glyphicon glyphicon-cog"></i><span>Agregar Documento</span></li>
+                        </a>
+                        <a ng-click="logout()">
+                            <li class="list-item"><i class="glyphicon glyphicon-log-out"></i><span>Salir</span></li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-10 content">
+                <div ui-view="content"></div>
+
+            </div>
+            <div class="footer"><span>Bienvenido/a {{name}} a My LSL, su portal en donde podrá gerenciar sus operaciones de Logística y Comercio Exterior.</span>
+                <br>
+                <span>Teléfono 54 11 4326-3315 (líneas rotativas). </div></div>
     </div>
-      </div>
-      <div class="col-lg-10" style="background-color:#ddd ;height:100vh;">
-        
-        <div ui-view="content"></div>
-    </div>
-  </div>
 </div>
 </div>
-
-
-
-
-

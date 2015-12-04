@@ -1,5 +1,13 @@
-mylsl.controller('mylsl_controller', function ($scope, $http, $cookies, $state) {
-  
+mylsl.controller('mylsl_controller', function ($scope, $rootScope, $http, $cookies, $state) {
+    $scope.role = $cookies.get('role');
+    $scope.name = $cookies.get('name');
+    $scope.show_export = $scope.role.indexOf('1') !== -1;
+    $scope.show_import = $scope.role.indexOf('2') !== -1;
+    $scope.show_following = $scope.role.indexOf('3') !== -1;
+    $scope.show_refund = $scope.role.indexOf('4') !== -1;
+    $scope.show_courrier = $scope.role.indexOf('5') !== -1;
+    $scope.show_courrier = $scope.role.indexOf('5') !== -1;
+    $scope.show_add_op = $scope.role.indexOf('6') !== -1;
   $scope.client_name = $cookies.get('name_desc');
   $scope.client_logo_path = "lineal/" + $cookies.get('clientLogoPath');
 
@@ -14,4 +22,8 @@ mylsl.controller('mylsl_controller', function ($scope, $http, $cookies, $state) 
       $state.go("/");
     });
   };
+ $('.menu a li').click(function (evt) {
+    $('.menu a li').removeClass("item_active");
+    $(this).addClass("item_active");
+});
 });

@@ -12,7 +12,7 @@ mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $h
     $scope.operations_imp = response.data.operations;
     $scope.totalItems = $scope.operations_imp.length;
     $scope.currentPage = 1;
-    $scope.numPerPage = 10;
+    $scope.numPerPage = 20;
 
     $scope.paginate = function (value) {
       var begin, end, index;

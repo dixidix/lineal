@@ -28,7 +28,46 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         }
       }
     })
-
+      .state('mylsl.new_import', {
+      url: '/agregar-importacion',
+      views: {
+        'content': {
+          templateUrl: 'lineal/partials/new_impo.html'
+        }
+      }
+    })
+        .state('mylsl.new_export', {
+      url: '/agregar-exportacion',
+      views: {
+        'content': {
+          templateUrl: 'lineal/partials/new_export.html'
+        }
+      }
+    })
+        .state('mylsl.new_user', {
+      url: '/agregar-usuario',
+      views: {
+        'content': {
+          templateUrl: 'lineal/partials/new_user.html'
+        }
+      }
+    })
+        .state('mylsl.new_client', {
+      url: '/agregar-cliente',
+      views: {
+        'content': {
+          templateUrl: 'lineal/partials/new_client.html'
+        }
+      }
+    })
+        .state('mylsl.new_document', {
+      url: '/agregar-documento',
+      views: {
+        'content': {
+          templateUrl: 'lineal/partials/new_document.html'
+        }
+      }
+    })
   $urlRouterProvider.otherwise('/');
 
 });

@@ -1,7 +1,7 @@
 <div class="import" ng-controller="import_controller">
   <div class="search">
 
-    <input type="search" class="form-control"  ng-model="impo_search"/>
+    <input type="search" class="form-control"  ng-model="impo_search" value="escriba aquí su busqueda"/>
     <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Buscar </button>
 
   </div>
@@ -39,7 +39,7 @@
         </tr>
       </tbody>
     </table>
-    <uib-pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+    <uib-pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm" previous-text="Anterior" next-text="Siguiente" first-text="Primer Hoja" last-text="Última hoja">
     </uib-pagination>
   </div>
 </div>
