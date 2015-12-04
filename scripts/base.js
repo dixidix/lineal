@@ -1,1 +1,1 @@
-var mylsl = angular.module('mylsl', ['ui.bootstrap', 'ngCookies', 'ngRoute']);
+var mylsl = angular.module('mylsl', ['ui.bootstrap', 'ngCookies', 'ui.router']);

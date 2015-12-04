@@ -1,3 +1,29 @@
+html, body {height: 100%}
+.search {
+    position: relative;
+}
+
+.search input {
+height: 36px;
+margin-bottom: 2%;
+  border: 1px #ABABAB solid;
+}
+
+.search button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin: 0px 0px;
+    height: 35px;
+    width: 18.5%;
+    border-radius:0px 4px 4px 0px;
+    background-color:#337ab7;
+  border:none;
+  border-right: 1px #ABABAB solid;
+  cursor: auto;
+}
+
+
 th {
   color:#fff;
   background:#337ab7;
@@ -57,4 +83,8 @@ th {
     border-top: 1px #ddd solid;
   border-right: 1px #ddd solid;
   border-radius: 5px 5px 0 0;
+}
+
+.glyphicon {
+    font-size: 17px;
 }

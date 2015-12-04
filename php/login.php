@@ -34,12 +34,13 @@ if (!empty($errors)){
 	$username = MysqliDB::getInstance()->real_escape_string($username);
 
 	$res = MysqliDB::getInstance()->query("SELECT * FROM users WHERE username='" . $username . "' AND password='" . $userpass . "'");
-	$rows = mysqli_num_rows($res);
+    $rows = mysqli_num_rows($res);
 	if ($rows == 1){
        $rss = $res->fetch_array(MYSQLI_ASSOC);
 
        if ($rss['active'] == 0){
               $data['userId'] = $rss['userId'];
+              $data['clientId'] = $rss['clientId'];
 	          $data['username'] = $rss['username'];
 	          $data['password'] = $rss['password'];
 	          $data['name'] = $rss['name'];
@@ -47,9 +48,17 @@ if (!empty($errors)){
               $data['role'] = $rss['role'];
               $data['tel'] = $rss['tel'];
 	          $data['active'] = "1";
-			echo json_encode($data);
+			
 
 			MysqliDB::getInstance()->query("UPDATE users SET active=1 WHERE userId=" . $rss['userId']);
+            $res_client = MysqliDB::getInstance()->query("SELECT name_desc, clientLogoPath FROM client WHERE clientId='". $rss['clientId'] ."'");
+            $rows = mysqli_num_rows($res_client);
+	       if ($rows == 1){
+             $rss_client = $res_client->fetch_array(MYSQLI_ASSOC);
+              $data['name_desc'] = $rss_client['name_desc'];             
+              $data['clientLogoPath'] = $rss_client['clientLogoPath'];
+             echo json_encode($data);
+           }
 		}else{
             $data['active'] = $rss['active'];
 			$errors['loginError'] = 'El usuario se encuentra conectado.';

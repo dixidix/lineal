@@ -1,8 +1,8 @@
-mylsl.controller('login_controller', function ($scope, $http, $rootScope, $cookieStore, $location) {
+mylsl.controller('login_controller', function ($scope, $http, $rootScope, $cookies, $state) {
   $scope.submit_login = function () {
     $http({
       method: 'POST',
-      url: 'php/login.php',
+      url: 'lineal/php/login.php',
       data: {
         username: $scope.username,
         password: $scope.password
@@ -14,16 +14,12 @@ mylsl.controller('login_controller', function ($scope, $http, $rootScope, $cooki
         $scope.passwordError = data.errors.passwordError;
         $scope.loginError = data.errors.loginError;
       } else {
-        $rootScope.userLoggedin = data.userId;
-        $rootScope.mail = data.email;
-        $rootScope.isLogged = true;
-        $cookieStore.put('user_id', data.userId);
-        $location.path( "/mylsl" );
+        $cookies.put('user_id', data.userId);
+        $cookies.put('client_id', data.clientId);
+        $cookies.put('name_desc', data.name_desc);
+        $cookies.put('clientLogoPath', data.clientLogoPath);
+        $state.go( "mylsl" );
       }
     });
   };
-});
-
-mylsl.controller('main_controller', function ($scope, $http, $rootScope, $cookieStore) {
-
 });
