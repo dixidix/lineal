@@ -37,11 +37,11 @@ mylsl.controller('users_controller', function ($rootScope,$modal, $cookies, $sco
 
       });
   };
-  $scope.deleteuser = function (deleteUser) {
+  $scope.deleteUser = function (deleteUser) {
     $rootScope.userDelete = deleteUser;
     $modal.open({
-        templateUrl: 'lineal/partials/modal_delete_operation_import.html',
-        controller: 'modal_delete_operation_import',
+        templateUrl: 'lineal/partials/modal_delete_user.html',
+        controller: 'modal_delete_user',
         scope: $scope
       })
       .result.then(function () {
@@ -104,7 +104,7 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
   $scope.actionTitle = "Editar un Usuario";
   $scope.action = "Editar";
   $scope.select_client = $rootScope.userEdit.clientId;
-  alert(  $scope.select_client);
+
   $scope.user = {
     name: $rootScope.userEdit.name,
     surname: $rootScope.userEdit.surname,
@@ -143,4 +143,45 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
       }
     });
 };
+});
+
+mylsl.controller('modal_delete_user', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+
+    'use strict';
+
+    $scope.user = {
+      name: $rootScope.userDelete.name,
+      surname: $rootScope.userDelete.surname,
+      userId: $rootScope.userDelete.userId
+    };
+
+    $scope.delete_operation = function () {
+
+      $http({
+        method: 'POST',
+        url: 'lineal/php/delete_user.php',
+        data: {
+          userId: $scope.user.userId
+        }, //forms user object
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).success(function (data) {
+        if (data.errors) {
+          // Showing errors.
+          $scope.emailError = data.errors.emailError;
+          $scope.passwordError = data.errors.passwordError;
+          $scope.loginError = data.errors.loginError;
+        } else {
+          $rootScope.active = data.active;
+          $rootScope.userLoggedin = data.name;
+          $rootScope.mail = data.email;
+          $modalInstance.dismiss('cancel');
+          $state.go($state.current, {}, {
+            reload: true
+          });
+        }
+      });
+
+    };
 });
