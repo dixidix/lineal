@@ -20,11 +20,27 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         }
       }
     })
+      .state('mylsl.new_import.cp_import', {
+      url: '/import',
+      views: {
+        'cp_content': {
+          templateUrl: 'lineal/partials/cp_impo.html'
+        }
+      }
+    })
       .state('mylsl.export', {
       url: '/export',
       views: {
         'content': {
           templateUrl: 'lineal/partials/expo.html'
+        }
+      }
+    })
+        .state('mylsl.new_import.cp_export', {
+      url: '/export',
+      views: {
+        'cp_content': {
+          templateUrl: 'lineal/partials/cp_expo.html'
         }
       }
     })

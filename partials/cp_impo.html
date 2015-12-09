@@ -1,0 +1,51 @@
+<div class="import" ng-controller="import_controller" ng-show="Content_active">
+
+  <button class="btn btn-primary add_operation" ng-click="add_operation()"><i class="glyphicon glyphicon-plus"></i>Agregar Importación</button>
+  <div class="search">
+
+    <input type="search" class="form-control" ng-model="impo_search" value="escriba aquí su busqueda" />
+    <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Buscar </button>
+
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-curved table-condensed table-hover">
+      <thead>
+        <tr>
+          <th>Ref Clientes</th>
+          <th>Ref LSL</th>
+          <th>Mercader&iacute;a</th>
+          <th>Transporte</th>
+          <th>embarque origen</th>
+          <th>arribo estimado</th>
+          <th>Documento Aduanero</th>
+          <th>Documento Aduanero DJAI</th>
+          <th>Fecha arribo</th>
+          <th>Fecha liberaci&oacute;n</th>
+          <th>Factura LSL</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="import in operations_imp | filter : paginate | filter : impo_search">
+          <td>{{ import.ref_client }}</td>
+          <td>{{ import.ref_lsl }}</td>
+          <td>{{ import.merchandise }}</td>
+          <td>{{ import.transport }}</td>
+          <td>{{ import.shipment_origin | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ import.estimated_arrival | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ import.custom_document }}</td>
+          <td>{{ import.custom_document_djai }}</td>
+          <td>{{ import.arrival_date | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ import.release_date | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ import.lsl_bill }}</td>
+          <td><a tooltip="Editar" tooltip-placement="top" ng-click="modifyImport(import)" style="color:#000;cursor:pointer;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteImport(import)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+    <uib-pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm" previous-text="Anterior" next-text="Siguiente" first-text="Primer Hoja" last-text="Última hoja">
+    </uib-pagination>
+
+  </div>
+</div>

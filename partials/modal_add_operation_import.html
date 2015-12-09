@@ -1,0 +1,64 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
+</div>
+<div class="modal-body">
+  <form name="newuser" role="form" class="" ng-submit="create_import()" autocomplete="off">
+
+
+    <span>referencia del cliente: </span>
+    <input id="new_ref_client" type="text" class="form-control" style="height: 30px; width:564px; border-radius: 0px;" ng-model="operation_import.ref_client" placeholder="Ingrese la referencia de cliente" />
+
+    <span>Mercadería: </span>
+    <input type="text" class="form-control" ng-model="operation_import.merchandise" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese la mercaderia a transportar" />
+
+    <span>Transporte: </span>
+    <input type="text" class="form-control" ng-model="operation_import.transport" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese el método de transporte" />
+
+
+    <span>Embarque origen: </span>
+<div class="input-group">
+    <input type="text" class="form-control" style="height: 30px; width:526px; border-radius: 0px;" ng-model="operation_import.shipment_origin" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['shipment_origin']" disabled current-text="Hoy" clear-text="Limpiar" close-text="Cerrar" />
+    <span class="input-group-btn">
+        <button style="height: 30px;" type="button" class="btn btn-default" ng-click="datePicker.open($event, 'shipment_origin')"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+</div>
+
+    <span>Arribo Estimado: </span>
+<div class="input-group">
+    <input type="text" style="height: 30px; width:526px; border-radius: 0px;" class="form-control" ng-model="operation_import.estimated_arrival" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['estimated_arrival']" close-text="Close" disabled current-text="Hoy" clear-text="Limpiar" close-text="Cerrar" />
+    <span class="input-group-btn">
+        <button style="height: 30px;" type="button" class="btn btn-default" ng-click="datePicker.open($event, 'estimated_arrival')"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+</div>
+
+    <span>Documento Aduanero: </span>
+    <input type="text" class="form-control" ng-model="operation_import.custom_document" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese la descripción del doc. aduanero" />
+
+    <span>Documento DJAI: </span>
+    <input type="text" class="form-control" ng-model="operation_import.custom_document_djai" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese la descripción del doc. DJAI"/>
+
+    <span>Fecha de Arribo: </span>
+<div class="input-group">
+    <input type="text" style="height: 30px; width:526px; border-radius: 0px;" class="form-control" ng-model="operation_import.arrival_date" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['arrival_date']" close-text="Close" disabled current-text="Hoy" clear-text="Limpiar" close-text="Cerrar"/>
+    <span class="input-group-btn">
+        <button style="height: 30px;" type="button" class="btn btn-default" ng-click="datePicker.open($event, 'arrival_date')"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+</div>
+    <span>Fecha de liberación: </span>
+<div class="input-group">
+    <input type="text" style="height: 30px; width:526px; border-radius: 0px;" class="form-control" ng-model="operation_import.release_date" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['release_date']" close-text="Close" disabled current-text="Hoy" clear-text="Limpiar" close-text="Cerrar"/>
+    <span class="input-group-btn">
+        <button style="height: 30px;" type="button" class="btn btn-default" ng-click="datePicker.open($event, 'release_date')"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+</div>
+    <span>Factura LSL: </span>
+    <input type="text" class="form-control" ng-model="operation_import.lsl_bill" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese el número de factura de LSL"/>
+
+    <div class="modal-footer">
+      <input type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+      <button type="button" style="width:200px" class="btn btn-default" ng-click="$dismiss()">Cancelar</button>
+    </div>
+
+  </form>
+</div>

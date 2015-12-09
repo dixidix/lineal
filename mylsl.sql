@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.4.12
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-12-2015 a las 21:24:18
--- Versión del servidor: 10.1.8-MariaDB
--- Versión de PHP: 5.6.14
+-- Tiempo de generación: 09-12-2015 a las 04:27:02
+-- Versión del servidor: 5.6.25
+-- Versión de PHP: 5.6.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `client`
 --
 
-CREATE TABLE `client` (
+CREATE TABLE IF NOT EXISTS `client` (
   `clientId` int(10) NOT NULL,
   `name_desc` varchar(65) NOT NULL,
   `username` varchar(65) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE `client` (
   `web` varchar(150) NOT NULL,
   `clientLogoPath` varchar(150) NOT NULL,
   `cuit` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `client`
@@ -54,7 +54,7 @@ INSERT INTO `client` (`clientId`, `name_desc`, `username`, `address`, `manager`,
 -- Estructura de tabla para la tabla `client_email`
 --
 
-CREATE TABLE `client_email` (
+CREATE TABLE IF NOT EXISTS `client_email` (
   `emailId` int(10) NOT NULL,
   `clientId` int(10) NOT NULL,
   `email` varchar(100) NOT NULL
@@ -66,7 +66,7 @@ CREATE TABLE `client_email` (
 -- Estructura de tabla para la tabla `document`
 --
 
-CREATE TABLE `document` (
+CREATE TABLE IF NOT EXISTS `document` (
   `documentId` int(10) NOT NULL,
   `clientId` int(10) NOT NULL,
   `ref_lsl` int(15) NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `document` (
 -- Estructura de tabla para la tabla `operation`
 --
 
-CREATE TABLE `operation` (
+CREATE TABLE IF NOT EXISTS `operation` (
   `ref_lsl` int(10) NOT NULL,
   `ref_client` varchar(45) NOT NULL,
   `merchandise` varchar(45) NOT NULL,
@@ -95,17 +95,17 @@ CREATE TABLE `operation` (
   `lsl_bill` varchar(45) DEFAULT NULL,
   `clientId` int(10) NOT NULL,
   `operationTypeId` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operation`
 --
 
 INSERT INTO `operation` (`ref_lsl`, `ref_client`, `merchandise`, `transport`, `shipment`, `shipment_origin`, `estimated_arrival`, `custom_document`, `custom_document_djai`, `arrival_date`, `release_date`, `lsl_bill`, `clientId`, `operationTypeId`) VALUES
-(1, 'OC SCHMIDT-91', 'Actuador Neumatico', 'Avion', NULL, '2015-06-10', '2015-06-13', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-13', '2015-06-17', '0001-00002527', 1, 2),
+(1, 'OC SCHMIDT-91', 'Actuador editado', 'Avion', NULL, '2015-10-06', '2015-08-12', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-08-12', '2015-08-12', '0001-00002527', 1, 2),
 (2, 'OM-100', 'Caudalimetros', NULL, '2015-06-17', NULL, NULL, '15 073 IC04 097571 X', NULL, NULL, NULL, '0001-00002524', 2, 1),
-(4, 'OC SCHMIDT-92', 'Actuador Neumatico', 'Avion', NULL, '2015-06-10', '2015-06-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-13', '2015-06-13', '0001-00002527', 1, 2),
-(5, 'OC SCHMIDT-93', 'Actuador Neumatico', 'Avion', NULL, '2015-06-10', '2015-06-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-13', '2015-06-13', '0001-00002527', 1, 2),
+(4, 'OC SCHMIDT-92', 'Actuador Neumatico2', 'Avion', NULL, '2015-10-06', '2015-10-06', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '1970-01-01', '1970-01-01', '0001-00002527', 1, 2),
+(5, 'OC SCHMIDT-93', 'Actuador Neumatico3', 'Avion', NULL, '2015-10-06', '2015-10-06', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '1970-01-01', '1970-01-01', '0001-00002527', 1, 2),
 (6, 'OC SCHMIDT-95', 'Actuador Neumatico', 'Avion', NULL, '2015-06-10', '2015-06-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-13', '2015-06-13', '0001-00002527', 1, 2),
 (7, 'OC SCHMIDT-94', 'Actuador Neumatico', 'Avion', NULL, '2015-06-10', '2015-06-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-13', '2015-06-13', '0001-00002527', 1, 2),
 (8, 'OC SCHMIDT-96', 'Actuador Neumatico', 'Avion', NULL, '2015-06-10', '2015-06-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-06-13', '2015-06-13', '0001-00002527', 1, 2),
@@ -130,7 +130,11 @@ INSERT INTO `operation` (`ref_lsl`, `ref_client`, `merchandise`, `transport`, `s
 (48, 'OC SCHMIDT-211', 'algo', 'barco', NULL, '2015-11-10', '2015-11-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-11-10', '2015-11-10', '0001-00002528', 1, 2),
 (49, 'OC SCHMIDT-212', 'algo', 'barco', NULL, '2015-11-10', '2015-11-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-11-10', '2015-11-10', '0001-00002528', 1, 2),
 (50, 'OC SCHMIDT-213', 'algo', 'barco', NULL, '2015-11-10', '2015-11-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-11-10', '2015-11-10', '0001-00002528', 1, 2),
-(51, 'OC SCHMIDT-214', 'algo', 'barco', NULL, '2015-11-10', '2015-11-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-11-10', '2015-11-10', '0001-00002528', 1, 2);
+(51, 'OC SCHMIDT-214', 'algo', 'barco', NULL, '2015-11-10', '2015-11-10', '15 073 IC04 099124 E', '15 073 DJAI 091064 Z', '2015-11-10', '2015-11-10', '0001-00002528', 1, 2),
+(52, 'test_ref_client', 'test_merchandise', 'test_transport', NULL, '2015-12-08', '2015-12-08', 'test_doc', 'test_djai', '2015-12-08', '2015-12-08', 'test_bill', 1, 2),
+(53, 'test2_ref_cliente', 'test2_mercha', 'test2_transporte', NULL, '2015-12-08', '2015-12-08', 'test2_doc', 'test2_doc_djai', '2015-12-08', '2015-12-08', 'test2_factura', 1, 2),
+(54, 'test_dp_ref_cliente', 'test_dp_merch4', 'test_dp_transp', NULL, '2015-08-12', '2015-11-12', 'test_dp_doc', 'test_dp_docdjai', '1970-01-01', '1970-01-01', 'test_dp_factura', 1, 2),
+(55, 'test1234', 'test123', 'test123', NULL, '0000-00-00', '0000-00-00', 'test123', 'test123', '0000-00-00', '0000-00-00', 'test123', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -138,10 +142,10 @@ INSERT INTO `operation` (`ref_lsl`, `ref_client`, `merchandise`, `transport`, `s
 -- Estructura de tabla para la tabla `operation_type`
 --
 
-CREATE TABLE `operation_type` (
+CREATE TABLE IF NOT EXISTS `operation_type` (
   `operationTypeId` int(1) NOT NULL,
   `operation_desc` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operation_type`
@@ -157,7 +161,7 @@ INSERT INTO `operation_type` (`operationTypeId`, `operation_desc`) VALUES
 -- Estructura de tabla para la tabla `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `userId` int(10) NOT NULL,
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
@@ -167,7 +171,7 @@ CREATE TABLE `users` (
   `tel` varchar(45) NOT NULL,
   `active` int(1) NOT NULL,
   `clientId` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `users`
@@ -229,7 +233,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `client`
 --
 ALTER TABLE `client`
-  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `document`
 --
@@ -239,17 +243,17 @@ ALTER TABLE `document`
 -- AUTO_INCREMENT de la tabla `operation`
 --
 ALTER TABLE `operation`
-  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT de la tabla `operation_type`
 --
 ALTER TABLE `operation_type`
-  MODIFY `operationTypeId` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `operationTypeId` int(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

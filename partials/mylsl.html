@@ -9,36 +9,29 @@
                 <div style="margin-top:30%">
                     <ul class="menu">
 
-                        <a ng-show="show_import" href="#" ui-sref=".import">
+                        <a ng-show="show_import" href="#" ui-sref=".import" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Importaciones</span></li>
                         </a>
-                        <a ng-show="show_export" href="#" ui-sref=".export">
+                        <a ng-show="show_export" href="#" ui-sref=".export" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Exportaciones</span></li>
                         </a>
-                        <a ng-show="show_following" href="#" ui-sref=".export">
+                        <a ng-show="show_following" href="#" ui-sref=".export" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Seguimiento</span></li>
                         </a>
-                        <a ng-show="show_refund" href="#" ui-sref=".export">
+                        <a ng-show="show_refund" href="#" ui-sref=".export" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Reintegros</span></li>
                         </a>
-                        <a ng-show="show_courrier" href="#" ui-sref=".export">
+                        <a ng-show="show_courrier" href="#" ui-sref=".export" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Courrier Imp.</span></li>
                         </a>
-                        <a ng-show="show_add_op" href="#" ui-sref=".new_import">
-                            <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Agregar Importación</span></li>
+                        <a ng-show="show_add_op" href="#" ui-sref=".new_import" ng-click="reset_all()" ui-sref-opts="{reload: true}">
+                            <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Administrar Clientes</span></li>
                         </a>
-                        <a ng-show="show_add_op" href="#" ui-sref=".new_export">
-                            <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Agregar Exportación</span></li>
-                        </a>
-
-                        <a ng-show="show_add_op" href="#" ui-sref=".new_user">
+                        <a ng-show="show_add_op" href="#" ui-sref=".new_user" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-user"></i><span>Agregar Usuario</span></li>
                         </a>
-                        <a ng-show="show_add_op" href="#" ui-sref=".new_client">
+                        <a ng-show="show_add_op" href="#" ui-sref=".new_client" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-briefcase"></i><span>Agregar Cliente</span></li>
-                        </a>
-                        <a ng-show="show_add_op" href="#" ui-sref=".new_document">
-                            <li class="list-item"><i class="glyphicon glyphicon-cog"></i><span>Agregar Documento</span></li>
                         </a>
                         <a ng-click="logout()">
                             <li class="list-item"><i class="glyphicon glyphicon-log-out"></i><span>Salir</span></li>
@@ -52,7 +45,7 @@
             </div>
             <div class="footer"><span>Bienvenido/a {{name}} a My LSL, su portal en donde podrá gerenciar sus operaciones de Logística y Comercio Exterior.</span>
                 <br>
-                <span>Teléfono 54 11 4326-3315 (líneas rotativas). </div></div>
+                <span>Teléfono 54 11 4326-3315 (líneas rotativas). </span></div>
     </div>
 </div>
 </div>
