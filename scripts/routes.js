@@ -20,7 +20,7 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         }
       }
     })
-      .state('mylsl.new_import.cp_import', {
+      .state('mylsl.cpanel.cp_import', {
       url: '/import',
       views: {
         'cp_content': {
@@ -36,7 +36,7 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         }
       }
     })
-        .state('mylsl.new_import.cp_export', {
+        .state('mylsl.cpanel.cp_export', {
       url: '/export',
       views: {
         'cp_content': {
@@ -44,11 +44,11 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         }
       }
     })
-      .state('mylsl.new_import', {
-      url: '/agregar-importacion',
+      .state('mylsl.cpanel', {
+      url: '/panel-de-control',
       views: {
         'content': {
-          templateUrl: 'lineal/partials/new_impo.html'
+          templateUrl: 'lineal/partials/cpanel.html'
         }
       }
     })
@@ -60,19 +60,19 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         }
       }
     })
-        .state('mylsl.new_user', {
-      url: '/agregar-usuario',
+        .state('mylsl.cpanel_users', {
+      url: '/Administrar-usuarios',
       views: {
         'content': {
-          templateUrl: 'lineal/partials/new_user.html'
+          templateUrl: 'lineal/partials/cpanel_users.html'
         }
       }
     })
-        .state('mylsl.new_client', {
-      url: '/agregar-cliente',
+        .state('mylsl.cpanel_clients', {
+      url: '/Administrar-clientes',
       views: {
         'content': {
-          templateUrl: 'lineal/partials/new_client.html'
+          templateUrl: 'lineal/partials/cpanel_clients.html'
         }
       }
     })

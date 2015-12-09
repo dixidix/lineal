@@ -3,7 +3,8 @@ require 'db.php';
 
 session_start();
 
-$res = MysqliDB::getInstance()->query("SELECT clientId, username, password, name, surname, role, tel, clientId from users");
+$res = MysqliDB::getInstance()->query("SELECT clientId, username, password, name, surname, role, tel,active, clientId from users");
+
 
 $outp="";
 while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
@@ -17,7 +18,8 @@ while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"surname":"'   . $rs["surname"]        . '",';
     $outp .= '"role":"'   . $rs["role"]        . '",';
     $outp .= '"tel":"'   . $rs["tel"]        . '",';
-    $outp .= '"clientId":"'. $rs["clientId"]     . '"}'; 
+    $outp .= '"active":"'   . $rs["active"]        . '",';
+    $outp .= '"clientId":"'. $rs["clientId"]     . '"}';
 }
 $outp ='{"users":['.$outp.']}';
 

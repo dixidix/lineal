@@ -24,14 +24,14 @@
                         <a ng-show="show_courrier" href="#" ui-sref=".export" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Courrier Imp.</span></li>
                         </a>
-                        <a ng-show="show_add_op" href="#" ui-sref=".new_import" ng-click="reset_all()" ui-sref-opts="{reload: true}">
+                        <a ng-show="show_add_op" href="#" ui-sref=".cpanel" ng-click="reset_all()" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Administrar Clientes</span></li>
                         </a>
-                        <a ng-show="show_add_op" href="#" ui-sref=".new_user" ui-sref-opts="{reload: true}">
-                            <li class="list-item"><i class="glyphicon glyphicon-user"></i><span>Agregar Usuario</span></li>
+                        <a ng-show="show_add_op" href="#" ui-sref=".cpanel_users" ui-sref-opts="{reload: true}">
+                            <li class="list-item"><i class="glyphicon glyphicon-user"></i><span>Administrar Usuarios</span></li>
                         </a>
-                        <a ng-show="show_add_op" href="#" ui-sref=".new_client" ui-sref-opts="{reload: true}">
-                            <li class="list-item"><i class="glyphicon glyphicon-briefcase"></i><span>Agregar Cliente</span></li>
+                        <a ng-show="show_add_op" href="#" ui-sref=".cpanel_clients" ui-sref-opts="{reload: true}">
+                            <li class="list-item"><i class="glyphicon glyphicon-briefcase"></i><span>Administrar Clientes</span></li>
                         </a>
                         <a ng-click="logout()">
                             <li class="list-item"><i class="glyphicon glyphicon-log-out"></i><span>Salir</span></li>

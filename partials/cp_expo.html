@@ -1,4 +1,5 @@
         <div class="export"  ng-controller="export_controller"  ng-show="Content_active">
+        <h3>Panel de control: {{client.name}}</h3>
   <button class="btn btn-primary add_operation" ng-click="add_operation()"><i class="glyphicon glyphicon-plus"></i>Agregar Exportación</button>
   <div class="search">
 
@@ -35,4 +36,4 @@
     <uib-pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm" previous-text="Anterior" next-text="Siguiente" first-text="Primer Hoja" last-text="Última hoja">
     </uib-pagination>
             </div>
-        </div>  
+        </div>

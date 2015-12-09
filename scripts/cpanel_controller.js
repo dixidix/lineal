@@ -1,8 +1,8 @@
-mylsl.controller('cpanel_controller', function ($scope, $http, $state, $rootScope, $modal) {
+mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $rootScope, $modal) {
   'use strict';
 
-  $scope.cp_header_active = true;
-  $scope.Content_active = false;
+  $rootScope.cp_header_active = true;
+  $rootScope.Content_active = false;
 
 
   $http.get('lineal/php/get_clients.php').then(function (response) {
@@ -15,14 +15,14 @@ mylsl.controller('cpanel_controller', function ($scope, $http, $state, $rootScop
   $scope.consultar = function () {
     $rootScope.cp_operation = $scope.select_operation;
     $rootScope.cp_client = $scope.select_client;
-
+    $rootScope.client = $filter('filter')($scope.clients, {id: $rootScope.cp_client})[0];
     $scope.cp_header_active = false;
     $scope.Content_active = true;
 
     if ($scope.select_operation === '2') {
-      $state.go('mylsl.new_import.cp_import');
+      $state.go('mylsl.cpanel.cp_import');
     } else if ($scope.select_operation === '1') {
-      $state.go('mylsl.new_import.cp_export');
+      $state.go('mylsl.cpanel.cp_export');
     } else {
       alert("seleccione una operación");
     }
@@ -31,7 +31,7 @@ mylsl.controller('cpanel_controller', function ($scope, $http, $state, $rootScop
   $scope.reset_operation = function () {
     $scope.select_operation = "";
     $rootScope.cp_operation = "";
-    $state.go('mylsl.new_import');
+    $state.go('mylsl.cpanel');
   };
 
   $scope.back_cp_header = function () {
@@ -360,7 +360,7 @@ $scope.action = "Agregar";
         ref_client: $scope.operation_export.ref_client,
         merchandise: $scope.operation_export.merchandise,
         custom_document: $scope.operation_export.custom_document,
-        shipment: $scope.operation_export.shipment,       
+        shipment: $scope.operation_export.shipment,
         lsl_bill: $scope.operation_export.lsl_bill,
         client_id: $rootScope.cp_client,
         op_type: $rootScope.cp_operation
@@ -428,7 +428,7 @@ mylsl.controller('modal_edit_operation_export', function ($scope, $state, $http,
         ref_client: $scope.operation_export.ref_client,
         merchandise: $scope.operation_export.merchandise,
         custom_document: $scope.operation_export.custom_document,
-        shipment: $scope.operation_export.shipment,       
+        shipment: $scope.operation_export.shipment,
         lsl_bill: $scope.operation_export.lsl_bill,
         client_id: $rootScope.cp_client,
         op_type: $rootScope.cp_operation
@@ -447,9 +447,9 @@ mylsl.controller('modal_edit_operation_export', function ($scope, $state, $http,
         $rootScope.userLoggedin = data.name;
         $rootScope.mail = data.email;
         $modalInstance.dismiss('cancel');
-        $state.go($state.current, {}, {
-          reload: true
-        });
+
+        $state.go('mylsl.cpanel.cp_export', {}, { reload: true });
+
       }
     });
 
