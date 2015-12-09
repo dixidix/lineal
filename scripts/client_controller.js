@@ -1,7 +1,7 @@
 mylsl.controller('clients_controller', function ($rootScope, $cookies, $scope, $http) {
   'use strict';
 
-  $http.get("lineal/php/get_clients.php").then(function (response) {
+  $http.get("./php/get_clients.php").then(function (response) {
     $scope.clients = response.data.clients;
     $scope.totalItems = $scope.clients.length;
     $scope.currentPage = 1;

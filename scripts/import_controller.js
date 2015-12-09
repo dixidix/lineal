@@ -2,9 +2,10 @@ mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $h
   'use strict';
 
   $scope.op_type = "2";
+  
   $scope.client_id = $cookies.get('client_id');
-  
-  
+
+
   if ($rootScope.cp_operation != undefined) {
     $scope.op_type = $rootScope.cp_operation;
   }
@@ -13,7 +14,7 @@ mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $h
     $scope.client_id = $rootScope.cp_client;
   }
 
-  $http.get("lineal/php/get_operations.php", {
+  $http.get("./php/get_operations.php", {
     params: {
       client_id: $scope.client_id,
       op_type: $scope.op_type

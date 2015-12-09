@@ -6,17 +6,17 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
     .state('/', {
       url: '/',
-      templateUrl: 'lineal/partials/login.html'
+      templateUrl: './partials/login.html'
     })
     .state('mylsl', {
       url: '/mylsl',
-      templateUrl: 'lineal/partials/mylsl.html'
+      templateUrl: './partials/mylsl.html'
     })
     .state('mylsl.import', {
       url: '/import',
       views: {
         'content': {
-          templateUrl: 'lineal/partials/impo.html'
+          templateUrl: './partials/impo.html'
         }
       }
     })
@@ -24,7 +24,7 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/import',
       views: {
         'cp_content': {
-          templateUrl: 'lineal/partials/cp_impo.html'
+          templateUrl: './partials/cp_impo.html'
         }
       }
     })
@@ -32,7 +32,7 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/export',
       views: {
         'content': {
-          templateUrl: 'lineal/partials/expo.html'
+          templateUrl: './partials/expo.html'
         }
       }
     })
@@ -40,7 +40,7 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/export',
       views: {
         'cp_content': {
-          templateUrl: 'lineal/partials/cp_expo.html'
+          templateUrl: './partials/cp_expo.html'
         }
       }
     })
@@ -48,7 +48,7 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/panel-de-control',
       views: {
         'content': {
-          templateUrl: 'lineal/partials/cpanel.html'
+          templateUrl: './partials/cpanel.html'
         }
       }
     })
@@ -56,7 +56,7 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/agregar-exportacion',
       views: {
         'content': {
-          templateUrl: 'lineal/partials/new_export.html'
+          templateUrl: './partials/new_export.html'
         }
       }
     })
@@ -64,7 +64,7 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/Administrar-usuarios',
       views: {
         'content': {
-          templateUrl: 'lineal/partials/cpanel_users.html'
+          templateUrl: './partials/cpanel_users.html'
         }
       }
     })
@@ -72,7 +72,7 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/Administrar-clientes',
       views: {
         'content': {
-          templateUrl: 'lineal/partials/cpanel_clients.html'
+          templateUrl: './partials/cpanel_clients.html'
         }
       }
     })
@@ -80,7 +80,7 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/agregar-documento',
       views: {
         'content': {
-          templateUrl: 'lineal/partials/new_document.html'
+          templateUrl: './partials/new_document.html'
         }
       }
     })

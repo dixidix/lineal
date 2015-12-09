@@ -5,10 +5,10 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   $rootScope.Content_active = false;
 
 
-  $http.get('lineal/php/get_clients.php').then(function (response) {
+  $http.get('./php/get_clients.php').then(function (response) {
     $scope.clients = response.data.clients;
   });
-  $http.get('lineal/php/get_operation_type.php').then(function (response) {
+  $http.get('./php/get_operation_type.php').then(function (response) {
     $scope.operation_types = response.data.operation_types;
   });
 
@@ -46,7 +46,7 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
 
       $rootScope.client_new_operation = $scope.select_client;
       $modal.open({
-          templateUrl: 'lineal/partials/modal_add_operation_export.html',
+          templateUrl: './partials/modal_add_operation_export.html',
           controller: 'modal_add_operation_export',
           scope: $scope
         })
@@ -58,7 +58,7 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
 
       $rootScope.client_new_operation = $scope.select_client;
       $modal.open({
-          templateUrl: 'lineal/partials/modal_add_operation_import.html',
+          templateUrl: './partials/modal_add_operation_import.html',
           controller: 'modal_add_operation_import',
           scope: $scope
         })
@@ -70,7 +70,7 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   $scope.modifyImport = function (editImport) {
     $rootScope.importEdit = editImport;
     $modal.open({
-        templateUrl: 'lineal/partials/modal_add_operation_import.html',
+        templateUrl: './partials/modal_add_operation_import.html',
         controller: 'modal_edit_operation_import',
         scope: $scope
       })
@@ -81,7 +81,7 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   $scope.deleteImport = function (deleteImport) {
     $rootScope.importDelete = deleteImport;
     $modal.open({
-        templateUrl: 'lineal/partials/modal_delete_operation_import.html',
+        templateUrl: './partials/modal_delete_operation_import.html',
         controller: 'modal_delete_operation_import',
         scope: $scope
       })
@@ -92,7 +92,7 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
     $scope.modifyExport = function (editExport) {
     $rootScope.exportEdit = editExport;
     $modal.open({
-        templateUrl: 'lineal/partials/modal_add_operation_export.html',
+        templateUrl: './partials/modal_add_operation_export.html',
         controller: 'modal_edit_operation_export',
         scope: $scope
       })
@@ -103,7 +103,7 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   $scope.deleteExport = function (deleteExport) {
     $rootScope.exportDelete = deleteExport;
     $modal.open({
-        templateUrl: 'lineal/partials/modal_delete_operation_export.html',
+        templateUrl: './partials/modal_delete_operation_export.html',
         controller: 'modal_delete_operation_export',
         scope: $scope
       })
@@ -136,7 +136,7 @@ mylsl.controller('modal_add_operation_import', function ($scope, $state, $http, 
 
     $http({
       method: 'POST',
-      url: 'lineal/php/new_operation_import.php',
+      url: './php/new_operation_import.php',
       data: {
         ref_cliente: $scope.operation_import.ref_client,
         merchandise: $scope.operation_import.merchandise,
@@ -217,7 +217,7 @@ mylsl.controller('modal_edit_operation_import', function ($scope, $state, $http,
   $scope.create_import = function () {
     $http({
       method: 'POST',
-      url: 'lineal/php/edit_operation_import.php',
+      url: './php/edit_operation_import.php',
       data: {
         ref_lsl: $scope.operation_import.ref_lsl,
         ref_cliente: $scope.operation_import.ref_client,
@@ -289,7 +289,7 @@ mylsl.controller('modal_delete_operation_import', function ($scope, $state, $htt
 
     $http({
       method: 'POST',
-      url: 'lineal/php/delete_operation_import.php',
+      url: './php/delete_operation_import.php',
       data: {
         ref_lsl: $scope.operation_import.ref_lsl
       }, //forms user object
@@ -355,7 +355,7 @@ $scope.action = "Agregar";
 
     $http({
       method: 'POST',
-      url: 'lineal/php/new_operation_export.php',
+      url: './php/new_operation_export.php',
       data: {
         ref_client: $scope.operation_export.ref_client,
         merchandise: $scope.operation_export.merchandise,
@@ -422,7 +422,7 @@ mylsl.controller('modal_edit_operation_export', function ($scope, $state, $http,
   $scope.create_export = function () {
     $http({
       method: 'POST',
-      url: 'lineal/php/edit_operation_export.php',
+      url: './php/edit_operation_export.php',
       data: {
         ref_lsl: $scope.operation_export.ref_lsl,
         ref_client: $scope.operation_export.ref_client,
@@ -489,7 +489,7 @@ mylsl.controller('modal_delete_operation_export', function ($scope, $state, $htt
 
     $http({
       method: 'POST',
-      url: 'lineal/php/delete_operation_export.php',
+      url: './php/delete_operation_export.php',
       data: {
         ref_lsl: $scope.operation_export.ref_lsl
       }, //forms user object

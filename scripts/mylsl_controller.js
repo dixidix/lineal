@@ -10,12 +10,12 @@ mylsl.controller('mylsl_controller', function ($scope, $rootScope, $http, $cooki
   $scope.show_add_op = $scope.role.indexOf('6') !== -1;
   $scope.client_name = $cookies.get('name_desc');
 
-  $scope.client_logo_path = "lineal/" + $cookies.get('clientLogoPath');
+  $scope.client_logo_path = "./" + $cookies.get('clientLogoPath');
 
   $scope.logout = function () {
     $http({
       method: 'POST',
-      url: 'lineal/php/logout.php',
+      url: './php/logout.php',
       data: {
         userId: $cookies.get('user_id')
       }

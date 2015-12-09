@@ -2,7 +2,7 @@ mylsl.controller('login_controller', function ($scope, $http, $rootScope, $cooki
   $scope.submit_login = function () {
     $http({
       method: 'POST',
-      url: 'lineal/php/login.php',
+      url: './php/login.php',
       data: {
         username: $scope.username,
         password: $scope.password
@@ -10,7 +10,7 @@ mylsl.controller('login_controller', function ($scope, $http, $rootScope, $cooki
     }).success(function (data) {
       if (data.errors) {
         // Showing errors.
-         
+
         $scope.usernameError = data.errors.usernameError;
         $scope.passwordError = data.errors.passwordError;
         $scope.loginError = data.errors.loginError;

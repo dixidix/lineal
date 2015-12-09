@@ -1,7 +1,7 @@
 mylsl.controller('users_controller', function ($rootScope,$modal, $cookies, $scope, $http) {
   'use strict';
 
-  $http.get("lineal/php/get_users.php").then(function (response) {
+  $http.get("./php/get_users.php").then(function (response) {
     $scope.users = response.data.users;
     $scope.totalItems = $scope.users.length;
     $scope.currentPage = 1;
@@ -18,7 +18,7 @@ mylsl.controller('users_controller', function ($rootScope,$modal, $cookies, $sco
 
   $scope.add_user = function(){
     $modal.open({
-        templateUrl: 'lineal/partials/modal_add_user.html',
+        templateUrl: './partials/modal_add_user.html',
         controller: 'modal_add_user',
         scope: $scope
       })
@@ -29,7 +29,7 @@ mylsl.controller('users_controller', function ($rootScope,$modal, $cookies, $sco
   $scope.modifyUser = function (modifyUser) {
     $rootScope.userEdit = modifyUser;
     $modal.open({
-        templateUrl: 'lineal/partials/modal_add_user.html',
+        templateUrl: './partials/modal_add_user.html',
         controller: 'modal_edit_user',
         scope: $scope
       })
@@ -40,7 +40,7 @@ mylsl.controller('users_controller', function ($rootScope,$modal, $cookies, $sco
   $scope.deleteUser = function (deleteUser) {
     $rootScope.userDelete = deleteUser;
     $modal.open({
-        templateUrl: 'lineal/partials/modal_delete_user.html',
+        templateUrl: './partials/modal_delete_user.html',
         controller: 'modal_delete_user',
         scope: $scope
       })
@@ -58,7 +58,7 @@ mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalIns
   $scope.actionTitle = "Agregar un Usuario";
   $scope.action = "Guardar";
 
-  $http.get('lineal/php/get_clients.php').then(function (response) {
+  $http.get('./php/get_clients.php').then(function (response) {
     $scope.clients = response.data.clients;
   });
 
@@ -75,7 +75,7 @@ mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalIns
 
     $http({
       method: 'POST',
-      url: 'lineal/php/new_user.php',
+      url: './php/new_user.php',
       data: {
         name: $scope.user.name,
         surname: $scope.user.surname,
@@ -123,7 +123,7 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
 
     $http({
       method: 'POST',
-      url: 'lineal/php/edit_user.php',
+      url: './php/edit_user.php',
       data: {
         name: $scope.user.name,
         surname: $scope.user.surname,
@@ -164,7 +164,7 @@ mylsl.controller('modal_delete_user', function ($state, $rootScope,$modal,$modal
 
       $http({
         method: 'POST',
-        url: 'lineal/php/delete_user.php',
+        url: './php/delete_user.php',
         data: {
           userId: $scope.user.userId
         }, //forms user object
