@@ -15,8 +15,10 @@
     <span>Usuario: </span>
     <input type="text" class="form-control" ng-model="user.username" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese el Usuario" />
 
+    <div id="password" ng-hide="editing_user">
     <span>Contraseña: </span>
     <input type="password" class="form-control" ng-model="user.password" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese la Contraseña" />
+    </div>
 
     <span>Teléfono: </span>
     <input type="text" class="form-control" ng-model="user.tel" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese el Teléfono" />

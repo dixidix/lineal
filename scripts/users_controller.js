@@ -52,6 +52,9 @@ mylsl.controller('users_controller', function ($rootScope,$modal, $cookies, $sco
 
 mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
   'use strict';
+
+  $scope.editing_user = false;
+
   $scope.actionTitle = "Agregar un Usuario";
   $scope.action = "Guardar";
 
@@ -101,6 +104,8 @@ mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalIns
 
 mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
   'use strict';
+  $scope.editing_user = true;
+
   $scope.actionTitle = "Editar un Usuario";
   $scope.action = "Editar";
   $scope.select_client = $rootScope.userEdit.clientId;
