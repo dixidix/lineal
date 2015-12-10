@@ -108,6 +108,11 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
 
   $scope.actionTitle = "Editar un Usuario";
   $scope.action = "Editar";
+
+  $http.get('./php/get_clients.php').then(function (response) {
+    $scope.clients = response.data.clients;
+  });
+
   $scope.select_client = $rootScope.userEdit.clientId;
 
   $scope.user = {
@@ -116,7 +121,8 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
     username: $rootScope.userEdit.username,
     tel: $rootScope.userEdit.tel,
     role: $rootScope.userEdit.role,
-    password: $rootScope.userEdit.password
+    password: $rootScope.userEdit.password,
+    userId : $rootScope.userEdit.userId
   };
 
   $scope.create_user = function () {
@@ -131,7 +137,8 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
         tel: $scope.user.tel,
         role: $scope.user.role,
         password: $scope.user.password,
-        client_id:$scope.select_client
+        client_id:$scope.select_client,
+        userId: $scope.user.userId
       }, //forms user object
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'

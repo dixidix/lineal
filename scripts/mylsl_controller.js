@@ -13,6 +13,7 @@ mylsl.controller('mylsl_controller', function ($scope, $rootScope, $http, $cooki
   $scope.client_logo_path = "./" + $cookies.get('clientLogoPath');
 
   $scope.logout = function () {
+
     $http({
       method: 'POST',
       url: './php/logout.php',

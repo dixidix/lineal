@@ -25,15 +25,15 @@ if (!empty($errors)){
 
     $username=$_POST['username'];
 
-	$userpass=$_POST['password'];
-       
+	$password = hash('sha256', $_POST['password']);
+	
 	//no sqlinjection
 	$username=stripslashes($username);
-  
- 
+
+
 	$username = MysqliDB::getInstance()->real_escape_string($username);
 
-	$res = MysqliDB::getInstance()->query("SELECT * FROM users WHERE username='" . $username . "' AND password='" . $userpass . "'");
+	$res = MysqliDB::getInstance()->query("SELECT * FROM users WHERE username='" . $username . "' AND password='" . $password . "'");
     $rows = mysqli_num_rows($res);
 	if ($rows == 1){
        $rss = $res->fetch_array(MYSQLI_ASSOC);
@@ -48,14 +48,14 @@ if (!empty($errors)){
               $data['role'] = $rss['role'];
               $data['tel'] = $rss['tel'];
 	          $data['active'] = "1";
-			
+
 
 			MysqliDB::getInstance()->query("UPDATE users SET active=1 WHERE userId=" . $rss['userId']);
             $res_client = MysqliDB::getInstance()->query("SELECT name_desc, clientLogoPath FROM client WHERE clientId='". $rss['clientId'] ."'");
             $rows = mysqli_num_rows($res_client);
 	       if ($rows == 1){
              $rss_client = $res_client->fetch_array(MYSQLI_ASSOC);
-              $data['name_desc'] = $rss_client['name_desc'];             
+              $data['name_desc'] = $rss_client['name_desc'];
               $data['clientLogoPath'] = $rss_client['clientLogoPath'];
              echo json_encode($data);
            }

@@ -28,7 +28,7 @@
           <td>{{ user.username }}</td>
           <td>{{ user.tel }}</td>
           <td>{{ user.role }}</td>
-          <td>{{ user.active }}</td>
+          <td>{{ user.active  === "0" ? "No" : "Si"}}</td>
           <td>{{ user.client_desc }}</td>
           <td><a tooltip="Editar" tooltip-placement="top" ng-click="modifyUser(user)" style="color:#000;cursor:pointer;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteUser(user)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
         </tr>
