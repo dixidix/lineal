@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2015 a las 21:16:29
+-- Tiempo de generación: 10-12-2015 a las 21:43:26
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -180,8 +180,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`userId`, `username`, `password`, `name`, `surname`, `role`, `tel`, `active`, `clientId`) VALUES
 (1, 'nicolas.sigal@escosa.com', '123456', 'Nicolas', 'Sigal', '1,2,3,4,5', '4294555', 0, 1),
 (2, 'joybelmonte@cisco.com', 'jowi', 'Johanna', 'Belmonte', '2,3,4', '4378622', 0, 2),
-(3, 'admin', 'admin', 'Nicolas', 'Sigal', '6', '153013907', 1, 3),
-(8, 'prueba', '655e786674d9d3e77bc05ed1de37b4b6bc89f788829f9f3c679e7687b410c89b', 'prueba1', 'prueba1', '6', '4294555', 0, 3);
+(3, 'admin', 'admin', 'Nicolas', 'Sigal', '6', '153013907', 0, 3);
 
 --
 -- Índices para tablas volcadas
@@ -244,7 +243,7 @@ ALTER TABLE `document`
 -- AUTO_INCREMENT de la tabla `operation`
 --
 ALTER TABLE `operation`
-  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT de la tabla `operation_type`
 --
@@ -254,7 +253,7 @@ ALTER TABLE `operation_type`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -28,7 +28,7 @@
       </thead>
 
       <tbody>
-        <tr ng-repeat="import in operations_imp | filter : paginate | filter : impo_search">
+          <tr ng-repeat="import in  filtered = operations_imp | filter : paginate | filter : impo_search| startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
           <td>{{ import.ref_client }}</td>
           <td>{{ import.ref_lsl }}</td>
           <td>{{ import.merchandise }}</td>
@@ -44,8 +44,7 @@
         </tr>
       </tbody>
     </table>
-    <uib-pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm" previous-text="Anterior" next-text="Siguiente" first-text="Primer Hoja" last-text="Última hoja">
-    </uib-pagination>
+    <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit"></pagination>
 
   </div>
 </div>

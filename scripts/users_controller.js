@@ -3,17 +3,18 @@ mylsl.controller('users_controller', function ($rootScope,$modal, $cookies, $sco
 
   $http.get("./php/get_users.php").then(function (response) {
     $scope.users = response.data.users;
-    $scope.totalItems = $scope.users.length;
     $scope.currentPage = 1;
-    $scope.numPerPage = 6;
+    $scope.totalItems = $scope.users.length;
+    $scope.entryLimit = 8; // items per page
+    $scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
 
-    $scope.paginate = function (value) {
-      var begin, end, index;
-      begin = ($scope.currentPage - 1) * $scope.numPerPage;
-      end = begin + $scope.numPerPage;
-      index = $scope.users.indexOf(value);
-      return (begin <= index && index < end);
-    };
+    // $watch search to update pagination
+    $scope.$watch('user_search', function (newVal, oldVal) {
+      $scope.filtered = filterFilter($scope.users, newVal);
+      $scope.totalItems = $scope.filtered.length;
+      $scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
+      $scope.currentPage = 1;
+    }, true);
   });
 
   $scope.add_user = function(){

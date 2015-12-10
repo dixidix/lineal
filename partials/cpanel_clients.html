@@ -23,7 +23,7 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat="client in clients | filter : paginate | filter : client_search">
+      <tr ng-repeat="client in  filtered = clients | filter : paginate | filter : client_search| startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
         <td>{{ client.name }}</td>
         <td>{{ client.username }}</td>
         <td>{{ client.address }}</td>
@@ -37,7 +37,6 @@
       </tr>
     </tbody>
   </table>
-  <uib-pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm" previous-text="Anterior" next-text="Siguiente" first-text="Primer Hoja" last-text="Última hoja">
-  </uib-pagination>
+  <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit"></pagination>
 </div>
 </div>

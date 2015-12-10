@@ -22,7 +22,7 @@
                     </thead>
 
                     <tbody>
-                        <tr ng-repeat="export in operations_exp | filter : paginate | filter : expo_search">
+                      <tr ng-repeat="export in  filtered = operations_exp | filter : paginate | filter : expo_search| startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
                             <td>{{ export.ref_client }}</td>
                             <td>{{ export.ref_lsl }}</td>
                             <td>{{ export.merchandise }}</td>
@@ -33,7 +33,6 @@
                         </tr>
                     </tbody>
                 </table>
-    <uib-pagination class="pagination" total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm" previous-text="Anterior" next-text="Siguiente" first-text="Primer Hoja" last-text="Última hoja">
-    </uib-pagination>
+    <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit"></pagination>
             </div>
         </div>

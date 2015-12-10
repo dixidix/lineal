@@ -3,16 +3,17 @@ mylsl.controller('clients_controller', function ($rootScope, $cookies, $scope, $
 
   $http.get("./php/get_clients.php").then(function (response) {
     $scope.clients = response.data.clients;
-    $scope.totalItems = $scope.clients.length;
     $scope.currentPage = 1;
-    $scope.numPerPage = 6;
+    $scope.totalItems = $scope.clients.length;
+    $scope.entryLimit = 8; // items per page
+    $scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
 
-    $scope.paginate = function (value) {
-      var begin, end, index;
-      begin = ($scope.currentPage - 1) * $scope.numPerPage;
-      end = begin + $scope.numPerPage;
-      index = $scope.clients.indexOf(value);
-      return (begin <= index && index < end);
-    };
+    // $watch search to update pagination
+    $scope.$watch('client_search', function (newVal, oldVal) {
+      $scope.filtered = filterFilter($scope.clients, newVal);
+      $scope.totalItems = $scope.filtered.length;
+      $scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
+      $scope.currentPage = 1;
+    }, true);
   });
 });

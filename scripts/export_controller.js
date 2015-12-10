@@ -2,7 +2,7 @@ mylsl.controller('export_controller', function ($rootScope, $cookies, $scope, $h
   'use strict';
 
   $scope.op_type = "1";
-  
+
   $scope.client_id = $cookies.get('client_id');
 
     if($rootScope.cp_operation != undefined){
@@ -20,16 +20,17 @@ mylsl.controller('export_controller', function ($rootScope, $cookies, $scope, $h
     }
   }).then(function (response) {
     $scope.operations_exp = response.data.operations;
-    $scope.totalItems = $scope.operations_exp.length;
     $scope.currentPage = 1;
-    $scope.numPerPage = 6;
+  	$scope.totalItems = $scope.operations_exp.length;
+  	$scope.entryLimit = 8; // items per page
+  	$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
 
-    $scope.paginate = function (value) {
-      var begin, end, index;
-      begin = ($scope.currentPage - 1) * $scope.numPerPage;
-      end = begin + $scope.numPerPage;
-      index = $scope.operations_exp.indexOf(value);
-      return (begin <= index && index < end);
-    };
+  	// $watch search to update pagination
+  	$scope.$watch('expo_search', function (newVal, oldVal) {
+  		$scope.filtered = filterFilter($scope.operations_exp, newVal);
+  		$scope.totalItems = $scope.filtered.length;
+  		$scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
+  		$scope.currentPage = 1;
+  	}, true);
   });
 });
