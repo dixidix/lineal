@@ -11,6 +11,9 @@ height: 36px;
 margin-bottom: 2%;
   border: 1px #ABABAB solid;
 }
+input[type=checkbox] {
+	margin-right:1%;
+}
 
 .search .btn {
     position: absolute;

@@ -1,4 +1,4 @@
-mylsl.controller('users_controller', function ($rootScope,$modal, $cookies, $scope, $http) {
+mylsl.controller('users_controller', function ($rootScope,filterFilter,$modal, $cookies, $scope, $http) {
   'use strict';
 
   $http.get("./php/get_users.php").then(function (response) {
@@ -73,7 +73,7 @@ mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalIns
   };
 
   $scope.create_user = function () {
-
+alert($scope.user.role.import);
     $http({
       method: 'POST',
       url: './php/new_user.php',
