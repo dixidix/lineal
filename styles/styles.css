@@ -183,7 +183,7 @@ background-color:#337ab7;
 
 #cpanel_top .form-group{margin-right:5%;}
 #cpanel_top label { font-size:1.2em; }
-
+label{font-weight: 100;}
 
 .add_operation{ margin-left:81.5%;width:18.5%;}
 .add_operation i{padding-right:5%;}
