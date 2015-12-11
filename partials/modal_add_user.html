@@ -24,14 +24,15 @@
     <input type="text" class="form-control" ng-model="user.tel" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese el Teléfono" />
 
     <span>Roles: </span></br>
-    <input type="checkbox" ng-model="user.role.export" ng-true-value="'1'" ng-false-value="'0'" /><label>Exportación</label></br>
-    <input type="checkbox" ng-model="user.role.import" ng-true-value="'2'" ng-false-value="'0'" /><label>Importación</label></br>
-    <input type="checkbox" ng-model="user.role.seguimiento" ng-true-value="'3'" ng-false-value="'0'" /><label>Seguimiento</label></br>
-    <input type="checkbox" ng-model="user.role.reintegro" ng-true-value="'4'" ng-false-value="'0'" /><label>Reintegros</label></br>
-    <input type="checkbox" ng-model="user.role.courrier" ng-true-value="'5'" ng-false-value="'0'" /><label>Courrier Imp.</label></br>
-    <input type="checkbox" ng-model="user.role.admin" ng-true-value="'6'" ng-false-value="'0'" /><label>Administrador</label></br>
+    <input type="checkbox" ng-checked="exportChecked" ng-model="user.role.export" ng-true-value="'1'" ng-false-value="'0'" /><label>Exportación</label></br>
+    <input type="checkbox" ng-checked="importChecked" ng-model="user.role.import" ng-true-value="'2'" ng-false-value="'0'" /><label>Importación</label></br>
+    <input type="checkbox" ng-checked="seguimientoChecked" ng-model="user.role.seguimiento" ng-true-value="'3'" ng-false-value="'0'" /><label>Seguimiento</label></br>
+    <input type="checkbox" ng-checked="reintegroChecked" ng-model="user.role.reintegro" ng-true-value="'4'" ng-false-value="'0'" /><label>Reintegros</label></br>
+    <input type="checkbox" ng-checked="courrierChecked" ng-model="user.role.courrier" ng-true-value="'5'" ng-false-value="'0'" /><label>Courrier Imp.</label></br>
+    <input type="checkbox" ng-checked="adminChecked" ng-model="user.role.admin" ng-true-value="'6'" ng-false-value="'0'" /><label>Administrador</label></br>
+
     <span>Cliente: </span>
-    <select id="select_client" ng-model="select_client" class="form-control header_controls" ng-change="reset_operation()">
+    <select id="select_client_users" ng-model="select_client_users" class="form-control header_controls">
       <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name }}</option>
     </select>
 

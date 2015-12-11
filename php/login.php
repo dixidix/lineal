@@ -25,7 +25,7 @@ if (!empty($errors)){
 
     $username=$_POST['username'];
 
-	$password =  $_POST['password'];
+		$password =  $_POST['password'];
 
 	//no sqlinjection
 	$username=stripslashes($username);

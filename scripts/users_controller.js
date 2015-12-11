@@ -62,7 +62,12 @@ mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalIns
   $http.get('./php/get_clients.php').then(function (response) {
     $scope.clients = response.data.clients;
   });
-
+  $scope.exportChecked = false;
+  $scope.importChecked = false;
+  $scope.seguimientoChecked = false;
+  $scope.reintegroChecked = false;
+  $scope.courrierChecked = false;
+  $scope.adminChecked = false;
   $scope.user = {
     name: "",
     surname: "",
@@ -71,9 +76,20 @@ mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalIns
     role: "",
     password: ""
   };
+var roles = [];
 
   $scope.create_user = function () {
-alert($scope.user.role.import);
+
+    if ($scope.user.role.export == '1') { roles.push($scope.user.role.export); }
+    if ($scope.user.role.import == '2') { roles.push($scope.user.role.import); }
+    if ($scope.user.role.seguimiento == '3') { roles.push($scope.user.role.seguimiento); }
+    if ($scope.user.role.reintegro == '4') { roles.push($scope.user.role.reintegro); }
+    if ($scope.user.role.courrier == '5') { roles.push($scope.user.role.courrier); }
+    if ($scope.user.role.admin == '6') { roles.push($scope.user.role.admin); }
+
+    $scope.user.roles = roles.join(", ");
+    $scope.client_id = $('#select_client_users').val();
+
     $http({
       method: 'POST',
       url: './php/new_user.php',
@@ -82,9 +98,9 @@ alert($scope.user.role.import);
         surname: $scope.user.surname,
         username: $scope.user.username,
         tel: $scope.user.tel,
-        role: $scope.user.role,
+        role: $scope.user.roles,
         password: $scope.user.password,
-        client_id:$scope.select_client
+        client_id:  $scope.client_id,
       }, //forms user object
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -114,19 +130,39 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
     $scope.clients = response.data.clients;
   });
 
-  $scope.select_client = $rootScope.userEdit.clientId;
+  $scope.select_client_users = $rootScope.userEdit.clientId;
+
+
 
   $scope.user = {
     name: $rootScope.userEdit.name,
     surname: $rootScope.userEdit.surname,
     username: $rootScope.userEdit.username,
     tel: $rootScope.userEdit.tel,
-    role: $rootScope.userEdit.role,
+    role: "",
     password: $rootScope.userEdit.password,
     userId : $rootScope.userEdit.userId
   };
 
+    $scope.user.role.export = $rootScope.userEdit.role.indexOf('1') != -1;
+    $scope.importChecked = $rootScope.userEdit.role.indexOf('2')!= -1;
+    $scope.seguimientoChecked = $rootScope.userEdit.role.indexOf('3')!= -1;
+    $scope.reintegroChecked = $rootScope.userEdit.role.indexOf('4')!= -1;
+    $scope.courrierChecked = $rootScope.userEdit.role.indexOf('5')!= -1;
+    $scope.adminChecked = $rootScope.userEdit.role.indexOf('6')!= -1;
+
+
+
   $scope.create_user = function () {
+    var roles = [];
+    if ($scope.user.role.export == '1') { roles.push($scope.user.role.export); }
+    if ($scope.user.role.import == '2') { roles.push($scope.user.role.import); }
+    if ($scope.user.role.seguimiento == '3') { roles.push($scope.user.role.seguimiento); }
+    if ($scope.user.role.reintegro == '4') { roles.push($scope.user.role.reintegro); }
+    if ($scope.user.role.courrier == '5') { roles.push($scope.user.role.courrier); }
+    if ($scope.user.role.admin == '6') { roles.push($scope.user.role.admin); }
+
+    $scope.user.roles = roles.join(", ");
 
     $http({
       method: 'POST',
@@ -136,9 +172,9 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
         surname: $scope.user.surname,
         username: $scope.user.username,
         tel: $scope.user.tel,
-        role: $scope.user.role,
+        role:   $scope.user.roles ,
         password: $scope.user.password,
-        client_id:$scope.select_client,
+        client_id:$scope.select_client_users,
         userId: $scope.user.userId
       }, //forms user object
       headers: {

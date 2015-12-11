@@ -39,7 +39,7 @@ if (empty($errors)){
   $tel = $_POST['tel'];
   $role = $_POST['role'];
   $client_id = $_POST['client_id'];
-  $password = hash('sha256', $_POST['password']);
+  $password =  $_POST['password'];
 echo
 	MysqliDB::getInstance()->query("INSERT INTO `users`(`username`, `password`, `name`, `surname`, `role`, `tel`, `active`, `clientId`) VALUES ('".$username."','".$password."','".$name."','".$surname."','".$role."','".$tel."','0','".$client_id."')");
 
