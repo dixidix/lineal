@@ -4,15 +4,15 @@ class MysqliDB{
 
 	private static $_instance;
 //--------------DB LOCALHOST---------------
-	protected $host='localhost';
-	protected $user='root';
-	protected $passwd='';
-	protected $db='mylsl';
-	//--------------DB SERVER--------------
 	// protected $host='localhost';
-	// protected $user='linealso';
-	// protected $passwd='G2DQTDdzhJZp';
-	// protected $db='linealso_mylsl';
+	// protected $user='root';
+	// protected $passwd='';
+	// protected $db='mylsl';
+	//--------------DB SERVER--------------
+	protected $host='localhost';
+	protected $user='linealso';
+	protected $passwd='G2DQTDdzhJZp';
+	protected $db='linealso_mylsl';
 
 	protected $_mysqli;
 
