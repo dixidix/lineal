@@ -1,5 +1,5 @@
 <div class="clients" ng-controller="clients_controller">
-  <button class="btn btn-primary add_operation" ng-click="add_client()"><i class="glyphicon glyphicon-plus"></i>Agregar Usuario</button>
+  <button class="btn btn-primary add_operation" ng-click="add_client()"><i class="glyphicon glyphicon-plus"></i>Agregar Cliente</button>
 <div class="search">
 
   <input type="search" class="form-control"  ng-model="client_search" value="escriba aquí su busqueda"/>
@@ -18,6 +18,7 @@
         <th>Fax</th>
         <th>Web</th>
         <th>Cuit</th>
+        <th>E-Mails</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -32,7 +33,8 @@
         <td>{{ client.fax }}</td>
         <td>{{ client.web }}</td>
         <td>{{ client.cuit }}</td>
-        <td><a tooltip="Editar" tooltip-placement="top" ng-click="modifyImport(import)" style="color:#000;cursor:pointer;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteImport(import)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
+        <td>{{client.emails}}</td>
+        <td><a tooltip="Editar" tooltip-placement="top" ng-click="modifyClient(client)" style="color:#000;cursor:pointer;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteClient(client)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
       </tr>
       </tr>
     </tbody>
