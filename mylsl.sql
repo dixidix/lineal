@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-12-2015 a las 05:48:36
+-- Tiempo de generación: 12-12-2015 a las 21:15:20
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -29,7 +29,6 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `client` (
   `clientId` int(10) NOT NULL,
   `name_desc` varchar(65) NOT NULL,
-  `username` varchar(65) NOT NULL,
   `address` varchar(100) NOT NULL,
   `manager` varchar(65) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `tel` varchar(65) NOT NULL,
@@ -37,16 +36,16 @@ CREATE TABLE IF NOT EXISTS `client` (
   `web` varchar(150) NOT NULL,
   `clientLogoPath` varchar(150) NOT NULL,
   `cuit` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `client`
 --
 
-INSERT INTO `client` (`clientId`, `name_desc`, `username`, `address`, `manager`, `tel`, `fax`, `web`, `clientLogoPath`, `cuit`) VALUES
-(1, 'esco s.a', 'escosa', 'tabanera 3385', 'Nicolas Sigal', '4294555', '14654156', 'www.google.com', 'logos/jas.jpg', '1012311231'),
-(2, 'cisco srl', 'ciscosrl', 'cadetes chilenos 173', 'Martin Martinez', '153013907', '42374541', 'www.ciscosrl.com.ar', 'logos/cisco.jpg', '123456789'),
-(3, 'Lineal Soluciones', 'linealsrl', 'calle falsa 123', 'Paula Rojas', '158459789', '123118015', 'www.linealsoluciones.com', 'logos/lineal.jpg', '54362181');
+INSERT INTO `client` (`clientId`, `name_desc`, `address`, `manager`, `tel`, `fax`, `web`, `clientLogoPath`, `cuit`) VALUES
+(1, 'esco s.a', 'tabanera 3385', 'Nicolas Sigal', '4294555', '14654156', 'www.google.com', 'logos/jas.jpg', '1012311231'),
+(2, 'cisco srl', 'cadetes chilenos 173', 'Martin Martinez', '153013907', '42374541', 'www.ciscosrl.com.ar', 'logos/cisco.jpg', '123456789'),
+(3, 'Lineal Soluciones', 'calle falsa 123', 'Paula Rojas', '158459789', '123118015', 'www.linealsoluciones.com', 'logos/lineal.jpg', '54362181');
 
 -- --------------------------------------------------------
 
@@ -58,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `client_email` (
   `emailId` int(10) NOT NULL,
   `clientId` int(10) NOT NULL,
   `email` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `client_email`
@@ -189,9 +188,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`userId`, `username`, `password`, `name`, `surname`, `role`, `tel`, `active`, `clientId`) VALUES
-(1, 'nicolas.sigal@escosa.com', '123456', 'Nicolas', 'Sigal', '1,2,3,4,5', '4294555', 0, 1),
+(1, 'nicolas.sigal@escosa.com', '123456', 'Nicolas', 'Sigal', '1, 2, 3, 5', '4294555', 0, 1),
 (2, 'joybelmonte@cisco.com', 'jowi', 'Johanna', 'Belmonte', '2,3,4', '4378622', 0, 2),
-(3, 'admin', 'admin', 'Nicolas', 'Sigal', '1,2,3,4,5,6', '153013907', 1, 3);
+(3, 'admin', 'admin', 'Nicolas', 'Sigal', '6', '153013907', 1, 3);
 
 --
 -- Índices para tablas volcadas
@@ -201,8 +200,7 @@ INSERT INTO `users` (`userId`, `username`, `password`, `name`, `surname`, `role`
 -- Indices de la tabla `client`
 --
 ALTER TABLE `client`
-  ADD PRIMARY KEY (`clientId`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`clientId`);
 
 --
 -- Indices de la tabla `client_email`
@@ -244,12 +242,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `client`
 --
 ALTER TABLE `client`
-  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `client_email`
 --
 ALTER TABLE `client_email`
-  MODIFY `emailId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `emailId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `document`
 --

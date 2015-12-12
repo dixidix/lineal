@@ -14,7 +14,16 @@ margin-bottom: 2%;
 input[type=checkbox] {
 	margin-right:1%;
 }
-
+#emails{
+  list-style: none;
+  font-size:1.1em;
+}
+.del_mail{
+  vertical-align: middle;
+  color: red;
+  cursor:pointer;
+  margin-left: 1%;
+}
 .search .btn {
     position: absolute;
     top: 0px;
@@ -45,7 +54,9 @@ th {
   vertical-align: middle;
 
 }
-
+.add_mail{
+  padding:0;
+}
 
 
 .table-curved {
@@ -171,7 +182,7 @@ background-color:#fff;
 
 .error{
     color:red;
-    font-size:0.7vw;
+    font-size:0.8vw;
 }
 .back_link{
   cursor:pointer;

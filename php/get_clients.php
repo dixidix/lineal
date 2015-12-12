@@ -11,8 +11,7 @@ while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
 
 
     $outp .= '{"id":"'  . $rs["clientId"].'",';
-    $outp .= '"name":"'   . $rs["name_desc"] .'",';
-    $outp .= '"username":"'   . $rs["username"].'",';
+    $outp .= '"name_desc":"'   . $rs["name_desc"] .'",';
     $outp .= '"address":"'   . $rs["address"].'",';
     $outp .= '"manager":"'   . $rs["manager"].'",';
     $outp .= '"tel":"'   . $rs["tel"].'",';

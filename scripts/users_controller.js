@@ -141,29 +141,36 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
     tel: $rootScope.userEdit.tel,
     role: "",
     password: $rootScope.userEdit.password,
-    userId : $rootScope.userEdit.userId
+    userId : $rootScope.userEdit.userId,
+    export : $rootScope.userEdit.role.indexOf('1') != -1,
+    import : $rootScope.userEdit.role.indexOf('2')!= -1,
+    seguimiento : $rootScope.userEdit.role.indexOf('3') != -1,
+    reintegro : $rootScope.userEdit.role.indexOf('4')!= -1,
+    courrier : $rootScope.userEdit.role.indexOf('5') != -1,
+    admin : $rootScope.userEdit.role.indexOf('6')!= -1
   };
 
-    $scope.user.role.export = $rootScope.userEdit.role.indexOf('1') != -1;
-    $scope.importChecked = $rootScope.userEdit.role.indexOf('2')!= -1;
-    $scope.seguimientoChecked = $rootScope.userEdit.role.indexOf('3')!= -1;
-    $scope.reintegroChecked = $rootScope.userEdit.role.indexOf('4')!= -1;
-    $scope.courrierChecked = $rootScope.userEdit.role.indexOf('5')!= -1;
-    $scope.adminChecked = $rootScope.userEdit.role.indexOf('6')!= -1;
-
+    // $scope.exportChecked = $rootScope.userEdit.role.indexOf('1') != -1;
+    // $scope.importChecked = $rootScope.userEdit.role.indexOf('2')!= -1;
+    // $scope.seguimientoChecked = $rootScope.userEdit.role.indexOf('3')!= -1;
+    // $scope.reintegroChecked = $rootScope.userEdit.role.indexOf('4')!= -1;
+    // $scope.courrierChecked = $rootScope.userEdit.role.indexOf('5')!= -1;
+    // $scope.adminChecked = $rootScope.userEdit.role.indexOf('6')!= -1;
 
 
   $scope.create_user = function () {
     var roles = [];
-    if ($scope.user.role.export == '1') { roles.push($scope.user.role.export); }
-    if ($scope.user.role.import == '2') { roles.push($scope.user.role.import); }
-    if ($scope.user.role.seguimiento == '3') { roles.push($scope.user.role.seguimiento); }
-    if ($scope.user.role.reintegro == '4') { roles.push($scope.user.role.reintegro); }
-    if ($scope.user.role.courrier == '5') { roles.push($scope.user.role.courrier); }
-    if ($scope.user.role.admin == '6') { roles.push($scope.user.role.admin); }
+    if ($scope.user.export == true) { roles.push("1"); }
+    if ($scope.user.import == true) { roles.push("2"); }
+    if ($scope.user.seguimiento == true) { roles.push("3"); }
+    if ($scope.user.reintegro == true) { roles.push("4"); }
+    if ($scope.user.courrier == true) { roles.push("5"); }
+    if ($scope.user.admin == true) { roles.push("6"); }
 
     $scope.user.roles = roles.join(", ");
-
+    if(roles.length == 0){
+      alert("debe seleccionar al menos un rol de usuario");
+    }
     $http({
       method: 'POST',
       url: './php/edit_user.php',
@@ -183,7 +190,7 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
     }).success(function (data) {
       if (data.errors) {
         // Showing errors.
-        $scope.emailError = data.errors.emailError;
+        $scope.roleError = data.errors.roleError;
         $scope.passwordError = data.errors.passwordError;
         $scope.loginError = data.errors.loginError;
       } else {

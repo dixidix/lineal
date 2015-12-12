@@ -18,8 +18,9 @@ if (empty($_POST['username'])){
 if (empty($_POST['tel'])){
 	$errors['telError'] = "Teléfono inválido";
 }
+echo $_POST['role'];
 if (empty($_POST['role'])){
-	$errors['roleError'] = "Roles inválidos.";
+	$errors['roleError'] = "Debe seleccionar al menos un rol de usuario.";
 }
 if (empty($_POST['client_id'])){
 	$errors['clientError'] = "Cliente inválido.";

@@ -19,7 +19,7 @@ mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cooki
 
   $scope.add_client = function(){
     $modal.open({
-        templateUrl: './partials/modal_add_user.html',
+        templateUrl: './partials/modal_add_client.html',
         controller: 'modal_add_client',
         scope: $scope
       })
@@ -30,7 +30,7 @@ mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cooki
   $scope.modifyClient = function (modifyClient) {
     $rootScope.clientEdit = modifyClient;
     $modal.open({
-        templateUrl: './partials/modal_add_user.html',
+        templateUrl: './partials/modal_add_client.html',
         controller: 'modal_edit_client',
         scope: $scope
       })
@@ -54,50 +54,61 @@ mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cooki
 mylsl.controller('modal_add_client', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
   'use strict';
 
-  $scope.editing_user = false;
+  $scope.editing_client = false;
 
   $scope.actionTitle = "Agregar un Cliente";
   $scope.action = "Guardar";
 
-  $http.get('./php/get_clients.php').then(function (response) {
-    $scope.clients = response.data.clients;
-  });
-
-  $scope.user = {
-    name: "",
-    surname: "",
-    username: "",
+  $scope.client = {
+    name_desc: "",
+    address: "",
+    manager: "",
     tel: "",
-    role: "",
-    password: ""
+    fax: "",
+    web: "",
+    logo: "",
+    cuit: "",
+    email: ""
   };
-
-  $scope.create_user = function () {
+  $scope.emails = [];
+  $scope.add_email = function ($event) {
+  $event.preventDefault();
+  if($scope.client.email != undefined && $scope.client.email != ""){
+    $scope.emailError = "";
+      $scope.emails.push($scope.client.email);
+    }else{
+      $scope.emailError = "ingrese un correo electrónico válido.";
+    }
+  $scope.client.email = "";
+  }
+  $scope.remove_email = function(emails, index){
+    $scope.emails.splice(index, 1);
+  }
+  $scope.create_client = function () {
 
     $http({
       method: 'POST',
-      url: './php/new_user.php',
+      url: './php/new_client.php',
       data: {
-        name: $scope.user.name,
-        surname: $scope.user.surname,
-        username: $scope.user.username,
-        tel: $scope.user.tel,
-        role: $scope.user.role,
-        password: $scope.user.password,
-        client_id:$scope.select_client
+        name_desc: $scope.client.name_desc,
+        address: $scope.client.address,
+        manager: $scope.client.manager,
+        tel: $scope.client.tel,
+        fax: $scope.client.fax,
+        web: $scope.client.web,
+        logo: $scope.client.logo,
+        cuit: $scope.client.cuit,
+        emails: $scope.emails
       }, //forms user object
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }).success(function (data) {
       if (data.errors) {
-        // Showing errors.
-        $scope.emailError = data.errors.emailError;
-        $scope.passwordError = data.errors.passwordError;
-        $scope.loginError = data.errors.loginError;
+
       } else {
         $modalInstance.dismiss('cancel');
-        $state.go('mylsl.cpanel_users', {}, {reload: true});
+        $state.go('mylsl.cpanel_clients', {}, {reload: true});
       }
     });
 };
@@ -105,40 +116,55 @@ mylsl.controller('modal_add_client', function ($state, $rootScope,$modal,$modalI
 
 mylsl.controller('modal_edit_client', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
   'use strict';
-
+  $scope.editing_client = true;
   $scope.actionTitle = "Editar un Cliente";
   $scope.action = "Editar";
-
-  $http.get('./php/get_clients.php').then(function (response) {
-    $scope.clients = response.data.clients;
-  });
-
-  $scope.select_client = $rootScope.userEdit.clientId;
-
-  $scope.user = {
-    name: $rootScope.userEdit.name,
-    surname: $rootScope.userEdit.surname,
-    username: $rootScope.userEdit.username,
-    tel: $rootScope.userEdit.tel,
-    role: $rootScope.userEdit.role,
-    password: $rootScope.userEdit.password,
-    userId : $rootScope.userEdit.userId
+  $scope.emails = $rootScope.clientEdit.emails.split(",");
+  $scope.client = {
+    clientId: $rootScope.clientEdit.id,
+    name_desc: $rootScope.clientEdit.name_desc,
+    address: $rootScope.clientEdit.address,
+    manager: $rootScope.clientEdit.manager,
+    tel: $rootScope.clientEdit.tel,
+    fax: $rootScope.clientEdit.fax,
+    web: $rootScope.clientEdit.web,
+    logo: $rootScope.clientEdit.logo,
+    cuit: $rootScope.clientEdit.cuit,
+    emails: $scope.emails
   };
-
-  $scope.create_user = function () {
+  $scope.add_email = function ($event) {
+  $event.preventDefault();
+  if($scope.client.email != undefined && $scope.client.email != ""){
+    $scope.emailError = "";
+      $scope.emails.push($scope.client.email);
+    }else{
+      $scope.emailError = "ingrese un correo electrónico válido.";
+    }
+  $scope.client.email = "";
+  }
+  $scope.remove_email = function(emails, index){
+    $scope.client.emails.splice(index, 1);
+  }
+  $scope.edit_email = function(email, index){
+    $scope.client.emails.splice(index, 1);
+    $scope.client.emails.splice(index, 0, email);
+  }
+  $scope.create_client = function () {
 
     $http({
       method: 'POST',
-      url: './php/edit_user.php',
+      url: './php/edit_client.php',
       data: {
-        name: $scope.user.name,
-        surname: $scope.user.surname,
-        username: $scope.user.username,
-        tel: $scope.user.tel,
-        role: $scope.user.role,
-        password: $scope.user.password,
-        client_id:$scope.select_client,
-        userId: $scope.user.userId
+        clientId: $scope.client.clientId,
+        name_desc: $scope.client.name_desc,
+        address: $scope.client.address,
+        manager: $scope.client.manager,
+        tel: $scope.client.tel,
+        fax: $scope.client.fax,
+        web: $scope.client.web,
+        logo: $scope.client.logo,
+        cuit: $scope.client.cuit,
+        emails: $scope.client.emails
       }, //forms user object
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
