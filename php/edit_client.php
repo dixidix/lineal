@@ -52,6 +52,6 @@ if (empty($errors)){
 
   foreach ($emails as $email) {
 	MysqliDB::getInstance()->query("UPDATE `client_email` SET `email`=[value-3] WHERE 1");
-  }
+  }	
 }
 ?>

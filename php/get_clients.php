@@ -6,10 +6,11 @@ session_start();
 $res = MysqliDB::getInstance()->query("SELECT * from client");
 $outp="";
 
+
 while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "") {$outp .= ",";}
 
-
+    $outpm ="";
     $outp .= '{"id":"'  . $rs["clientId"].'",';
     $outp .= '"name_desc":"'   . $rs["name_desc"] .'",';
     $outp .= '"address":"'   . $rs["address"].'",';
@@ -19,12 +20,12 @@ while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"web":"'   . $rs["web"].'",';
     $outp .= '"logo":"'   . $rs["clientLogoPath"].'",';
     $ress = MysqliDB::getInstance()->query("SELECT * from client_email where clientId = ".$rs["clientId"]."");
-    $a=array();
     while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
-    array_push($a, $rss["email"]);
+      if ($outpm != "") {$outpm .= ",";}
+      $outpm .= '{"id":"'   . $rss["emailId"].'",';
+      $outpm .= '"email":"'   . $rss["email"].'"}';
     }
-    $emails = implode(", ", $a);
-    $outp .= '"emails":"'   . $emails .'",';
+    $outp .='"emails":['.$outpm.'],';
     $outp .= '"cuit":"'   . $rs["cuit"].'"}';
 
 }

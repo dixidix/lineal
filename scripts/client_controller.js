@@ -27,8 +27,9 @@ mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cooki
 
       });
   };
-  $scope.modifyClient = function (modifyClient) {
-    $rootScope.clientEdit = modifyClient;
+  $scope.modifyClient = function (client, mail) {
+    console.log(mail.email);
+    $rootScope.clientEdit = client;
     $modal.open({
         templateUrl: './partials/modal_add_client.html',
         controller: 'modal_edit_client',
@@ -68,7 +69,7 @@ mylsl.controller('modal_add_client', function ($state, $rootScope,$modal,$modalI
     web: "",
     logo: "",
     cuit: "",
-    email: ""
+    emails: ""
   };
   $scope.emails = [];
   $scope.add_email = function ($event) {
@@ -119,7 +120,7 @@ mylsl.controller('modal_edit_client', function ($state, $rootScope,$modal,$modal
   $scope.editing_client = true;
   $scope.actionTitle = "Editar un Cliente";
   $scope.action = "Editar";
-  $scope.emails = $rootScope.clientEdit.emails.split(",");
+
   $scope.client = {
     clientId: $rootScope.clientEdit.id,
     name_desc: $rootScope.clientEdit.name_desc,
@@ -130,7 +131,7 @@ mylsl.controller('modal_edit_client', function ($state, $rootScope,$modal,$modal
     web: $rootScope.clientEdit.web,
     logo: $rootScope.clientEdit.logo,
     cuit: $rootScope.clientEdit.cuit,
-    emails: $scope.emails
+    emails: $rootScope.mailEdit.email
   };
   $scope.add_email = function ($event) {
   $event.preventDefault();

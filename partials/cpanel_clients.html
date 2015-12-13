@@ -31,8 +31,8 @@
         <td>{{ client.fax }}</td>
         <td>{{ client.web }}</td>
         <td>{{ client.cuit }}</td>
-        <td>{{client.emails}}</td>
-        <td><a tooltip="Editar" tooltip-placement="top" ng-click="modifyClient(client)" style="color:#000;cursor:pointer;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteClient(client)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
+        <td><p ng-repeat="mail in client.emails">{{mail.email}}</p></td>
+        <td><a tooltip="Editar" tooltip-placement="top" ng-click="modifyClient(client, $parent.mail)" style="color:#000;cursor:pointer;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteClient(client)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
       </tr>
       </tr>
     </tbody>
