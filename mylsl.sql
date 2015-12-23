@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.12
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2015 a las 21:15:20
--- Versión del servidor: 5.6.25
--- Versión de PHP: 5.6.11
+-- Tiempo de generación: 23-12-2015 a las 21:48:21
+-- Versión del servidor: 10.1.8-MariaDB
+-- Versión de PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,9 +26,10 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `client`
 --
 
-CREATE TABLE IF NOT EXISTS `client` (
+CREATE TABLE `client` (
   `clientId` int(10) NOT NULL,
   `name_desc` varchar(65) NOT NULL,
+  `username` varchar(65) NOT NULL,
   `address` varchar(100) NOT NULL,
   `manager` varchar(65) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `tel` varchar(65) NOT NULL,
@@ -36,16 +37,16 @@ CREATE TABLE IF NOT EXISTS `client` (
   `web` varchar(150) NOT NULL,
   `clientLogoPath` varchar(150) NOT NULL,
   `cuit` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `client`
 --
 
-INSERT INTO `client` (`clientId`, `name_desc`, `address`, `manager`, `tel`, `fax`, `web`, `clientLogoPath`, `cuit`) VALUES
-(1, 'esco s.a', 'tabanera 3385', 'Nicolas Sigal', '4294555', '14654156', 'www.google.com', 'logos/jas.jpg', '1012311231'),
-(2, 'cisco srl', 'cadetes chilenos 173', 'Martin Martinez', '153013907', '42374541', 'www.ciscosrl.com.ar', 'logos/cisco.jpg', '123456789'),
-(3, 'Lineal Soluciones', 'calle falsa 123', 'Paula Rojas', '158459789', '123118015', 'www.linealsoluciones.com', 'logos/lineal.jpg', '54362181');
+INSERT INTO `client` (`clientId`, `name_desc`, `username`, `address`, `manager`, `tel`, `fax`, `web`, `clientLogoPath`, `cuit`) VALUES
+(1, 'esco s.a', 'escosa', 'tabanera 3385', 'Nicolas Sigal', '4294555', '14654156', 'www.google.com', 'logos/jas.jpg', '1012311231'),
+(2, 'cisco srl', 'ciscosrl', 'cadetes chilenos 173', 'Martin Martinez', '153013907', '42374541', 'www.ciscosrl.com.ar', 'logos/cisco.jpg', '123456789'),
+(3, 'Lineal Soluciones', 'linealsrl', 'calle falsa 123', 'Paula Rojas', '158459789', '123118015', 'www.linealsoluciones.com', 'logos/lineal.jpg', '54362181');
 
 -- --------------------------------------------------------
 
@@ -53,22 +54,24 @@ INSERT INTO `client` (`clientId`, `name_desc`, `address`, `manager`, `tel`, `fax
 -- Estructura de tabla para la tabla `client_email`
 --
 
-CREATE TABLE IF NOT EXISTS `client_email` (
+CREATE TABLE `client_email` (
   `emailId` int(10) NOT NULL,
   `clientId` int(10) NOT NULL,
-  `email` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `email` varchar(100) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `lastname` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `client_email`
 --
 
-INSERT INTO `client_email` (`emailId`, `clientId`, `email`) VALUES
-(1, 1, 'nicolas.sigal@gmail.com'),
-(2, 1, 'nicolas@sigal.com'),
-(3, 1, 'joys@sigal.com'),
-(4, 2, 'paul@martinez.com'),
-(5, 2, 'p.martinezsa@martinez.com');
+INSERT INTO `client_email` (`emailId`, `clientId`, `email`, `name`, `lastname`) VALUES
+(1, 1, 'nicolas.sigal@gmail.com', 'Nicolas', 'Sigal'),
+(2, 1, 'nicolas@sigal.com', 'Pepe', 'Suarez'),
+(3, 1, 'joys@sigal.com', 'Johanna', 'Robbinson'),
+(4, 2, 'paul@martinez.com', 'Paula', 'Martinez'),
+(5, 2, 'p.martinezsa@martinez.com', 'Paola', 'Manzalba');
 
 -- --------------------------------------------------------
 
@@ -76,7 +79,7 @@ INSERT INTO `client_email` (`emailId`, `clientId`, `email`) VALUES
 -- Estructura de tabla para la tabla `document`
 --
 
-CREATE TABLE IF NOT EXISTS `document` (
+CREATE TABLE `document` (
   `documentId` int(10) NOT NULL,
   `clientId` int(10) NOT NULL,
   `ref_lsl` int(15) NOT NULL,
@@ -90,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `document` (
 -- Estructura de tabla para la tabla `operation`
 --
 
-CREATE TABLE IF NOT EXISTS `operation` (
+CREATE TABLE `operation` (
   `ref_lsl` int(10) NOT NULL,
   `ref_client` varchar(45) NOT NULL,
   `merchandise` varchar(45) NOT NULL,
@@ -105,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `operation` (
   `lsl_bill` varchar(45) DEFAULT NULL,
   `clientId` int(10) NOT NULL,
   `operationTypeId` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operation`
@@ -152,10 +155,10 @@ INSERT INTO `operation` (`ref_lsl`, `ref_client`, `merchandise`, `transport`, `s
 -- Estructura de tabla para la tabla `operation_type`
 --
 
-CREATE TABLE IF NOT EXISTS `operation_type` (
+CREATE TABLE `operation_type` (
   `operationTypeId` int(1) NOT NULL,
   `operation_desc` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operation_type`
@@ -171,7 +174,7 @@ INSERT INTO `operation_type` (`operationTypeId`, `operation_desc`) VALUES
 -- Estructura de tabla para la tabla `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `userId` int(10) NOT NULL,
   `username` varchar(45) NOT NULL,
   `password` varchar(64) NOT NULL,
@@ -181,16 +184,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `tel` varchar(45) NOT NULL,
   `active` int(1) NOT NULL,
   `clientId` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`userId`, `username`, `password`, `name`, `surname`, `role`, `tel`, `active`, `clientId`) VALUES
-(1, 'nicolas.sigal@escosa.com', '123456', 'Nicolas', 'Sigal', '1, 2, 3, 5', '4294555', 0, 1),
-(2, 'joybelmonte@cisco.com', 'jowi', 'Johanna', 'Belmonte', '2,3,4', '4378622', 0, 2),
-(3, 'admin', 'admin', 'Nicolas', 'Sigal', '6', '153013907', 1, 3);
+(1, 'nicolas.sigal@escosa.com', '123456', 'Nicolas', 'Sigal', '1, 2, 3, 4, 5', '4294555', 0, 1),
+(2, 'joybelmonte@cisco.com', 'jowi', 'Johanna', 'Belmonte', '1, 2, 3, 4', '4378622', 0, 2),
+(3, 'admin', 'admin', 'Nicolas', 'Sigal', '6', '153013907', 1, 3),
+(5, 'juan@berdugo.com', '93c1e7bd5aed2371699f26ecd2088bc271ef10d140e7240f2dd1f16e78e82652', 'Juan', 'Berdugo', '1, 2', '132456', 0, 1);
 
 --
 -- Índices para tablas volcadas
@@ -200,7 +204,8 @@ INSERT INTO `users` (`userId`, `username`, `password`, `name`, `surname`, `role`
 -- Indices de la tabla `client`
 --
 ALTER TABLE `client`
-  ADD PRIMARY KEY (`clientId`);
+  ADD PRIMARY KEY (`clientId`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indices de la tabla `client_email`
@@ -242,12 +247,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `client`
 --
 ALTER TABLE `client`
-  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `client_email`
 --
 ALTER TABLE `client_email`
-  MODIFY `emailId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `emailId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `document`
 --
@@ -257,17 +262,17 @@ ALTER TABLE `document`
 -- AUTO_INCREMENT de la tabla `operation`
 --
 ALTER TABLE `operation`
-  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
+  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT de la tabla `operation_type`
 --
 ALTER TABLE `operation_type`
-  MODIFY `operationTypeId` int(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `operationTypeId` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
