@@ -76,6 +76,14 @@ mylsl.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         }
       }
     })
+    .state('mylsl.cpanel_emails', {
+  url: '/Administrar-emails',
+  views: {
+    'content': {
+      templateUrl: './partials/cpanel_emails.html'
+    }
+  }
+})
         .state('mylsl.new_document', {
       url: '/agregar-documento',
       views: {

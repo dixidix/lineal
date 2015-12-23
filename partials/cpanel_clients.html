@@ -1,11 +1,21 @@
 <div class="clients" ng-controller="clients_controller">
-  <button class="btn btn-primary add_operation" ng-click="add_client()"><i class="glyphicon glyphicon-plus"></i>Agregar Cliente</button>
-<div class="search">
 
-  <input type="search" class="form-control"  ng-model="client_search" value="escriba aquí su busqueda"/>
-  <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Buscar </button>
+  <div class="search">
+    <div class="row form-inline">
+        <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Fecha </button>
+          <input type="search" class="form-control search_box inp_date"  ng-model="client_search" placeholder="Ingrese fecha: Ej. {{today | date:'dd/MM/yyyy'}}"/>
 
-</div>
+
+
+          <button class="btn search_btn search_op"><i class="glyphicon glyphicon-search"></i> N° Operación </button>
+        <input type="search" class="form-control search_box inp_op"  ng-model="client_search" placeholder="Escriba aquí la la operación a buscar"/>
+
+
+      <button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Doc. Aduanero </button>
+      <input type="search" class="form-control search_box inp_doc"  ng-model="client_search" placeholder="Escriba aquí el documento a buscar"/>
+      <button class="btn  add_operation"  ng-click="add_client()"><i class="glyphicon glyphicon-plus"></i>Cliente</button>
+  </div>
+  </div>
 <div class="table-responsive">
   <table class="table table-striped table-curved table-condensed table-hover">
     <thead>
@@ -17,7 +27,6 @@
         <th>Fax</th>
         <th>Web</th>
         <th>Cuit</th>
-        <th>E-Mails</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -31,7 +40,6 @@
         <td>{{ client.fax }}</td>
         <td>{{ client.web }}</td>
         <td>{{ client.cuit }}</td>
-        <td><p ng-repeat="mail in client.emails">{{mail.email}}</p></td>
         <td><a tooltip="Editar" tooltip-placement="top" ng-click="modifyClient(client, $parent.mail)" style="color:#000;cursor:pointer;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteClient(client)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
       </tr>
       </tr>

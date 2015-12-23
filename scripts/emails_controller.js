@@ -1,4 +1,4 @@
-mylsl.controller('users_controller', function ($rootScope,filterFilter,$modal, $cookies, $scope, $http) {
+mylsl.controller('emails_controller', function ($rootScope,filterFilter,$modal, $cookies, $scope, $http) {
   'use strict';
   $scope.today = new Date();
 
@@ -26,16 +26,16 @@ mylsl.controller('users_controller', function ($rootScope,filterFilter,$modal, $
          $('.inp_op').removeClass("show_input");
          $('.search_op').removeClass("search_btn_show_inp");
        });
-  $http.get("./php/get_users.php").then(function (response) {
-    $scope.users = response.data.users;
+  $http.get("./php/get_emails.php").then(function (response) {
+    $scope.emails = response.data.emails;
     $scope.currentPage = 1;
-    $scope.totalItems = $scope.users.length;
+    $scope.totalItems = $scope.emails.length;
     $scope.entryLimit = 8; // items per page
     $scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
 
     // $watch search to update pagination
     $scope.$watch('user_search', function (newVal, oldVal) {
-      $scope.filtered = filterFilter($scope.users, newVal);
+      $scope.filtered = filterFilter($scope.emails, newVal);
       $scope.totalItems = $scope.filtered.length;
       $scope.noOfPages = Math.ceil($scope.totalItems / $scope.entryLimit);
       $scope.currentPage = 1;

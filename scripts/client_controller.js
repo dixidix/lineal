@@ -1,6 +1,31 @@
 mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cookies, $scope, $http, $modal) {
   'use strict';
+  $scope.today = new Date();
 
+    $('.search_date').click(function() {
+       $('.inp_date').toggleClass("show_input");
+       $('.search_date').toggleClass("search_btn_show_inp");
+       $('.inp_op').removeClass("show_input");
+         $('.search_op').removeClass("search_btn_show_inp");
+         $('.search_doc').removeClass("search_btn_show_inp");
+       $('.inp_doc').removeClass("show_input");
+     });
+     $('.search_op').click(function() {
+        $('.inp_op').toggleClass("show_input");
+        $('.search_op').toggleClass("search_btn_show_inp");
+        $('.search_date').removeClass("search_btn_show_inp");
+        $('.inp_date').removeClass("show_input");
+        $('.search_doc').removeClass("search_btn_show_inp");
+         $('.inp_doc').removeClass("show_input");
+      });
+      $('.search_doc').click(function() {
+         $('.inp_doc').toggleClass("show_input");
+         $('.search_doc').toggleClass("search_btn_show_inp");
+         $('.search_date').removeClass("search_btn_show_inp");
+         $('.inp_date').removeClass("show_input");
+         $('.inp_op').removeClass("show_input");
+         $('.search_op').removeClass("search_btn_show_inp");
+       });
   $http.get("./php/get_clients.php").then(function (response) {
     $scope.clients = response.data.clients;
     $scope.currentPage = 1;
@@ -28,7 +53,7 @@ mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cooki
       });
   };
   $scope.modifyClient = function (client, mail) {
-    console.log(mail.email);
+
     $rootScope.clientEdit = client;
     $modal.open({
         templateUrl: './partials/modal_add_client.html',
@@ -130,26 +155,9 @@ mylsl.controller('modal_edit_client', function ($state, $rootScope,$modal,$modal
     fax: $rootScope.clientEdit.fax,
     web: $rootScope.clientEdit.web,
     logo: $rootScope.clientEdit.logo,
-    cuit: $rootScope.clientEdit.cuit,
-    emails: $rootScope.mailEdit.email
+    cuit: $rootScope.clientEdit.cuit
   };
-  $scope.add_email = function ($event) {
-  $event.preventDefault();
-  if($scope.client.email != undefined && $scope.client.email != ""){
-    $scope.emailError = "";
-      $scope.emails.push($scope.client.email);
-    }else{
-      $scope.emailError = "ingrese un correo electrónico válido.";
-    }
-  $scope.client.email = "";
-  }
-  $scope.remove_email = function(emails, index){
-    $scope.client.emails.splice(index, 1);
-  }
-  $scope.edit_email = function(email, index){
-    $scope.client.emails.splice(index, 1);
-    $scope.client.emails.splice(index, 0, email);
-  }
+
   $scope.create_client = function () {
 
     $http({

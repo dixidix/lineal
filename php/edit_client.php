@@ -46,12 +46,9 @@ if (empty($errors)){
   $web = $_POST['web'];
   $logo =  $_POST['logo'];
 	$cuit =  $_POST['cuit'];
-	$emails = $_POST['emails'];
+
 
 	MysqliDB::getInstance()->query("UPDATE `client` SET `name_desc`='".$name_desc."',`address`='".$address."',`manager`='".$manager."',`tel`='".$tel."',`fax`='".$fax."',`web`='".$web."',`clientLogoPath`='".$logo."',`cuit`='".$cuit."' WHERE clientId = '".$clientId."'");
 
-  foreach ($emails as $email) {
-	MysqliDB::getInstance()->query("UPDATE `client_email` SET `email`=[value-3] WHERE 1");
-  }	
 }
 ?>

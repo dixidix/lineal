@@ -1,7 +1,7 @@
 mylsl.controller('mylsl_controller', function ($scope, $rootScope, $http, $cookies, $state) {
   $scope.role = $cookies.get('role');
   $scope.name = $cookies.get('name');
-  
+
   $scope.show_export = $scope.role.indexOf('1') !== -1;
   $scope.show_import = $scope.role.indexOf('2') !== -1;
   $scope.show_following = $scope.role.indexOf('3') !== -1;
@@ -32,4 +32,5 @@ mylsl.controller('mylsl_controller', function ($scope, $rootScope, $http, $cooki
     $('.menu a li').removeClass("item_active");
     $(this).addClass("item_active");
   });
+  
 });

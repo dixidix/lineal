@@ -2,7 +2,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-2 menu-left">
+            <div class="col-xs-2 menu-left">
                 <div class="client_logo_container" style="padding:15% 15% 0% 15%">
                     <img ng-src="{{client_logo_path}}">
                 </div>
@@ -32,6 +32,9 @@
                         </a>
                         <a ng-show="show_add_op" href="#" ui-sref=".cpanel_clients" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-briefcase"></i><span>Administrar Clientes</span></li>
+                        </a>
+                        <a ng-show="show_add_op" href="#" ui-sref=".cpanel_emails" ui-sref-opts="{reload: true}">
+                            <li class="list-item"><i class="glyphicon glyphicon-envelope"></i><span>Administrar E-Mails</span></li>
                         </a>
                         <a ng-click="logout()">
                             <li class="list-item"><i class="glyphicon glyphicon-log-out"></i><span>Salir</span></li>

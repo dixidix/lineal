@@ -1,11 +1,21 @@
 <div class="import" ng-controller="import_controller" ng-show="Content_active">
-<h3>Panel de control: {{client.name}}</h3>
-  <button class="btn btn-primary add_operation" ng-click="add_operation()"><i class="glyphicon glyphicon-plus"></i>Agregar Importación</button>
+<h4>Importaciones pertenecientes a: {{client.name_desc}}</h4>
+
   <div class="search">
+    <div class="row form-inline">
+        <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Fecha </button>
+          <input type="search" class="form-control search_box inp_date"  ng-model="impo_search_date" placeholder="Ingrese fecha: Ej. {{today | date:'dd/MM/yyyy'}}"/>
 
-    <input type="search" class="form-control" ng-model="impo_search" value="escriba aquí su busqueda" />
-    <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Buscar </button>
 
+
+          <button class="btn search_btn search_op"><i class="glyphicon glyphicon-search"></i> N° Operación </button>
+        <input type="search" class="form-control search_box inp_op"  ng-model="impo_search_op" placeholder="Escriba aquí la la operación a buscar"/>
+
+
+      <button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Doc. Aduanero </button>
+      <input type="search" class="form-control search_box inp_doc"  ng-model="impo_search_doc" placeholder="Escriba aquí el documento a buscar"/>
+      <button class="btn  add_operation" ng-click="add_operation()"><i class="glyphicon glyphicon-plus"></i>Importación</button>
+  </div>
   </div>
 
   <div class="table-responsive">
@@ -28,7 +38,7 @@
       </thead>
 
       <tbody>
-          <tr ng-repeat="import in  filtered = operations_imp | filter : paginate | filter : impo_search| startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+          <tr ng-repeat="import in  filtered = operations_imp | filter : paginate | filter : impo_search_date | filter : impo_search_op | filter : impo_search_doc | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
           <td>{{ import.ref_client }}</td>
           <td>{{ import.ref_lsl }}</td>
           <td>{{ import.merchandise }}</td>

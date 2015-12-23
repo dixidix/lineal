@@ -44,7 +44,7 @@ if (empty($errors)){
   $web = $_POST['web'];
   $logo =  $_POST['logo'];
 	$cuit =  $_POST['cuit'];
-	$emails = $_POST['emails'];
+
 
 
 echo MysqliDB::getInstance()->query("INSERT INTO `client`(`name_desc`, `address`, `manager`, `tel`, `fax`, `web`, `clientLogoPath`, `cuit`) VALUES ('".$name_desc."','".$address."','".$manager."','".$tel."','".$fax."','".$web."','".$logo."','".$cuit."')");
@@ -54,17 +54,5 @@ echo MysqliDB::getInstance()->query("INSERT INTO `client`(`name_desc`, `address`
 }else{
 	print_r($errors);
 }
-
-$res = MysqliDB::getInstance()->query("SELECT clientId FROM client WHERE name_desc='" . $_POST['name_desc']."'");
-
-while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
-	$clientId = $rs["clientId"];
-}
-
-	foreach ($emails as $email) {
-		echo MysqliDB::getInstance()->query("INSERT INTO `client_email`(`clientId`, `email`) VALUES ('".$clientId."','".$email."')");
-		echo MysqliDB::getInstance()->error();
-	}
-
 
 ?>

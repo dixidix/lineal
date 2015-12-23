@@ -1,9 +1,19 @@
         <div class="export"  ng-controller="export_controller">
-          <div class="search" >
+          <div class="search">
+              <div class="row form-inline">
+                  <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Fecha </button>
+                    <input type="search" class="form-control search_box inp_date"  ng-model="expo_search_date" placeholder="Ingrese fecha: Ej. {{today | date:'dd/MM/yyyy'}}"/>
 
-              <input type="search" class="form-control"  ng-model="expo_search"/>
-              <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Buscar </button>
 
+
+                    <button class="btn search_btn search_op"><i class="glyphicon glyphicon-search"></i> N° Operación </button>
+                  <input type="search" class="form-control search_box inp_op"  ng-model="expo_search_op" placeholder="Escriba aquí la la operación a buscar"/>
+
+
+                <button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Doc. Aduanero </button>
+                <input type="search" class="form-control search_box inp_doc"  ng-model="expo_search_doc" placeholder="Escriba aquí el documento a buscar"/>
+
+            </div>
           </div>
             <div class="table-responsive">
                 <table class="table table-striped table-curved table-condensed table-hover">
@@ -21,7 +31,7 @@
                     </thead>
 
                     <tbody>
-                        <tr ng-repeat="export in  filtered = operations_exp | filter : paginate | filter : expo_search| startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+                        <tr ng-repeat="export in  filtered = operations_exp | filter : paginate | filter : expo_search_date | filter : expo_search_op | filter : expo_search_doc | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
                             <td>{{ export.ref_client }}</td>
                             <td>{{ export.ref_lsl }}</td>
                             <td>{{ export.merchandise }}</td>

@@ -5,8 +5,9 @@
       <div class="form-group">
       <label>Seleccione Cliente: </label>
       <select id="select_client" ng-model="select_client" class="form-control header_controls" ng-change="reset_operation()">
-        <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name }}</option>
+        <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name_desc }}</option>
       </select>
+
         </div>
       <div class="form-group">
       <label>Seleccione operación: </label>
@@ -19,6 +20,7 @@
     </form>
   </div>
   <div id="cpanel_content" >
+
     <div ui-view="cp_content">
     </div>
   </div>

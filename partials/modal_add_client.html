@@ -53,42 +53,6 @@
       </div>
     </div>
   </div>
-    <div class="form-group">
-  <span>Email: </span>
-    <div class="row">
-    <div class="col-xs-10">
-      <input type="email" class="form-control" ng-model="client.email" placeholder="Ingrese un correo electrónico" />
-    </div>
-    <div class="col-xs-2 add_mail">
-      <button class="btn btn-primary" ng-click="add_email($event)">Agregar</button>
-    </div>
-    </div>
-    <span class="error">{{emailError}}</span>
-  </div>
-  <div class="row" ng-show="editing_client">
-      <span>Correos electrónicos agregados:</span>
-      <div ng-repeat="email in client.emails  track by $index">
-      <div class="col-xs-11">
-        <div class="form-group">
-        <input type="text" class="form-control" ng-model="email" ng-change="edit_email(email,$index)"/>
-      </div>
-    </div>
-    <div class="col-xs-1">
-      <div class="form-group">
-      <a ng-click="remove_email(client.emails,$index)"><i class="glyphicon glyphicon-remove del_mail"></i></a>
-    </div>
-  </div>
-  </div>
-  </div>
-  <div class="row" ng-hide="editing_client">
-    <div class="col-xs-12">
-      <div class="form-group">
-      <span>Correos electrónicos agregados:</span>
-
-        <div ng-repeat="email in emails  track by $index">{{email}}<a ng-click="remove_email(emails,$index)"><i class="glyphicon glyphicon-remove del_mail"></i></a> </div>
-      </div>
-    </div>
-  </div>
   <div class="row">
     <div class="col-xs-12">
         <div class="form-group">

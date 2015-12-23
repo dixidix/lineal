@@ -1,6 +1,8 @@
 mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $http, filterFilter) {
   'use strict';
 
+
+
   $scope.op_type = "2";
 
   $scope.client_id = $cookies.get('client_id');
@@ -34,4 +36,30 @@ mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $h
   		$scope.currentPage = 1;
   	}, true);
   });
+$scope.today = new Date();
+
+  $('.search_date').click(function() {
+     $('.inp_date').toggleClass("show_input");
+     $('.search_date').toggleClass("search_btn_show_inp");
+     $('.inp_op').removeClass("show_input");
+       $('.search_op').removeClass("search_btn_show_inp");
+       $('.search_doc').removeClass("search_btn_show_inp");
+     $('.inp_doc').removeClass("show_input");
+   });
+   $('.search_op').click(function() {
+      $('.inp_op').toggleClass("show_input");
+      $('.search_op').toggleClass("search_btn_show_inp");
+      $('.search_date').removeClass("search_btn_show_inp");
+      $('.inp_date').removeClass("show_input");
+      $('.search_doc').removeClass("search_btn_show_inp");
+       $('.inp_doc').removeClass("show_input");
+    });
+    $('.search_doc').click(function() {
+       $('.inp_doc').toggleClass("show_input");
+       $('.search_doc').toggleClass("search_btn_show_inp");
+       $('.search_date').removeClass("search_btn_show_inp");
+       $('.inp_date').removeClass("show_input");
+       $('.inp_op').removeClass("show_input");
+       $('.search_op').removeClass("search_btn_show_inp");
+     });
 });

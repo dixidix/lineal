@@ -1,9 +1,19 @@
 <div class="import" ng-controller="import_controller">
   <div class="search">
+    <div class="row form-inline">
+        <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Fecha </button>
+          <input type="search" class="form-control search_box inp_date"  ng-model="impo_search_date" placeholder="Ingrese fecha: Ej. {{today | date:'dd/MM/yyyy'}}"/>
 
-    <input type="search" class="form-control"  ng-model="impo_search" value="escriba aquí su busqueda"/>
-    <button class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Buscar </button>
 
+
+          <button class="btn search_btn search_op"><i class="glyphicon glyphicon-search"></i> N° Operación </button>
+        <input type="search" class="form-control search_box inp_op"  ng-model="impo_search_op" placeholder="Escriba aquí la la operación a buscar"/>
+
+
+      <button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Doc. Aduanero </button>
+      <input type="search" class="form-control search_box inp_doc"  ng-model="impo_search_doc" placeholder="Escriba aquí el documento a buscar"/>
+
+  </div>
   </div>
   <div class="table-responsive">
     <table class="table table-striped table-curved table-condensed table-hover">
@@ -26,7 +36,7 @@
       </thead>
 
       <tbody>
-        <tr ng-repeat="import in  filtered = operations_imp | filter : paginate | filter : impo_search| startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+        <tr ng-repeat="import in  filtered = operations_imp | filter : paginate | filter : impo_search_date | filter : impo_search_op | filter : impo_search_doc | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
           <td>{{ import.ref_client }}</td>
           <td>{{ import.ref_lsl }}</td>
           <td>{{ import.merchandise }}</td>
@@ -43,7 +53,7 @@
         </tr>
       </tbody>
     </table>
-  <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit"></pagination>
+  <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" previous-text="Anterior" next-text="Siguiente"></pagination>
 		</div>
 
 	</body>
