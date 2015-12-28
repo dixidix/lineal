@@ -123,17 +123,28 @@ mylsl.controller('modal_add_operation_import', function ($scope, $state, $http, 
     ref_client: "",
     merchandise: "",
     transport: "",
-    shipment_origin: "",
-    estimated_arrival: "",
+    shipment_origin_day: "",
+    shipment_origin_month: "",
+    shipment_origin_year: "",
+    estimated_arrival_day: "",
+    estimated_arrival_month: "",
+    estimated_arrival_year: "",
     custom_document: "",
     custom_document_djai: "",
-    arrival_date: "",
-    release_date: "",
+    arrival_date_day: "",
+    arrival_date_month: "",
+    arrival_date_year: "",
+    release_date_day: "",
+    release_date_month: "",
+    release_date_year: "",
     lsl_bill: ""
   };
 
   $scope.create_import = function () {
-
+    $scope.shipment_origin = $scope.operation_import.shipment_origin_year + "-" + $scope.operation_import.shipment_origin_month + "-" + $scope.operation_import.shipment_origin_day;
+    $scope.estimated_arrival = $scope.operation_import.estimated_arrival_year + "-" + $scope.operation_import.estimated_arrival_month + "-" + $scope.operation_import.estimated_arrival_day;
+    $scope.arrival_date = $scope.operation_import.arrival_date_year + "-" + $scope.operation_import.arrival_date_month + "-" + $scope.operation_import.arrival_date_day;
+    $scope.release_date = $scope.operation_import.release_date_year + "-" + $scope.operation_import.release_date_month + "-" + $scope.operation_import.release_date_day;
     $http({
       method: 'POST',
       url: './php/new_operation_import.php',
@@ -141,12 +152,12 @@ mylsl.controller('modal_add_operation_import', function ($scope, $state, $http, 
         ref_cliente: $scope.operation_import.ref_client,
         merchandise: $scope.operation_import.merchandise,
         transport: $scope.operation_import.transport,
-        shipment_origin: $scope.operation_import.shipment_origin,
-        estimated_arrival: $scope.operation_import.estimated_arrival,
+        shipment_origin: $scope.shipment_origin,
+        estimated_arrival: $scope.estimated_arrival,
         custom_document: $scope.operation_import.custom_document,
         custom_document_djai: $scope.operation_import.custom_document_djai,
-        arrival_date: $scope.operation_import.arrival_date,
-        release_date: $scope.operation_import.release_date,
+        arrival_date: $scope.arrival_date,
+        release_date: $scope.release_date,
         lsl_bill: $scope.operation_import.lsl_bill,
         client_id: $rootScope.cp_client,
         op_type: $rootScope.cp_operation
@@ -188,8 +199,7 @@ mylsl.controller('modal_add_operation_import', function ($scope, $state, $http, 
       startingDay: 0
     };
 
-    var formats = ['dd-MM-yyyy', 'shortDate'];
-    method.format = formats[0];
+     method.format = "dd-MM-yyyy";
 
     return method;
   }());
@@ -198,23 +208,45 @@ mylsl.controller('modal_add_operation_import', function ($scope, $state, $http, 
 mylsl.controller('modal_edit_operation_import', function ($scope, $state, $http, $rootScope, $modalInstance) {
 
   'use strict';
+
+
   $scope.actionTitle = "Editar una Importación";
   $scope.action = "Editar";
+  var shipment_origin =  $rootScope.importEdit.shipment_origin.split("-");
+  var estimated_arrival = $rootScope.importEdit.estimated_arrival.split("-");
+  var arrival_date = $rootScope.importEdit.arrival_date.split("-");
+  var release_date = $rootScope.importEdit.release_date.split("-");
+
+
   $scope.operation_import = {
     ref_lsl: $rootScope.importEdit.ref_lsl,
     ref_client: $rootScope.importEdit.ref_client,
     merchandise: $rootScope.importEdit.merchandise,
     transport: $rootScope.importEdit.transport,
-    shipment_origin: $rootScope.importEdit.shipment_origin,
-    estimated_arrival: $rootScope.importEdit.estimated_arrival,
+    shipment_origin_day:  parseInt(shipment_origin[0]),
+    shipment_origin_month:   parseInt(shipment_origin[1]),
+    shipment_origin_year:   parseInt(shipment_origin[2]),
+    estimated_arrival_day: parseInt(estimated_arrival[0]),
+    estimated_arrival_month: parseInt(estimated_arrival[1]),
+    estimated_arrival_year: parseInt(estimated_arrival[2]),
     custom_document: $rootScope.importEdit.custom_document,
     custom_document_djai: $rootScope.importEdit.custom_document_djai,
-    arrival_date: $rootScope.importEdit.arrival_date,
-    release_date: $rootScope.importEdit.release_date,
+    arrival_date_day: parseInt(arrival_date[0]),
+    arrival_date_month: parseInt(arrival_date[1]),
+    arrival_date_year: parseInt(arrival_date[2]),
+    release_date_day: parseInt(release_date[0]),
+    release_date_month: parseInt(release_date[1]),
+    release_date_year: parseInt(release_date[2]),
     lsl_bill: $rootScope.importEdit.lsl_bill
   };
 
   $scope.create_import = function () {
+
+    $scope.shipment_origin = $scope.operation_import.shipment_origin_year + "-" + $scope.operation_import.shipment_origin_month + "-" + $scope.operation_import.shipment_origin_day;
+    $scope.estimated_arrival = $scope.operation_import.estimated_arrival_year + "-" + $scope.operation_import.estimated_arrival_month + "-" + $scope.operation_import.estimated_arrival_day;
+    $scope.arrival_date = $scope.operation_import.arrival_date_year + "-" + $scope.operation_import.arrival_date_month + "-" + $scope.operation_import.arrival_date_day;
+    $scope.release_date = $scope.operation_import.release_date_year + "-" + $scope.operation_import.release_date_month + "-" + $scope.operation_import.release_date_day;
+
     $http({
       method: 'POST',
       url: './php/edit_operation_import.php',
@@ -223,12 +255,12 @@ mylsl.controller('modal_edit_operation_import', function ($scope, $state, $http,
         ref_cliente: $scope.operation_import.ref_client,
         merchandise: $scope.operation_import.merchandise,
         transport: $scope.operation_import.transport,
-        shipment_origin: $scope.operation_import.shipment_origin,
-        estimated_arrival: $scope.operation_import.estimated_arrival,
+        shipment_origin: $scope.shipment_origin,
+        estimated_arrival: $scope.estimated_arrival,
         custom_document: $scope.operation_import.custom_document,
         custom_document_djai: $scope.operation_import.custom_document_djai,
-        arrival_date: $scope.operation_import.arrival_date,
-        release_date: $scope.operation_import.release_date,
+        arrival_date: $scope.arrival_date,
+        release_date: $scope.release_date,
         lsl_bill: $scope.operation_import.lsl_bill,
         client_id: $rootScope.cp_client,
         op_type: $rootScope.cp_operation
@@ -254,27 +286,6 @@ mylsl.controller('modal_edit_operation_import', function ($scope, $state, $http,
     });
 
   };
-  $scope.datePicker = (function () {
-    var method = {};
-    method.instances = [];
-
-    method.open = function ($event, instance) {
-      $event.preventDefault();
-      $event.stopPropagation();
-
-      method.instances[instance] = true;
-    };
-
-    method.options = {
-      'show-weeks': false,
-      startingDay: 0
-    };
-
-    var formats = ['dd-MM-yyyy', 'shortDate'];
-    method.format = formats[0];
-
-    return method;
-  }());
 });
 
 mylsl.controller('modal_delete_operation_import', function ($scope, $state, $http, $rootScope, $modalInstance) {
@@ -306,7 +317,6 @@ mylsl.controller('modal_delete_operation_import', function ($scope, $state, $htt
         $rootScope.active = data.active;
         $rootScope.userLoggedin = data.name;
         $rootScope.mail = data.email;
-        $modalInstance.dismiss('cancel');
         $state.go($state.current, {}, {
           reload: true
         });
@@ -314,27 +324,7 @@ mylsl.controller('modal_delete_operation_import', function ($scope, $state, $htt
     });
 
   };
-  $scope.datePicker = (function () {
-    var method = {};
-    method.instances = [];
 
-    method.open = function ($event, instance) {
-      $event.preventDefault();
-      $event.stopPropagation();
-
-      method.instances[instance] = true;
-    };
-
-    method.options = {
-      'show-weeks': false,
-      startingDay: 0
-    };
-
-    var formats = ['dd-MM-yyyy', 'shortDate'];
-    method.format = formats[0];
-
-    return method;
-  }());
 });
 
 mylsl.controller('modal_add_operation_export', function ($scope, $state, $http, $rootScope, $modalInstance) {
@@ -347,12 +337,14 @@ $scope.action = "Agregar";
     ref_client: "",
     merchandise: "",
     custom_document: "",
-    shipment: "",
+    shipment_day: "",
+    shipment_month: "",
+    shipment_year: "",
     lsl_bill: ""
   };
 
   $scope.create_export = function () {
-
+  $scope.shipment = $scope.operation_export.shipment_year + "-" + $scope.operation_export.shipment_month + "-" + $scope.operation_export.shipment_day;
     $http({
       method: 'POST',
       url: './php/new_operation_export.php',
@@ -360,7 +352,7 @@ $scope.action = "Agregar";
         ref_client: $scope.operation_export.ref_client,
         merchandise: $scope.operation_export.merchandise,
         custom_document: $scope.operation_export.custom_document,
-        shipment: $scope.operation_export.shipment,
+        shipment: $scope.shipment,
         lsl_bill: $scope.operation_export.lsl_bill,
         client_id: $rootScope.cp_client,
         op_type: $rootScope.cp_operation
@@ -383,43 +375,30 @@ $scope.action = "Agregar";
     });
 
   };
-  $scope.datePicker = (function () {
-    var method = {};
-    method.instances = [];
-
-    method.open = function ($event, instance) {
-      $event.preventDefault();
-      $event.stopPropagation();
-
-      method.instances[instance] = true;
-    };
-
-    method.options = {
-      'show-weeks': false,
-      startingDay: 0
-    };
-
-    var formats = ['dd-MM-yyyy', 'shortDate'];
-    method.format = formats[0];
-
-    return method;
-  }());
 });
+
 mylsl.controller('modal_edit_operation_export', function ($scope, $state, $http, $rootScope, $modalInstance) {
 
   'use strict';
   $scope.actionTitle = "Editar una Exportación";
   $scope.action = "Editar";
+
+  var shipment =  $rootScope.exportEdit.shipment.split("-");
+
   $scope.operation_export = {
     ref_lsl: $rootScope.exportEdit.ref_lsl,
     ref_client: $rootScope.exportEdit.ref_client,
     merchandise: $rootScope.exportEdit.merchandise,
-    shipment: $rootScope.exportEdit.shipment,
+    shipment_day: parseInt(shipment[0]),
+    shipment_month: parseInt(shipment[1]),
+    shipment_year: parseInt(shipment[2]),
     custom_document: $rootScope.exportEdit.custom_document,
     lsl_bill: $rootScope.exportEdit.lsl_bill
   };
 
   $scope.create_export = function () {
+    $scope.shipment = $scope.operation_export.shipment_year + "-" + $scope.operation_export.shipment_month + "-" + $scope.operation_export.shipment_day;
+
     $http({
       method: 'POST',
       url: './php/edit_operation_export.php',
@@ -428,7 +407,7 @@ mylsl.controller('modal_edit_operation_export', function ($scope, $state, $http,
         ref_client: $scope.operation_export.ref_client,
         merchandise: $scope.operation_export.merchandise,
         custom_document: $scope.operation_export.custom_document,
-        shipment: $scope.operation_export.shipment,
+        shipment: $scope.shipment,
         lsl_bill: $scope.operation_export.lsl_bill,
         client_id: $rootScope.cp_client,
         op_type: $rootScope.cp_operation
@@ -447,34 +426,14 @@ mylsl.controller('modal_edit_operation_export', function ($scope, $state, $http,
         $rootScope.userLoggedin = data.name;
         $rootScope.mail = data.email;
         $modalInstance.dismiss('cancel');
-
-        $state.go('mylsl.cpanel.cp_export', {}, { reload: true });
-
+        $state.go($state.current, {}, {
+          reload: true
+        });
       }
     });
 
   };
-  $scope.datePicker = (function () {
-    var method = {};
-    method.instances = [];
 
-    method.open = function ($event, instance) {
-      $event.preventDefault();
-      $event.stopPropagation();
-
-      method.instances[instance] = true;
-    };
-
-    method.options = {
-      'show-weeks': false,
-      startingDay: 0
-    };
-
-    var formats = ['dd-MM-yyyy', 'shortDate'];
-    method.format = formats[0];
-
-    return method;
-  }());
 });
 
 mylsl.controller('modal_delete_operation_export', function ($scope, $state, $http, $rootScope, $modalInstance) {
@@ -506,7 +465,6 @@ mylsl.controller('modal_delete_operation_export', function ($scope, $state, $htt
         $rootScope.active = data.active;
         $rootScope.userLoggedin = data.name;
         $rootScope.mail = data.email;
-        $modalInstance.dismiss('cancel');
         $state.go($state.current, {}, {
           reload: true
         });
@@ -514,25 +472,5 @@ mylsl.controller('modal_delete_operation_export', function ($scope, $state, $htt
     });
 
   };
-  $scope.datePicker = (function () {
-    var method = {};
-    method.instances = [];
 
-    method.open = function ($event, instance) {
-      $event.preventDefault();
-      $event.stopPropagation();
-
-      method.instances[instance] = true;
-    };
-
-    method.options = {
-      'show-weeks': false,
-      startingDay: 0
-    };
-
-    var formats = ['dd-MM-yyyy', 'shortDate'];
-    method.format = formats[0];
-
-    return method;
-  }());
 });

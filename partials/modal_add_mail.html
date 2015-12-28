@@ -1,0 +1,48 @@
+<div class="modal-content">
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
+</div>
+  <form name="newclient" role="form" ng-submit="create_email()" autocomplete="off">
+<div class="modal-body" style="padding:2% 5% 1% 5%;">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+      <span>seleccione cliente: </span>
+      <span>Cliente: </span>
+      <select id="select_client_email" ng-model="select_client_email" class="form-control header_controls">
+        <option ng-repeat="client in clients"  value="{{client.id}}">{{ client.name_desc }}</option>
+      </select>
+    </div>
+    </div>
+  </div>
+  <div class="row">
+<div class="col-xs-12">
+    <div class="form-group">
+      <span>Nombre y Apellido: </span>
+      <input type="text" class="form-control" ng-model="email.name"  placeholder="Ingrese el Nombre" />
+      </div>
+</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+        <div class="form-group">
+      <span>E-Mail: </span>
+      <input type="email" class="form-control" ng-model="email.email" placeholder="Ingrese el Correo Electrónico" />
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal-footer" style="padding-right:5%;">
+  <div class="row">
+    <div class="col-xs-12">
+      <input type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+  </form>
+</div>

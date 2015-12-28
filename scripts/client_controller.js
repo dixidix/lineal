@@ -67,7 +67,7 @@ mylsl.controller('clients_controller', function ($rootScope,filterFilter, $cooki
   $scope.deleteClient = function (deleteClient) {
     $rootScope.clientDelete = deleteClient;
     $modal.open({
-        templateUrl: './partials/modal_delete_user.html',
+        templateUrl: './partials/modal_delete_client.html',
         controller: 'modal_delete_client',
         scope: $scope
       })
@@ -93,23 +93,9 @@ mylsl.controller('modal_add_client', function ($state, $rootScope,$modal,$modalI
     fax: "",
     web: "",
     logo: "",
-    cuit: "",
-    emails: ""
+    cuit: ""
   };
-  $scope.emails = [];
-  $scope.add_email = function ($event) {
-  $event.preventDefault();
-  if($scope.client.email != undefined && $scope.client.email != ""){
-    $scope.emailError = "";
-      $scope.emails.push($scope.client.email);
-    }else{
-      $scope.emailError = "ingrese un correo electrónico válido.";
-    }
-  $scope.client.email = "";
-  }
-  $scope.remove_email = function(emails, index){
-    $scope.emails.splice(index, 1);
-  }
+
   $scope.create_client = function () {
 
     $http({
@@ -123,8 +109,7 @@ mylsl.controller('modal_add_client', function ($state, $rootScope,$modal,$modalI
         fax: $scope.client.fax,
         web: $scope.client.web,
         logo: $scope.client.logo,
-        cuit: $scope.client.cuit,
-        emails: $scope.emails
+        cuit: $scope.client.cuit
       }, //forms user object
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -186,7 +171,7 @@ mylsl.controller('modal_edit_client', function ($state, $rootScope,$modal,$modal
         $scope.loginError = data.errors.loginError;
       } else {
         $modalInstance.dismiss('cancel');
-        $state.go('mylsl.cpanel_users', {}, {reload: true});
+        $state.go('mylsl.cpanel_clients', {}, {reload: true});
       }
     });
 };
@@ -196,19 +181,18 @@ mylsl.controller('modal_delete_client', function ($state, $rootScope,$modal,$mod
 
     'use strict';
 
-    $scope.user = {
-      name: $rootScope.userDelete.name,
-      surname: $rootScope.userDelete.surname,
-      userId: $rootScope.userDelete.userId
+    $scope.client = {
+      name: $rootScope.clientDelete.name_desc,
+      clientId: $rootScope.clientDelete.id
     };
 
-    $scope.delete_operation = function () {
+    $scope.delete_client = function () {
 
       $http({
         method: 'POST',
-        url: './php/delete_user.php',
+        url: './php/delete_client.php',
         data: {
-          userId: $scope.user.userId
+          clientId: $scope.client.clientId
         }, //forms user object
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -220,10 +204,7 @@ mylsl.controller('modal_delete_client', function ($state, $rootScope,$modal,$mod
           $scope.passwordError = data.errors.passwordError;
           $scope.loginError = data.errors.loginError;
         } else {
-          $rootScope.active = data.active;
-          $rootScope.userLoggedin = data.name;
-          $rootScope.mail = data.email;
-          $modalInstance.dismiss('cancel');
+
           $state.go($state.current, {}, {
             reload: true
           });

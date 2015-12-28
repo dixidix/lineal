@@ -257,3 +257,18 @@ label{font-weight: 100;}
 }
 .modal-footer{padding:10px;}
 .table-responsive{vertical-align: middle;}
+
+.input-group > .date_day{
+  width: 21%;
+  border-right:1px dashed lightgray;
+
+}
+.input-group > .date_month{
+  width: 21%;
+  border-left: none;
+  border-right: 1px dashed lightgray ;
+}
+.input-group > .date_year{
+  width: 25%;
+  border-left: none;
+}

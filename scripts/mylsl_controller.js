@@ -22,15 +22,25 @@ mylsl.controller('mylsl_controller', function ($scope, $rootScope, $http, $cooki
         userId: $cookies.get('user_id')
       }
     }).success(function (data) {
+      $cookies.remove('user_id');
+      $cookies.remove('client_id');
+      $cookies.remove('name');
+      $cookies.remove('name_desc');
+      $cookies.remove('role');
+      $cookies.remove('clientLogoPath');
       $state.go("/");
     });
+
   };
   $scope.reset_all = function(){
 
   };
+
+
+
   $('.menu a li').click(function (evt) {
     $('.menu a li').removeClass("item_active");
     $(this).addClass("item_active");
   });
-  
+
 });

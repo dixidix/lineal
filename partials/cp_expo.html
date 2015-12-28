@@ -36,7 +36,7 @@
                             <td>{{ export.ref_client }}</td>
                             <td>{{ export.ref_lsl }}</td>
                             <td>{{ export.merchandise }}</td>
-                            <td>{{ export.shipment | date: 'dd-MM-yyyy' }}</td>
+                            <td>{{ export.shipment }}</td>
                             <td>{{ export.custom_document }}</td>
                             <td>{{ export.lsl_bill }}</td>
                             <td><a tooltip="Editar" tooltip-placement="top" ng-click="modifyExport(export)" style="color:#000;cursor:pointer;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteExport(export)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>

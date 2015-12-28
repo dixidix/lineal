@@ -41,33 +41,32 @@ mylsl.controller('emails_controller', function ($rootScope,filterFilter,$modal, 
       $scope.currentPage = 1;
     }, true);
   });
-
-  $scope.add_user = function(){
+  $scope.add_email = function(){
     $modal.open({
-        templateUrl: './partials/modal_add_user.html',
-        controller: 'modal_add_user',
+        templateUrl: './partials/modal_add_mail.html',
+        controller: 'modal_add_email',
         scope: $scope
       })
       .result.then(function () {
 
       });
   };
-  $scope.modifyUser = function (modifyUser) {
-    $rootScope.userEdit = modifyUser;
+  $scope.modifyEmail = function (modifyEmail) {
+    $rootScope.emailEdit = modifyEmail;
     $modal.open({
-        templateUrl: './partials/modal_add_user.html',
-        controller: 'modal_edit_user',
+        templateUrl: './partials/modal_add_mail.html',
+        controller: 'modal_edit_email',
         scope: $scope
       })
       .result.then(function () {
 
       });
   };
-  $scope.deleteUser = function (deleteUser) {
-    $rootScope.userDelete = deleteUser;
+  $scope.deleteEmail = function (deleteEmail) {
+    $rootScope.emailDelete = deleteEmail;
     $modal.open({
-        templateUrl: './partials/modal_delete_user.html',
-        controller: 'modal_delete_user',
+        templateUrl: './partials/modal_delete_email.html',
+        controller: 'modal_delete_email',
         scope: $scope
       })
       .result.then(function () {
@@ -76,56 +75,32 @@ mylsl.controller('emails_controller', function ($rootScope,filterFilter,$modal, 
   };
 });
 
-mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
-  'use strict';
+mylsl.controller('modal_add_email', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
 
-  $scope.editing_user = false;
-
-  $scope.actionTitle = "Agregar un Usuario";
+  $scope.actionTitle = "Agregar un Correo Electrónico";
   $scope.action = "Guardar";
 
   $http.get('./php/get_clients.php').then(function (response) {
     $scope.clients = response.data.clients;
   });
-  $scope.exportChecked = false;
-  $scope.importChecked = false;
-  $scope.seguimientoChecked = false;
-  $scope.reintegroChecked = false;
-  $scope.courrierChecked = false;
-  $scope.adminChecked = false;
-  $scope.user = {
+
+  $scope.email = {
     name: "",
-    surname: "",
-    username: "",
-    tel: "",
-    role: "",
-    password: ""
+    email: ""
   };
-var roles = [];
 
-  $scope.create_user = function () {
 
-    if ($scope.user.role.export == '1') { roles.push($scope.user.role.export); }
-    if ($scope.user.role.import == '2') { roles.push($scope.user.role.import); }
-    if ($scope.user.role.seguimiento == '3') { roles.push($scope.user.role.seguimiento); }
-    if ($scope.user.role.reintegro == '4') { roles.push($scope.user.role.reintegro); }
-    if ($scope.user.role.courrier == '5') { roles.push($scope.user.role.courrier); }
-    if ($scope.user.role.admin == '6') { roles.push($scope.user.role.admin); }
+  $scope.create_email = function () {
 
-    $scope.user.roles = roles.join(", ");
-    $scope.client_id = $('#select_client_users').val();
+    $scope.client_id = $('#select_client_email').val();
 
     $http({
       method: 'POST',
-      url: './php/new_user.php',
+      url: './php/new_email.php',
       data: {
-        name: $scope.user.name,
-        surname: $scope.user.surname,
-        username: $scope.user.username,
-        tel: $scope.user.tel,
-        role: $scope.user.roles,
-        password: $scope.user.password,
-        client_id:  $scope.client_id,
+        name: $scope.email.name,
+        email: $scope.email.email,
+        client_id:  $scope.client_id
       }, //forms user object
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -138,76 +113,43 @@ var roles = [];
         $scope.loginError = data.errors.loginError;
       } else {
         $modalInstance.dismiss('cancel');
-        $state.go('mylsl.cpanel_users', {}, {reload: true});
+        $state.go('mylsl.cpanel_emails', {}, {reload: true});
       }
     });
 };
 });
 
-mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('modal_edit_email', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
   'use strict';
-  $scope.editing_user = true;
 
-  $scope.actionTitle = "Editar un Usuario";
+  $scope.actionTitle = "Editar un Correo Electrónico";
   $scope.action = "Editar";
 
   $http.get('./php/get_clients.php').then(function (response) {
     $scope.clients = response.data.clients;
   });
 
-  $scope.select_client_users = $rootScope.userEdit.clientId;
+  $scope.select_client_email = $rootScope.emailEdit.clientId;
 
 
 
-  $scope.user = {
-    name: $rootScope.userEdit.name,
-    surname: $rootScope.userEdit.surname,
-    username: $rootScope.userEdit.username,
-    tel: $rootScope.userEdit.tel,
-    role: "",
-    password: $rootScope.userEdit.password,
-    userId : $rootScope.userEdit.userId,
-    export : $rootScope.userEdit.role.indexOf('1') != -1,
-    import : $rootScope.userEdit.role.indexOf('2')!= -1,
-    seguimiento : $rootScope.userEdit.role.indexOf('3') != -1,
-    reintegro : $rootScope.userEdit.role.indexOf('4')!= -1,
-    courrier : $rootScope.userEdit.role.indexOf('5') != -1,
-    admin : $rootScope.userEdit.role.indexOf('6')!= -1
+  $scope.email = {
+    name: $rootScope.emailEdit.name,
+    email: $rootScope.emailEdit.email
   };
 
-    // $scope.exportChecked = $rootScope.userEdit.role.indexOf('1') != -1;
-    // $scope.importChecked = $rootScope.userEdit.role.indexOf('2')!= -1;
-    // $scope.seguimientoChecked = $rootScope.userEdit.role.indexOf('3')!= -1;
-    // $scope.reintegroChecked = $rootScope.userEdit.role.indexOf('4')!= -1;
-    // $scope.courrierChecked = $rootScope.userEdit.role.indexOf('5')!= -1;
-    // $scope.adminChecked = $rootScope.userEdit.role.indexOf('6')!= -1;
 
+  $scope.create_email = function () {
+    $scope.client_id = $('#select_client_email').val();
 
-  $scope.create_user = function () {
-    var roles = [];
-    if ($scope.user.export == true) { roles.push("1"); }
-    if ($scope.user.import == true) { roles.push("2"); }
-    if ($scope.user.seguimiento == true) { roles.push("3"); }
-    if ($scope.user.reintegro == true) { roles.push("4"); }
-    if ($scope.user.courrier == true) { roles.push("5"); }
-    if ($scope.user.admin == true) { roles.push("6"); }
-
-    $scope.user.roles = roles.join(", ");
-    if(roles.length == 0){
-      alert("debe seleccionar al menos un rol de usuario");
-    }
     $http({
       method: 'POST',
-      url: './php/edit_user.php',
+      url: './php/edit_email.php',
       data: {
-        name: $scope.user.name,
-        surname: $scope.user.surname,
-        username: $scope.user.username,
-        tel: $scope.user.tel,
-        role:   $scope.user.roles ,
-        password: $scope.user.password,
-        client_id:$scope.select_client_users,
-        userId: $scope.user.userId
+        name: $scope.email.name,
+        email: $scope.email.email,
+        client_id: $scope.client_id,
+        emailId: $rootScope.emailEdit.emailId
       }, //forms user object
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -220,29 +162,29 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
         $scope.loginError = data.errors.loginError;
       } else {
         $modalInstance.dismiss('cancel');
-        $state.go('mylsl.cpanel_users', {}, {reload: true});
+        $state.go('mylsl.cpanel_emails', {}, {reload: true});
       }
     });
 };
 });
 
-mylsl.controller('modal_delete_user', function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
+mylsl.controller('modal_delete_email',  function ($state, $rootScope,$modal,$modalInstance, $cookies, $scope, $http) {
 
     'use strict';
 
-    $scope.user = {
-      name: $rootScope.userDelete.name,
-      surname: $rootScope.userDelete.surname,
-      userId: $rootScope.userDelete.userId
+    $scope.email = {
+      name: $rootScope.emailDelete.name,
+      email: $rootScope.emailDelete.email,
+      emailId: $rootScope.emailDelete.emailId
     };
 
-    $scope.delete_operation = function () {
+    $scope.delete_email = function () {
 
       $http({
         method: 'POST',
-        url: './php/delete_user.php',
+        url: './php/delete_email.php',
         data: {
-          userId: $scope.user.userId
+          emailId: $scope.email.emailId
         }, //forms user object
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -250,17 +192,11 @@ mylsl.controller('modal_delete_user', function ($state, $rootScope,$modal,$modal
       }).success(function (data) {
         if (data.errors) {
           // Showing errors.
-          $scope.emailError = data.errors.emailError;
+          $scope.roleError = data.errors.roleError;
           $scope.passwordError = data.errors.passwordError;
           $scope.loginError = data.errors.loginError;
         } else {
-          $rootScope.active = data.active;
-          $rootScope.userLoggedin = data.name;
-          $rootScope.mail = data.email;
-          $modalInstance.dismiss('cancel');
-          $state.go($state.current, {}, {
-            reload: true
-          });
+          $state.go('mylsl.cpanel_emails', {}, {reload: true});
         }
       });
 

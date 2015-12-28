@@ -44,7 +44,6 @@ if (!empty($errors)){
 	          $data['username'] = $rss['username'];
 	          $data['password'] = $rss['password'];
 	          $data['name'] = $rss['name'];
-              $data['surname'] = $rss['surname'];
               $data['role'] = $rss['role'];
               $data['tel'] = $rss['tel'];
 	          $data['active'] = "1";

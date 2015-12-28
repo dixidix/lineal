@@ -95,7 +95,6 @@ mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalIns
   $scope.adminChecked = false;
   $scope.user = {
     name: "",
-    surname: "",
     username: "",
     tel: "",
     role: "",
@@ -105,12 +104,12 @@ var roles = [];
 
   $scope.create_user = function () {
 
-    if ($scope.user.role.export == '1') { roles.push($scope.user.role.export); }
-    if ($scope.user.role.import == '2') { roles.push($scope.user.role.import); }
-    if ($scope.user.role.seguimiento == '3') { roles.push($scope.user.role.seguimiento); }
-    if ($scope.user.role.reintegro == '4') { roles.push($scope.user.role.reintegro); }
-    if ($scope.user.role.courrier == '5') { roles.push($scope.user.role.courrier); }
-    if ($scope.user.role.admin == '6') { roles.push($scope.user.role.admin); }
+    if ($scope.user.export == '1') { roles.push($scope.user.export); }
+    if ($scope.user.import == '2') { roles.push($scope.user.import); }
+    if ($scope.user.seguimiento == '3') { roles.push($scope.user.seguimiento); }
+    if ($scope.user.reintegro == '4') { roles.push($scope.user.reintegro); }
+    if ($scope.user.courrier == '5') { roles.push($scope.user.courrier); }
+    if ($scope.user.admin == '6') { roles.push($scope.user.admin); }
 
     $scope.user.roles = roles.join(", ");
     $scope.client_id = $('#select_client_users').val();
@@ -120,7 +119,6 @@ var roles = [];
       url: './php/new_user.php',
       data: {
         name: $scope.user.name,
-        surname: $scope.user.surname,
         username: $scope.user.username,
         tel: $scope.user.tel,
         role: $scope.user.roles,
@@ -161,7 +159,6 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
 
   $scope.user = {
     name: $rootScope.userEdit.name,
-    surname: $rootScope.userEdit.surname,
     username: $rootScope.userEdit.username,
     tel: $rootScope.userEdit.tel,
     role: "",
@@ -201,7 +198,6 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
       url: './php/edit_user.php',
       data: {
         name: $scope.user.name,
-        surname: $scope.user.surname,
         username: $scope.user.username,
         tel: $scope.user.tel,
         role:   $scope.user.roles ,
@@ -232,7 +228,6 @@ mylsl.controller('modal_delete_user', function ($state, $rootScope,$modal,$modal
 
     $scope.user = {
       name: $rootScope.userDelete.name,
-      surname: $rootScope.userDelete.surname,
       userId: $rootScope.userDelete.userId
     };
 
@@ -257,10 +252,7 @@ mylsl.controller('modal_delete_user', function ($state, $rootScope,$modal,$modal
           $rootScope.active = data.active;
           $rootScope.userLoggedin = data.name;
           $rootScope.mail = data.email;
-          $modalInstance.dismiss('cancel');
-          $state.go($state.current, {}, {
-            reload: true
-          });
+          $state.go('mylsl.cpanel_users', {}, {reload: true});
         }
       });
 

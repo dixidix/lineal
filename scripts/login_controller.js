@@ -1,4 +1,8 @@
 mylsl.controller('login_controller', function ($scope, $http, $rootScope, $cookies, $state) {
+
+  if($cookies.get('client_id') != "" && $cookies.get('client_id') != undefined ){
+    $state.go( "mylsl" );
+  } else {
   $scope.submit_login = function () {
     $http({
       method: 'POST',
@@ -18,11 +22,12 @@ mylsl.controller('login_controller', function ($scope, $http, $rootScope, $cooki
         $cookies.put('user_id', data.userId);
         $cookies.put('client_id', data.clientId);
         $cookies.put('name', data.name);
-          $cookies.put('name_desc', data.name_desc);
+        $cookies.put('name_desc', data.name_desc);
         $cookies.put('role', data.role);
         $cookies.put('clientLogoPath', data.clientLogoPath);
         $state.go( "mylsl" );
       }
     });
   };
+}
 });

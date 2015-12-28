@@ -3,7 +3,7 @@ require 'db.php';
 
 session_start();
 
-$res = MysqliDB::getInstance()->query("SELECT * from client");
+$res = MysqliDB::getInstance()->query("SELECT * from client WHERE deleted = 0");
 $outp="";
 
 

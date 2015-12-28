@@ -4,8 +4,8 @@ session_start();
 // Getting posted data and decodeing json
 $_POST = json_decode(file_get_contents('php://input'), true);
 
-$userId = $_POST['userId'];
+$emailId = $_POST['emailId'];
 
-MysqliDB::getInstance()->query("UPDATE `users` SET `deleted`= 1 WHERE userId=" . $userId);
+MysqliDB::getInstance()->query("UPDATE `client_email` SET `deleted`= 1 WHERE emailId=" . $emailId);
 
 ?>

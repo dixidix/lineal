@@ -2,7 +2,7 @@
   <div class="search">
     <div class="row form-inline">
         <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Fecha </button>
-          <input type="search" class="form-control search_box inp_date"  ng-model="impo_search_date" placeholder="Ingrese fecha: Ej. {{today | date:'dd/MM/yyyy'}}"/>
+          <input type="search" class="form-control search_box inp_date"  ng-model="impo_search_date | date: 'dd-MM-yyyy'" placeholder="Ingrese fecha: Ej. {{today | date:'dd/MM/yyyy'}}"/>
 
 
 
@@ -23,12 +23,12 @@
           <th>Ref LSL</th>
           <th>Mercader&iacute;a</th>
           <th>Transporte</th>
-          <th>embarque origen</th>
-          <th>arribo estimado</th>
+          <th class="col-xs-1">embarque origen</th>
+          <th class="col-xs-1">arribo estimado</th>
           <th>Documento Aduanero</th>
           <th>Documento Aduanero DJAI</th>
-          <th>Fecha arribo</th>
-          <th>Fecha liberaci&oacute;n</th>
+          <th class="col-xs-2">Fecha arribo</th>
+          <th class="col-xs-1">Fecha liberaci&oacute;n</th>
           <th>Factura LSL</th>
           <th>PDF</th>
           <th>FCL</th>
@@ -41,12 +41,12 @@
           <td>{{ import.ref_lsl }}</td>
           <td>{{ import.merchandise }}</td>
           <td>{{ import.transport }}</td>
-          <td>{{ import.shipment_origin }}</td>
-          <td>{{ import.estimated_arrival }}</td>
+          <td class="col-xs-1">{{ import.shipment_origin}}</td>
+          <td class="col-xs-1">{{ import.estimated_arrival }}</td>
           <td>{{ import.custom_document }}</td>
           <td>{{ import.custom_document_djai }}</td>
-          <td>{{ import.arrival_date }}</td>
-          <td>{{ import.release_date }}</td>
+          <td class="col-xs-2">{{ import.arrival_date }}</td>
+          <td class="col-xs-1">{{ import.release_date }}</td>
           <td>{{ import.lsl_bill }}</td>
           <td><a><i class="glyphicon glyphicon-file"></i></a></td>
           <td><a><i class="glyphicon glyphicon-file"></i></a></td>

@@ -6,35 +6,32 @@
 <form name="newuser" role="form" class="" ng-submit="create_user()" autocomplete="off">
 
 <div class="modal-body">
-      <span>Nombre: </span>
-    <input id="new_ref_client" type="text" class="form-control" style="height: 30px; width:564px; border-radius: 0px;" ng-model="user.name" placeholder="Ingrese el Nombre" />
-
-    <span>Apellido: </span>
-    <input type="text" class="form-control" ng-model="user.surname" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese el Apellido" />
+      <span>Nombre y Apellido: </span>
+    <input id="new_ref_client" type="text" class="form-control" ng-model="user.name" placeholder="Ingrese el Nombre" />
 
     <span>Usuario: </span>
-    <input type="text" class="form-control" ng-model="user.username" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese el Usuario" />
+    <input type="text" class="form-control" ng-model="user.username"  placeholder="Ingrese el Usuario" />
 
     <div id="password" ng-hide="editing_user">
     <span>Contraseña: </span>
-    <input type="password" class="form-control" ng-model="user.password" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese la Contraseña" />
+    <input type="password" class="form-control" ng-model="user.password" placeholder="Ingrese la Contraseña" />
     </div>
 
     <span>Teléfono: </span>
-    <input type="text" class="form-control" ng-model="user.tel" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese el Teléfono" />
+    <input type="text" class="form-control" ng-model="user.tel" placeholder="Ingrese el Teléfono" />
 
     <span>Roles: </span></br>
     <p>{{roleError}}</p>
-    <input  type="checkbox" ng-model="user.export"/><label>Exportación</label></br>
-    <input  type="checkbox" ng-model="user.import"/><label>Importación</label></br>
-    <input  type="checkbox" ng-model="user.seguimiento"/><label>Seguimiento</label></br>
-    <input  type="checkbox" ng-model="user.reintegro"/><label>Reintegros</label></br>
-    <input  type="checkbox" ng-model="user.courrier"/><label>Courrier Imp.</label></br>
-    <input  type="checkbox" ng-model="user.admin"/><label>Administrador</label></br>
+    <input  type="checkbox" ng-model="user.export" ng-true-value="'1'"/><label>Exportación</label></br>
+    <input  type="checkbox" ng-model="user.import" ng-true-value="'2'"/><label>Importación</label></br>
+    <input  type="checkbox" ng-model="user.seguimiento" ng-true-value="'3'"/><label>Seguimiento</label></br>
+    <input  type="checkbox" ng-model="user.reintegro" ng-true-value="'4'"/><label>Reintegros</label></br>
+    <input  type="checkbox" ng-model="user.courrier" ng-true-value="'5'"/><label>Courrier Imp.</label></br>
+    <input  type="checkbox" ng-model="user.admin" ng-true-value="'6'"/><label>Administrador</label></br>
 
     <span>Cliente: </span>
     <select id="select_client_users" ng-model="select_client_users" class="form-control header_controls">
-      <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name }}</option>
+      <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name_desc }}</option>
     </select>
       </div>
     <div class="modal-footer">

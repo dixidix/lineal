@@ -5,26 +5,57 @@
 <div class="modal-body">
   <form name="newuser" role="form" class="" ng-submit="create_export()" autocomplete="off">
 
-
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
     <span>referencia del cliente: </span>
-    <input id="new_ref_client" type="text" class="form-control" style="height: 30px; width:564px; border-radius: 0px;" ng-model="operation_export.ref_client" placeholder="Ingrese la referencia de cliente" />
-
-    <span>Mercadería: </span>
-    <input type="text" class="form-control" ng-model="operation_export.merchandise" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese la mercaderia a transportar" />
-
-    <span>Documento Aduanero: </span>
-    <input type="text" class="form-control" ng-model="operation_export.custom_document" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese la descripción del doc. aduanero" />
-
-    <span>Embarque: </span>
-<div class="input-group">
-    <input type="text" class="form-control" style="height: 30px; width:526px; border-radius: 0px;" ng-model="operation_export.shipment" datepicker-popup="{{datePicker.format}}" datepicker-options="datePicker.options" is-open="datePicker.instances['shipment']" disabled current-text="Hoy" clear-text="Limpiar" close-text="Cerrar" />
-    <span class="input-group-btn">
-        <button style="height: 30px;" type="button" class="btn btn-default" ng-click="datePicker.open($event, 'shipment')"><i class="glyphicon glyphicon-calendar"></i></button>
-    </span>
+    <input id="new_ref_client" type="text" class="form-control"  ng-model="operation_export.ref_client" placeholder="Ingrese la referencia de cliente" />
+  </div>
+</div>
 </div>
 
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+    <span>Mercadería: </span>
+    <input type="text" class="form-control" ng-model="operation_export.merchandise" placeholder="Ingrese la mercaderia a transportar" />
+  </div>
+</div>
+</div>
+
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+    <span>Documento Aduanero: </span>
+    <input type="text" class="form-control" ng-model="operation_export.custom_document" placeholder="Ingrese la descripción del doc. aduanero" />
+  </div>
+</div>
+</div>
+
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+    <span>Embarque: </span>
+    <div class="input-group">
+      <input class="date_day form-control" ng-model="operation_export.shipment_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+      <input class="date_month form-control" ng-model="operation_export.shipment_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+      <input class="date_year form-control" ng-model="operation_export.shipment_year" type="number" id="date_year" min="1970" placeholder="año">
+    </div>
+  </div>
+</div>
+</div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
     <span>Factura LSL: </span>
-    <input type="text" class="form-control" ng-model="operation_export.lsl_bill" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese el número de factura de LSL"/>
+    <input type="text" class="form-control" ng-model="operation_export.lsl_bill" placeholder="Ingrese el número de factura de LSL"/>
+  </div>
+</div>
+</div>
 
     <div class="modal-footer">
       <input type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">

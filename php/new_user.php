@@ -9,10 +9,6 @@ if (empty($_POST['name'])){
 	$errors['nameError'] = "Nombre Inválido.";
 }
 
-if (empty($_POST['surname'])){
-	$errors['surnameError'] = "Apellido Inválido.";
-}
-
 if (empty($_POST['username'])){
 	$errors['usernameError'] = "Usuario Inválido";
 }
@@ -34,14 +30,13 @@ if (empty($_POST['password'])){
 if (empty($errors)){
 
   $name = $_POST['name'];
-  $surname = $_POST['surname'];
   $username = $_POST['username'];
   $tel = $_POST['tel'];
   $role = $_POST['role'];
   $client_id = $_POST['client_id'];
   $password =  $_POST['password'];
 echo
-	MysqliDB::getInstance()->query("INSERT INTO `users`(`username`, `password`, `name`, `surname`, `role`, `tel`, `active`, `clientId`) VALUES ('".$username."','".$password."','".$name."','".$surname."','".$role."','".$tel."','0','".$client_id."')");
+	MysqliDB::getInstance()->query("INSERT INTO `users`(`username`, `password`, `name`,`role`, `tel`, `active`, `clientId`) VALUES ('".$username."','".$password."','".$name."','".$role."','".$tel."','0','".$client_id."')");
 
 	echo MysqliDB::getInstance()->error();
 }else{

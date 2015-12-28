@@ -26,12 +26,12 @@
           <th>Ref LSL</th>
           <th>Mercader&iacute;a</th>
           <th>Transporte</th>
-          <th>embarque origen</th>
-          <th>arribo estimado</th>
+          <th class="col-xs-1">embarque origen</th>
+          <th class="col-xs-1">arribo estimado</th>
           <th>Documento Aduanero</th>
           <th>Documento Aduanero DJAI</th>
-          <th>Fecha arribo</th>
-          <th>Fecha liberaci&oacute;n</th>
+          <th class="col-xs-1">Fecha arribo</th>
+          <th class="col-xs-1">Fecha liberaci&oacute;n</th>
           <th>Factura LSL</th>
           <th>Acciones</th>
         </tr>
@@ -43,12 +43,12 @@
           <td>{{ import.ref_lsl }}</td>
           <td>{{ import.merchandise }}</td>
           <td>{{ import.transport }}</td>
-          <td>{{ import.shipment_origin | date: 'dd-MM-yyyy' }}</td>
-          <td>{{ import.estimated_arrival | date: 'dd-MM-yyyy' }}</td>
+          <td class="col-xs-1">{{ import.shipment_origin }}</td>
+          <td class="col-xs-1">{{ import.estimated_arrival }}</td>
           <td>{{ import.custom_document }}</td>
           <td>{{ import.custom_document_djai }}</td>
-          <td>{{ import.arrival_date | date: 'dd-MM-yyyy' }}</td>
-          <td>{{ import.release_date | date: 'dd-MM-yyyy' }}</td>
+          <td class="col-xs-1">{{ import.arrival_date }}</td>
+          <td class="col-xs-1">{{ import.release_date }}</td>
           <td>{{ import.lsl_bill }}</td>
           <td><a tooltip="Editar" tooltip-placement="top" ng-click="modifyImport(import)" style="color:#000;cursor:pointer;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteImport(import)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
         </tr>

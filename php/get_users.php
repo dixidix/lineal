@@ -3,7 +3,7 @@ require 'db.php';
 
 session_start();
 
-$res = MysqliDB::getInstance()->query("SELECT userId, clientId, username, password, name, surname, role, tel,active, clientId from users");
+$res = MysqliDB::getInstance()->query("SELECT userId, clientId, username, password, name, role, tel,active, clientId from users WHERE deleted = 0");
 
 
 $outp="";
@@ -23,7 +23,6 @@ while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"username":"'  . $rs["username"] . '",';
     $outp .= '"password":"'   . $rs["password"]        . '",';
     $outp .= '"name":"'   . $rs["name"]        . '",';
-    $outp .= '"surname":"'   . $rs["surname"]        . '",';
     $outp .= '"role":"'   . $rs["role"]        . '",';
     $outp .= '"role_desc":"'   . $newstring . '",';
     $outp .= '"tel":"'   . $rs["tel"]        . '",';

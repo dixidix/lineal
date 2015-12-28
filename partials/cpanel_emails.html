@@ -13,7 +13,7 @@
 
       <button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Email </button>
       <input type="search" class="form-control search_box inp_doc"  ng-model="client_search" placeholder="Escriba aquí el email a buscar"/>
-      <button class="btn  add_operation" ng-click="add_operation()"><i class="glyphicon glyphicon-plus"></i>E-Mail</button>
+      <button class="btn  add_operation" ng-click="add_email()"><i class="glyphicon glyphicon-plus"></i>E-Mail</button>
   </div>
   </div>
 <div class="table-responsive">
@@ -21,10 +21,9 @@
     <thead>
       <tr>
         <th>Empresa</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
+        <th>Nombre y Apellido</th>
         <th>E-mail</th>
-        <th>Acciones</th>
+        <th class="col-xs-1">Acciones</th>
       </tr>
     </thead>
 
@@ -32,9 +31,8 @@
       <tr ng-repeat="email in  filtered = emails| filter : paginate | filter : client_search| startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
         <td>{{ email.company_name }}</td>
         <td>{{ email.name }}</td>
-        <td>{{ email.lastname }}</td>
         <td>{{ email.email }}</td>
-        <td>
+        <td class="col-xs-1">
           <a data-toggle="tooltip" title="Enviar Mail" data-placement="top" ng-click="mail" href="mailto:{{email.email}}" style="color:#000;cursor:pointer;margin-right:5px;">
             <i class="glyphicon glyphicon-envelope"></i>
           </a>
