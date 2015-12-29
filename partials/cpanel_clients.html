@@ -2,17 +2,17 @@
 
   <div class="search">
     <div class="row form-inline">
-        <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Fecha </button>
-          <input type="search" class="form-control search_box inp_date"  ng-model="client_search" placeholder="Ingrese fecha: Ej. {{today | date:'dd/MM/yyyy'}}"/>
+        <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Empresa </button>
+          <input type="search" class="form-control search_box inp_date"  ng-model="client_search" placeholder="Escriba aquí la empresa a buscar"/>
 
 
 
-          <button class="btn search_btn search_op"><i class="glyphicon glyphicon-search"></i> N° Operación </button>
-        <input type="search" class="form-control search_box inp_op"  ng-model="client_search" placeholder="Escriba aquí la la operación a buscar"/>
+          <button class="btn search_btn search_op"><i class="glyphicon glyphicon-search"></i> Cuit </button>
+        <input type="search" class="form-control search_box inp_op"  ng-model="client_search" placeholder="Escriba aquí el cuit a buscar"/>
 
 
-      <button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Doc. Aduanero </button>
-      <input type="search" class="form-control search_box inp_doc"  ng-model="client_search" placeholder="Escriba aquí el documento a buscar"/>
+      <button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Dirección </button>
+      <input type="search" class="form-control search_box inp_doc"  ng-model="client_search" placeholder="Escriba aquí la dirección a buscar"/>
       <button class="btn  add_operation"  ng-click="add_client()"><i class="glyphicon glyphicon-plus"></i>Cliente</button>
   </div>
   </div>
@@ -40,7 +40,17 @@
         <td>{{ client.fax }}</td>
         <td>{{ client.web }}</td>
         <td>{{ client.cuit }}</td>
-        <td><a tooltip="Editar" tooltip-placement="top" ng-click="modifyClient(client, $parent.mail)" style="color:#000;cursor:pointer;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteClient(client)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
+        <td>
+          <a ng-click="uploadFileClient(client)" style="color:#000;cursor:pointer;" tooltip="Subir Archivo" tooltip-placement="top">
+            <i class="glyphicon glyphicon-upload"></i>
+          </a>
+          <a tooltip="Editar" tooltip-placement="top" ng-click="modifyClient(client, $parent.mail)" style="color:#000;cursor:pointer;">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a>
+           <a ng-click="deleteClient(client)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top">
+             <i class="glyphicon glyphicon-remove"></i>
+           </a>
+         </td>
       </tr>
       </tr>
     </tbody>

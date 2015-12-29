@@ -113,7 +113,7 @@ mylsl.controller('cpanel_controller', function ($scope,$filter, $http, $state, $
   };
 });
 
-mylsl.controller('modal_add_operation_import', function ($scope, $state, $http, $rootScope, $modalInstance) {
+mylsl.controller('modal_add_operation_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance) {
 
   'use strict';
   $scope.actionTitle = "Agregar una Importación";
@@ -137,75 +137,31 @@ mylsl.controller('modal_add_operation_import', function ($scope, $state, $http, 
     release_date_day: "",
     release_date_month: "",
     release_date_year: "",
+    imp_pdf: "",
+    imp_fcl: "",
     lsl_bill: ""
   };
 
+
   $scope.create_import = function () {
-    $scope.shipment_origin = $scope.operation_import.shipment_origin_year + "-" + $scope.operation_import.shipment_origin_month + "-" + $scope.operation_import.shipment_origin_day;
-    $scope.estimated_arrival = $scope.operation_import.estimated_arrival_year + "-" + $scope.operation_import.estimated_arrival_month + "-" + $scope.operation_import.estimated_arrival_day;
-    $scope.arrival_date = $scope.operation_import.arrival_date_year + "-" + $scope.operation_import.arrival_date_month + "-" + $scope.operation_import.arrival_date_day;
-    $scope.release_date = $scope.operation_import.release_date_year + "-" + $scope.operation_import.release_date_month + "-" + $scope.operation_import.release_date_day;
-    $http({
-      method: 'POST',
-      url: './php/new_operation_import.php',
-      data: {
-        ref_cliente: $scope.operation_import.ref_client,
-        merchandise: $scope.operation_import.merchandise,
-        transport: $scope.operation_import.transport,
-        shipment_origin: $scope.shipment_origin,
-        estimated_arrival: $scope.estimated_arrival,
-        custom_document: $scope.operation_import.custom_document,
-        custom_document_djai: $scope.operation_import.custom_document_djai,
-        arrival_date: $scope.arrival_date,
-        release_date: $scope.release_date,
-        lsl_bill: $scope.operation_import.lsl_bill,
-        client_id: $rootScope.cp_client,
-        op_type: $rootScope.cp_operation
-      }, //forms user object
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }).success(function (data) {
-      if (data.errors) {
-        // Showing errors.
-        $scope.emailError = data.errors.emailError;
-        $scope.passwordError = data.errors.passwordError;
-        $scope.loginError = data.errors.loginError;
-      } else {
-        $rootScope.active = data.active;
-        $rootScope.userLoggedin = data.name;
-        $rootScope.mail = data.email;
-        $modalInstance.dismiss('cancel');
-        $state.go($state.current, {}, {
-          reload: true
-        });
-      }
+    $scope.operation_import.shipment_origin = $scope.operation_import.shipment_origin_year + "-" + $scope.operation_import.shipment_origin_month + "-" + $scope.operation_import.shipment_origin_day;
+    $scope.operation_import.estimated_arrival = $scope.operation_import.estimated_arrival_year + "-" + $scope.operation_import.estimated_arrival_month + "-" + $scope.operation_import.estimated_arrival_day;
+    $scope.operation_import.arrival_date = $scope.operation_import.arrival_date_year + "-" + $scope.operation_import.arrival_date_month + "-" + $scope.operation_import.arrival_date_day;
+    $scope.operation_import.release_date = $scope.operation_import.release_date_year + "-" + $scope.operation_import.release_date_month + "-" + $scope.operation_import.release_date_day;
+    $scope.operation_import.client_id = $rootScope.cp_client;
+    $scope.operation_import.op_type = $rootScope.cp_operation;
+
+    var OpImport = $scope.operation_import;
+    uploadService.import(OpImport).then(function (res) {
+      $modalInstance.dismiss('cancel');
+      $state.go($state.current, {}, {
+        reload: true
+      });
     });
-
   };
-  $scope.datePicker = (function () {
-    var method = {};
-    method.instances = [];
-
-    method.open = function ($event, instance) {
-      $event.preventDefault();
-      $event.stopPropagation();
-
-      method.instances[instance] = true;
-    };
-
-    method.options = {
-      'show-weeks': false,
-      startingDay: 0
-    };
-
-     method.format = "dd-MM-yyyy";
-
-    return method;
-  }());
 });
 
-mylsl.controller('modal_edit_operation_import', function ($scope, $state, $http, $rootScope, $modalInstance) {
+mylsl.controller('modal_edit_operation_import', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance) {
 
   'use strict';
 
@@ -223,6 +179,8 @@ mylsl.controller('modal_edit_operation_import', function ($scope, $state, $http,
     ref_client: $rootScope.importEdit.ref_client,
     merchandise: $rootScope.importEdit.merchandise,
     transport: $rootScope.importEdit.transport,
+    prev_ref_client: $rootScope.importEdit.ref_client,
+    client_id: $rootScope.importEdit.client_id,
     shipment_origin_day:  parseInt(shipment_origin[0]),
     shipment_origin_month:   parseInt(shipment_origin[1]),
     shipment_origin_year:   parseInt(shipment_origin[2]),
@@ -237,54 +195,26 @@ mylsl.controller('modal_edit_operation_import', function ($scope, $state, $http,
     release_date_day: parseInt(release_date[0]),
     release_date_month: parseInt(release_date[1]),
     release_date_year: parseInt(release_date[2]),
+    imp_pdf: "",
+    imp_fcl: "",
     lsl_bill: $rootScope.importEdit.lsl_bill
   };
 
   $scope.create_import = function () {
 
-    $scope.shipment_origin = $scope.operation_import.shipment_origin_year + "-" + $scope.operation_import.shipment_origin_month + "-" + $scope.operation_import.shipment_origin_day;
-    $scope.estimated_arrival = $scope.operation_import.estimated_arrival_year + "-" + $scope.operation_import.estimated_arrival_month + "-" + $scope.operation_import.estimated_arrival_day;
-    $scope.arrival_date = $scope.operation_import.arrival_date_year + "-" + $scope.operation_import.arrival_date_month + "-" + $scope.operation_import.arrival_date_day;
-    $scope.release_date = $scope.operation_import.release_date_year + "-" + $scope.operation_import.release_date_month + "-" + $scope.operation_import.release_date_day;
-
-    $http({
-      method: 'POST',
-      url: './php/edit_operation_import.php',
-      data: {
-        ref_lsl: $scope.operation_import.ref_lsl,
-        ref_cliente: $scope.operation_import.ref_client,
-        merchandise: $scope.operation_import.merchandise,
-        transport: $scope.operation_import.transport,
-        shipment_origin: $scope.shipment_origin,
-        estimated_arrival: $scope.estimated_arrival,
-        custom_document: $scope.operation_import.custom_document,
-        custom_document_djai: $scope.operation_import.custom_document_djai,
-        arrival_date: $scope.arrival_date,
-        release_date: $scope.release_date,
-        lsl_bill: $scope.operation_import.lsl_bill,
-        client_id: $rootScope.cp_client,
-        op_type: $rootScope.cp_operation
-      }, //forms user object
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }).success(function (data) {
-      if (data.errors) {
-        // Showing errors.
-        $scope.emailError = data.errors.emailError;
-        $scope.passwordError = data.errors.passwordError;
-        $scope.loginError = data.errors.loginError;
-      } else {
-        $rootScope.active = data.active;
-        $rootScope.userLoggedin = data.name;
-        $rootScope.mail = data.email;
-        $modalInstance.dismiss('cancel');
-        $state.go($state.current, {}, {
-          reload: true
-        });
-      }
+    $scope.operation_import.shipment_origin = $scope.operation_import.shipment_origin_year + "-" + $scope.operation_import.shipment_origin_month + "-" + $scope.operation_import.shipment_origin_day;
+    $scope.operation_import.estimated_arrival = $scope.operation_import.estimated_arrival_year + "-" + $scope.operation_import.estimated_arrival_month + "-" + $scope.operation_import.estimated_arrival_day;
+    $scope.operation_import.arrival_date = $scope.operation_import.arrival_date_year + "-" + $scope.operation_import.arrival_date_month + "-" + $scope.operation_import.arrival_date_day;
+    $scope.operation_import.release_date = $scope.operation_import.release_date_year + "-" + $scope.operation_import.release_date_month + "-" + $scope.operation_import.release_date_day;
+    $scope.operation_import.client_id = $rootScope.cp_client;
+    $scope.operation_import.op_type = $rootScope.cp_operation;
+    var OpImport = $scope.operation_import;
+    uploadService.editImport(OpImport).then(function (res) {
+      $modalInstance.dismiss('cancel');
+      $state.go($state.current, {}, {
+        reload: true
+      });
     });
-
   };
 });
 
@@ -327,7 +257,7 @@ mylsl.controller('modal_delete_operation_import', function ($scope, $state, $htt
 
 });
 
-mylsl.controller('modal_add_operation_export', function ($scope, $state, $http, $rootScope, $modalInstance) {
+mylsl.controller('modal_add_operation_export', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance) {
   'use strict';
 
 $scope.actionTitle = "Agregar Exportación";
@@ -340,44 +270,28 @@ $scope.action = "Agregar";
     shipment_day: "",
     shipment_month: "",
     shipment_year: "",
-    lsl_bill: ""
+    lsl_bill: "",
+    exp_pdf: "",
+    exp_fcl: ""
   };
 
   $scope.create_export = function () {
-  $scope.shipment = $scope.operation_export.shipment_year + "-" + $scope.operation_export.shipment_month + "-" + $scope.operation_export.shipment_day;
-    $http({
-      method: 'POST',
-      url: './php/new_operation_export.php',
-      data: {
-        ref_client: $scope.operation_export.ref_client,
-        merchandise: $scope.operation_export.merchandise,
-        custom_document: $scope.operation_export.custom_document,
-        shipment: $scope.shipment,
-        lsl_bill: $scope.operation_export.lsl_bill,
-        client_id: $rootScope.cp_client,
-        op_type: $rootScope.cp_operation
-      }, //forms user object
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }).success(function (data) {
-      if (data.errors) {
-        // Showing errors.
-        $scope.emailError = data.errors.emailError;
-        $scope.passwordError = data.errors.passwordError;
-        $scope.loginError = data.errors.loginError;
-      } else {
-        $modalInstance.dismiss('cancel');
-        $state.go($state.current, {}, {
-          reload: true
-        });
-      }
-    });
+    $scope.operation_export.shipment = $scope.operation_export.shipment_year + "-" + $scope.operation_export.shipment_month + "-" + $scope.operation_export.shipment_day;
+    $scope.operation_export.client_id = $rootScope.cp_client;
+    $scope.operation_export.op_type = $rootScope.cp_operation;
 
+    var OpExport = $scope.operation_export;
+    uploadService.export(OpExport).then(function (res) {
+      $modalInstance.dismiss('cancel');
+      $state.go($state.current, {}, {
+        reload: true
+      });
+    });
   };
+
 });
 
-mylsl.controller('modal_edit_operation_export', function ($scope, $state, $http, $rootScope, $modalInstance) {
+mylsl.controller('modal_edit_operation_export', function (uploadService, $scope, $state, $http, $rootScope, $modalInstance) {
 
   'use strict';
   $scope.actionTitle = "Editar una Exportación";
@@ -388,50 +302,29 @@ mylsl.controller('modal_edit_operation_export', function ($scope, $state, $http,
   $scope.operation_export = {
     ref_lsl: $rootScope.exportEdit.ref_lsl,
     ref_client: $rootScope.exportEdit.ref_client,
+    prev_ref_client: $rootScope.exportEdit.ref_client,
+    client_id: $rootScope.exportEdit.client_id,
     merchandise: $rootScope.exportEdit.merchandise,
     shipment_day: parseInt(shipment[0]),
     shipment_month: parseInt(shipment[1]),
     shipment_year: parseInt(shipment[2]),
     custom_document: $rootScope.exportEdit.custom_document,
+    exp_pdf: "",
+    exp_fcl: "",
     lsl_bill: $rootScope.exportEdit.lsl_bill
   };
 
   $scope.create_export = function () {
-    $scope.shipment = $scope.operation_export.shipment_year + "-" + $scope.operation_export.shipment_month + "-" + $scope.operation_export.shipment_day;
-
-    $http({
-      method: 'POST',
-      url: './php/edit_operation_export.php',
-      data: {
-        ref_lsl: $scope.operation_export.ref_lsl,
-        ref_client: $scope.operation_export.ref_client,
-        merchandise: $scope.operation_export.merchandise,
-        custom_document: $scope.operation_export.custom_document,
-        shipment: $scope.shipment,
-        lsl_bill: $scope.operation_export.lsl_bill,
-        client_id: $rootScope.cp_client,
-        op_type: $rootScope.cp_operation
-      }, //forms user object
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    }).success(function (data) {
-      if (data.errors) {
-        // Showing errors.
-        $scope.emailError = data.errors.emailError;
-        $scope.passwordError = data.errors.passwordError;
-        $scope.loginError = data.errors.loginError;
-      } else {
-        $rootScope.active = data.active;
-        $rootScope.userLoggedin = data.name;
-        $rootScope.mail = data.email;
-        $modalInstance.dismiss('cancel');
-        $state.go($state.current, {}, {
-          reload: true
-        });
-      }
+    $scope.operation_export.shipment = $scope.operation_export.shipment_year + "-" + $scope.operation_export.shipment_month + "-" + $scope.operation_export.shipment_day;
+    $scope.operation_export.client_id = $rootScope.cp_client;
+    $scope.operation_export.op_type = $rootScope.cp_operation;
+    var OpExport = $scope.operation_export;
+    uploadService.editExport(OpExport).then(function (res) {
+      $modalInstance.dismiss('cancel');
+      $state.go($state.current, {}, {
+        reload: true
+      });
     });
-
   };
 
 });
@@ -474,3 +367,145 @@ mylsl.controller('modal_delete_operation_export', function ($scope, $state, $htt
   };
 
 });
+
+
+//UPLOADERS
+
+
+mylsl.directive('uploaderModel', ["$parse", function ($parse) {
+  'use strict';
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      iElement.on("change", function (e) {
+        $parse(iAttrs.uploaderModel).assign(scope, iElement[0].files[0]);
+      });
+    }
+  };
+}]);
+
+mylsl.service('uploadService', ["$http", "$q", function ($http, $q) {
+  'use strict';
+
+  this.export = function (OpExport) {
+    var deferred = $q.defer();
+    var formData = new FormData();
+
+    formData.append("ref_client", OpExport.ref_client);
+    formData.append("merchandise", OpExport.merchandise);
+    formData.append("custom_document", OpExport.custom_document);
+    formData.append("shipment", OpExport.shipment);
+    formData.append("lsl_bill", OpExport.lsl_bill);
+    formData.append("client_id", OpExport.client_id);
+    formData.append("op_type", OpExport.op_type);
+    formData.append("file_exp_pdf", OpExport.exp_pdf);
+    formData.append("file_exp_fcl", OpExport.exp_fcl);
+
+    return $http.post("./php/new_operation_export.php", formData, {
+      headers: {
+        "content-type": undefined
+      },
+      transformRequest: formData
+    }).success(function (res) {
+      deferred.resolve(res);
+    }).error(function (msg, code) {
+      deferred.reject(msg);
+    });
+    return deferred.promise;
+  };
+
+  this.editExport = function (OpExport) {
+    var deferred = $q.defer();
+    var formData = new FormData();
+    formData.append("ref_lsl", OpExport.ref_lsl);
+    formData.append("ref_client", OpExport.ref_client);
+    formData.append("prev_ref_client", OpExport.prev_ref_client);
+    formData.append("merchandise", OpExport.merchandise);
+    formData.append("custom_document", OpExport.custom_document);
+    formData.append("shipment", OpExport.shipment);
+    formData.append("lsl_bill", OpExport.lsl_bill);
+    formData.append("client_id", OpExport.client_id);
+    formData.append("op_type", OpExport.op_type);
+    formData.append("file_exp_pdf", OpExport.exp_pdf);
+    formData.append("file_exp_fcl", OpExport.exp_fcl);
+
+    return $http.post('./php/edit_operation_export.php', formData, {
+      headers: {
+        "content-type": undefined
+      },
+      transformRequest: formData
+    }).success(function (res) {
+      deferred.resolve(res);
+    }).error(function (msg, code) {
+      deferred.reject(msg);
+    });
+    return deferred.promise;
+  };
+
+  this.import = function (OpImport) {
+
+    var deferred = $q.defer();
+    var formData = new FormData();
+
+    formData.append("ref_cliente", OpImport.ref_client);
+    formData.append("merchandise", OpImport.merchandise);
+    formData.append("transport", OpImport.transport);
+    formData.append("shipment_origin", OpImport.shipment_origin);
+    formData.append("estimated_arrival", OpImport.estimated_arrival);
+    formData.append("custom_document", OpImport.custom_document);
+    formData.append("custom_document_djai", OpImport.custom_document_djai);
+    formData.append("arrival_date", OpImport.arrival_date);
+    formData.append("release_date", OpImport.release_date);
+    formData.append("file_imp_pdf", OpImport.imp_pdf);
+    formData.append("file_imp_fcl", OpImport.imp_fcl);
+    formData.append("lsl_bill", OpImport.lsl_bill);
+    formData.append("client_id", OpImport.client_id);
+    formData.append("op_type", OpImport.op_type);
+
+    return $http.post("./php/new_operation_import.php", formData, {
+      headers: {
+        "content-type": undefined
+      },
+      transformRequest: formData
+    }).success(function (res) {
+      deferred.resolve(res);
+    }).error(function (msg, code) {
+      deferred.reject(msg);
+    });
+    return deferred.promise;
+  };
+  this.editImport = function (OpImport) {
+
+    var deferred = $q.defer();
+    var formData = new FormData();
+
+    formData.append("ref_lsl", OpImport.ref_lsl);
+    formData.append("ref_cliente", OpImport.ref_client);
+    formData.append("prev_ref_client", OpImport.prev_ref_client);
+    formData.append("merchandise", OpImport.merchandise);
+    formData.append("transport", OpImport.transport);
+    formData.append("shipment_origin", OpImport.shipment_origin);
+    formData.append("estimated_arrival", OpImport.estimated_arrival);
+    formData.append("custom_document", OpImport.custom_document);
+    formData.append("custom_document_djai", OpImport.custom_document_djai);
+    formData.append("arrival_date", OpImport.arrival_date);
+    formData.append("release_date", OpImport.release_date);
+    formData.append("file_imp_pdf", OpImport.imp_pdf);
+    formData.append("file_imp_fcl", OpImport.imp_fcl);
+    formData.append("lsl_bill", OpImport.lsl_bill);
+    formData.append("client_id", OpImport.client_id);
+    formData.append("op_type", OpImport.op_type);
+
+    return $http.post('./php/edit_operation_import.php', formData, {
+      headers: {
+        "content-type": undefined
+      },
+      transformRequest: formData
+    }).success(function (res) {
+      deferred.resolve(res);
+    }).error(function (msg, code) {
+      deferred.reject(msg);
+    });
+    return deferred.promise;
+  };
+}]);

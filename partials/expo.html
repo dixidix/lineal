@@ -38,8 +38,8 @@
                             <td>{{ export.shipment }}</td>
                             <td>{{ export.custom_document }}</td>
                             <td>{{ export.lsl_bill }}</td>
-                            <td><a><i class="glyphicon glyphicon-file"></i></a></td>
-                            <td><a><i class="glyphicon glyphicon-file"></i></a></td>
+                            <td><a download target="_self" href="{{export.file_pdf}}" ng-class="{disabled: !export.file_pdf}"><i class="glyphicon glyphicon-file"></i></a></td>
+                            <td><a download target="_self" href="{{export.file_fcl}}" ng-class="{disabled: !export.file_fcl}"><i class="glyphicon glyphicon-file"></i></a></td>
                         </tr>
                     </tbody>
                 </table>

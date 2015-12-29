@@ -28,9 +28,6 @@ if (empty($_POST['web'])){
 	$errors['webError'] = "web inválida.";
 }
 
-if (empty($_POST['logo'])){
-	$errors['logoError'] = "Logo inválido.";
-}
 if (empty($_POST['cuit'])){
 	$errors['cuitError'] = "Cuit invalido.";
 }
@@ -47,8 +44,11 @@ if (empty($errors)){
   $logo =  $_POST['logo'];
 	$cuit =  $_POST['cuit'];
 
-
+if(!empty($logo)){
 	MysqliDB::getInstance()->query("UPDATE `client` SET `name_desc`='".$name_desc."',`address`='".$address."',`manager`='".$manager."',`tel`='".$tel."',`fax`='".$fax."',`web`='".$web."',`clientLogoPath`='".$logo."',`cuit`='".$cuit."' WHERE clientId = '".$clientId."'");
+} else {
+	MysqliDB::getInstance()->query("UPDATE `client` SET `name_desc`='".$name_desc."',`address`='".$address."',`manager`='".$manager."',`tel`='".$tel."',`fax`='".$fax."',`web`='".$web."',`cuit`='".$cuit."' WHERE clientId = '".$clientId."'");
+}
 
 }
 ?>

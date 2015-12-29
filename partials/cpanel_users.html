@@ -1,17 +1,17 @@
 <div class="users" ng-controller="users_controller">
     <div class="search">
       <div class="row form-inline">
-          <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Fecha </button>
-            <input type="search" class="form-control search_box inp_date"  ng-model="user_search" placeholder="Ingrese fecha: Ej. {{today | date:'dd/MM/yyyy'}}"/>
+          <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Nom./Apellido </button>
+            <input type="search" class="form-control search_box inp_date"  ng-model="user_search" placeholder="Escriba aquí el Nombre o Apellido a buscar"/>
 
 
 
-            <button class="btn search_btn search_op"><i class="glyphicon glyphicon-search"></i> N° Operación </button>
-          <input type="search" class="form-control search_box inp_op"  ng-model="user_search" placeholder="Escriba aquí la la operación a buscar"/>
+            <button class="btn search_btn search_op"><i class="glyphicon glyphicon-search"></i> Usuario </button>
+          <input type="search" class="form-control search_box inp_op"  ng-model="user_search" placeholder="Escriba aquí el usuario a buscar"/>
 
 
-        <button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Doc. Aduanero </button>
-        <input type="search" class="form-control search_box inp_doc"  ng-model="user_search" placeholder="Escriba aquí el documento a buscar"/>
+        <button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Cliente </button>
+        <input type="search" class="form-control search_box inp_doc"  ng-model="user_search" placeholder="Escriba aquí el cliente a buscar"/>
         <button class="btn  add_operation"  ng-click="add_user()"><i class="glyphicon glyphicon-plus"></i>Usuario</button>
     </div>
     </div>

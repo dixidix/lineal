@@ -113,15 +113,34 @@
     <div class="form-group">
         <span>Factura LSL: </span>
           <input type="text" class="form-control" ng-model="operation_import.lsl_bill" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese el número de factura de LSL"/>
-          <span class="PropertylabelText">Archivo: </span>
-          <div class="btn btn-primary"  style="width:564px; border-radius: 0px;" ><input type="file" name="file" uploader-model="uploadFile.file"/>Selecciona un archivo</div>
-        </div>
-      </div>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="form-group">
+      <label>
+        <span class="PropertylabelText">Archivo: </span>
+        <div class="btn btn-primary"><input type="file" name="imp_pdf" uploader-model="operation_import.imp_pdf"/>Selecciona un archivo de PDF</div>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="form-group">
+      <label>
+        <span class="PropertylabelText">Archivo: </span>
+        <div class="btn btn-primary"><input type="file" name="imp_fcl" uploader-model="operation_import.imp_fcl"/>Selecciona un archivo de FCL</div>
+      </label>
+    </div>
+  </div>
+</div>
 
     <div class="modal-footer">
       <input type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
-      <button type="button" style="width:200px" class="btn btn-default" ng-click="$dismiss()">Cancelar</button>
+      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
     </div>
 
   </form>

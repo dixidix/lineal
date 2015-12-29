@@ -101,15 +101,29 @@ mylsl.controller('modal_add_user', function ($state, $rootScope,$modal,$modalIns
     password: ""
   };
 var roles = [];
+  $scope.check_username = function(){
+    $http.get("./php/check_username.php", {
+      params: {
+        user : $scope.user.username
+      }
+    }).then(function (response) {
+      if(response.data){
+        $scope.validate_username = "el usuario ya existe en el sistema";
+        $('#username').focus();
+      }else {
+        $scope.validate_username = "";
+      }
 
+    });
+  }
   $scope.create_user = function () {
 
-    if ($scope.user.export == '1') { roles.push($scope.user.export); }
-    if ($scope.user.import == '2') { roles.push($scope.user.import); }
-    if ($scope.user.seguimiento == '3') { roles.push($scope.user.seguimiento); }
-    if ($scope.user.reintegro == '4') { roles.push($scope.user.reintegro); }
-    if ($scope.user.courrier == '5') { roles.push($scope.user.courrier); }
-    if ($scope.user.admin == '6') { roles.push($scope.user.admin); }
+    if ($scope.user.export) { roles.push('1'); }
+    if ($scope.user.import) { roles.push('2'); }
+    if ($scope.user.seguimiento) { roles.push('3'); }
+    if ($scope.user.reintegro) { roles.push('4'); }
+    if ($scope.user.courrier) { roles.push('5'); }
+    if ($scope.user.admin) { roles.push('6'); }
 
     $scope.user.roles = roles.join(", ");
     $scope.client_id = $('#select_client_users').val();
@@ -172,22 +186,14 @@ mylsl.controller('modal_edit_user', function ($state, $rootScope,$modal,$modalIn
     admin : $rootScope.userEdit.role.indexOf('6')!= -1
   };
 
-    // $scope.exportChecked = $rootScope.userEdit.role.indexOf('1') != -1;
-    // $scope.importChecked = $rootScope.userEdit.role.indexOf('2')!= -1;
-    // $scope.seguimientoChecked = $rootScope.userEdit.role.indexOf('3')!= -1;
-    // $scope.reintegroChecked = $rootScope.userEdit.role.indexOf('4')!= -1;
-    // $scope.courrierChecked = $rootScope.userEdit.role.indexOf('5')!= -1;
-    // $scope.adminChecked = $rootScope.userEdit.role.indexOf('6')!= -1;
-
-
-  $scope.create_user = function () {
+    $scope.create_user = function () {
     var roles = [];
-    if ($scope.user.export == true) { roles.push("1"); }
-    if ($scope.user.import == true) { roles.push("2"); }
-    if ($scope.user.seguimiento == true) { roles.push("3"); }
-    if ($scope.user.reintegro == true) { roles.push("4"); }
-    if ($scope.user.courrier == true) { roles.push("5"); }
-    if ($scope.user.admin == true) { roles.push("6"); }
+    if ($scope.user.export) { roles.push('1'); }
+    if ($scope.user.import) { roles.push('2'); }
+    if ($scope.user.seguimiento) { roles.push('3'); }
+    if ($scope.user.reintegro) { roles.push('4'); }
+    if ($scope.user.courrier) { roles.push('5'); }
+    if ($scope.user.admin) { roles.push('6'); }
 
     $scope.user.roles = roles.join(", ");
     if(roles.length == 0){

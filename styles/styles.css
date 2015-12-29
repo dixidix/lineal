@@ -31,7 +31,11 @@ html, body {font-family: 'Trebuchet MS',sans-serif;color:#2e2e2e;}
 
 
 }
-
+a.disabled {
+   pointer-events: none;
+   cursor: default;
+   opacity:0.5;
+}
 .search_btn{
   vertical-align: middle;
   width:12%;
@@ -121,7 +125,7 @@ cursor:pointer;
 }
 
 .table {
-  font-size:0.9vw;
+  font-size:0.8vw;
   text-align: center;
   vertical-align: middle;
     background-color:#fff;
@@ -189,7 +193,7 @@ cursor:pointer;
     cursor:pointer;
 }
 .menu-left{
-background-color:##f7f7f7;
+background-color:#fff;
     height:100vh;
     border-right:1px #ddd solid;
     padding:0;
@@ -271,4 +275,15 @@ label{font-weight: 100;}
 .input-group > .date_year{
   width: 25%;
   border-left: none;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+ color:#fff;
+  border: 1px solid #ccc;
+  background-color:#3a9c95;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
 }

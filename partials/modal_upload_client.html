@@ -1,0 +1,46 @@
+<div class="modal-content">
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
+</div>
+  <form name="newclient" role="form" ng-submit="uploadClient()" autocomplete="off">
+<div class="modal-body" style="padding:2% 5% 1% 5%;">
+  <div class="row">
+
+    <div class="col-xs-12">
+      <div class="form-group">
+      <span>seleccione tipo de archivo: </span>
+      <span>Archivo: </span>
+      <select id="select_type_file" ng-model="client_upload.doc_type" class="form-control header_controls">
+        <option value="seguimiento">Seguimiento</option>
+        <option value="reintegros">Reintegros</option>
+        <option value="courrier_imp">Courrier Imp.</option>
+      </select>
+    </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label>
+          <span>Archivo a enviar: </span>
+          <div class="btn btn-primary"><input type="file" name="imp_fcl" uploader-model="client_upload.client_file"/>Selecciona un archivo</div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="modal-footer" style="padding-right:5%;">
+  <div class="row">
+    <div class="col-xs-12">
+      <input type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+  </form>
+</div>

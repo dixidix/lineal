@@ -9,7 +9,8 @@
     <div class="col-xs-12">
       <div class="form-group">
       <span>Nombre de la Empresa: </span>
-      <input type="text" class="form-control" ng-model="client.name_desc" placeholder="Ingrese el nombre de la Empresa" />
+      <input id="clientname" type="text" class="form-control" ng-model="client.name_desc" ng-blur="check_clientname()" placeholder="Ingrese el nombre de la Empresa" />
+      <p style="font-size:0.8vw;color:red;">{{validate_clientname}}</p>
     </div>
     </div>
   </div>
@@ -53,11 +54,14 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-xs-12">
-        <div class="form-group">
-      <span>Logo: </span>
-      <input type="text" class="form-control" ng-model="client.logo" placeholder="Ingrese el logo" />
+      <div class="form-group">
+        <label>
+          <span class="PropertylabelText">Archivo: </span>
+          <div class="btn btn-primary"><input type="file" name="logo" uploader-model="client.logo"/>Selecciona una Imagen</div>
+        </label>
       </div>
     </div>
   </div>
@@ -65,7 +69,8 @@
     <div class="col-xs-12">
         <div class="form-group">
       <span>Cuit: </span>
-      <input type="text" class="form-control" ng-model="client.cuit" placeholder="Ingrese el cuit" />
+      <input id="cuit" type="text" class="form-control" ng-model="client.cuit" ng-blur="check_cuit()" placeholder="Ingrese el cuit" />
+      <p style="font-size:0.8vw;color:red;">{{validate_cuit}}</p>
     </div>
     </div>
   </div>

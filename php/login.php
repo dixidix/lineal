@@ -33,7 +33,7 @@ if (!empty($errors)){
 
 	$username = MysqliDB::getInstance()->real_escape_string($username);
 
-	$res = MysqliDB::getInstance()->query("SELECT * FROM users WHERE username='" . $username . "' AND password='" . $password . "'");
+	$res = MysqliDB::getInstance()->query("SELECT * FROM users WHERE username='" . $username . "' AND password='" . $password . "' AND deleted='0'");
     $rows = mysqli_num_rows($res);
 	if ($rows == 1){
        $rss = $res->fetch_array(MYSQLI_ASSOC);

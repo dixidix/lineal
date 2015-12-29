@@ -6,37 +6,70 @@
 <form name="newuser" role="form" class="" ng-submit="create_user()" autocomplete="off">
 
 <div class="modal-body">
-      <span>Nombre y Apellido: </span>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+    <span>Nombre y Apellido: </span>
     <input id="new_ref_client" type="text" class="form-control" ng-model="user.name" placeholder="Ingrese el Nombre" />
-
+  </div>
+</div>
+</div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
     <span>Usuario: </span>
-    <input type="text" class="form-control" ng-model="user.username"  placeholder="Ingrese el Usuario" />
-
+    <input id="username" type="text" class="form-control" ng-model="user.username" ng-blur="check_username()"  placeholder="Ingrese el Usuario" />
+    <p style="font-size:0.8vw;color:red;">{{validate_username}}</p>
+  </div>
+</div>
+</div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
     <div id="password" ng-hide="editing_user">
     <span>Contraseña: </span>
     <input type="password" class="form-control" ng-model="user.password" placeholder="Ingrese la Contraseña" />
     </div>
-
+  </div>
+</div>
+</div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
     <span>Teléfono: </span>
     <input type="text" class="form-control" ng-model="user.tel" placeholder="Ingrese el Teléfono" />
-
+  </div>
+</div>
+</div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
     <span>Roles: </span></br>
     <p>{{roleError}}</p>
-    <input  type="checkbox" ng-model="user.export" ng-true-value="'1'"/><label>Exportación</label></br>
-    <input  type="checkbox" ng-model="user.import" ng-true-value="'2'"/><label>Importación</label></br>
-    <input  type="checkbox" ng-model="user.seguimiento" ng-true-value="'3'"/><label>Seguimiento</label></br>
-    <input  type="checkbox" ng-model="user.reintegro" ng-true-value="'4'"/><label>Reintegros</label></br>
-    <input  type="checkbox" ng-model="user.courrier" ng-true-value="'5'"/><label>Courrier Imp.</label></br>
-    <input  type="checkbox" ng-model="user.admin" ng-true-value="'6'"/><label>Administrador</label></br>
+    <input  type="checkbox" ng-model="user.export"/><label>Exportación</label></br>
+    <input  type="checkbox" ng-model="user.import"/><label>Importación</label></br>
+    <input  type="checkbox" ng-model="user.seguimiento"/><label>Seguimiento</label></br>
+    <input  type="checkbox" ng-model="user.reintegro"/><label>Reintegros</label></br>
+    <input  type="checkbox" ng-model="user.courrier"/><label>Courrier Imp.</label></br>
+    <input  type="checkbox" ng-model="user.admin"/><label>Administrador</label></br>
+  </div>
+</div>
+</div>
 
-    <span>Cliente: </span>
-    <select id="select_client_users" ng-model="select_client_users" class="form-control header_controls">
-      <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name_desc }}</option>
-    </select>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+        <span>Cliente: </span>
+        <select id="select_client_users" ng-model="select_client_users" class="form-control header_controls">
+          <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name_desc }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
       </div>
     <div class="modal-footer">
       <input type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
-      <button type="button" style="width:200px" class="btn btn-default" ng-click="$dismiss()">Cancelar</button>
+      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
     </div>
 
   </form>

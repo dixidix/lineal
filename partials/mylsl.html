@@ -15,14 +15,14 @@
                         <a ng-show="show_export" href="#" ui-sref=".export" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Exportaciones</span></li>
                         </a>
-                        <a ng-show="show_following" href="#" ui-sref=".export" ui-sref-opts="{reload: true}">
-                            <li class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Seguimiento</span></li>
+                        <a download ng-show="show_following" target="_self" href="{{files.seguimiento}}" ng-class="{disabled: !files.seguimiento}" ui-sref-opts="{reload: true}">
+                            <li ng-click="remove_active" id="seguimiento" class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Seguimiento</span></li>
                         </a>
-                        <a ng-show="show_refund" href="#" ui-sref=".export" ui-sref-opts="{reload: true}">
-                            <li class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Reintegros</span></li>
+                        <a download ng-show="show_refund" target="_self" href="{{files.reintegro}}" ng-class="{disabled: !files.reintegro}" ui-sref-opts="{reload: true}">
+                            <li ng-click="remove_active" id="reintegro" class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Reintegros</span></li>
                         </a>
-                        <a ng-show="show_courrier" href="#" ui-sref=".export" ui-sref-opts="{reload: true}">
-                            <li class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Courrier Imp.</span></li>
+                        <a download ng-show="show_courrier" target="_self" href="{{files.courrier_imp}}" ng-class="{disabled: !files.courrier_imp}" ui-sref-opts="{reload: true}">
+                            <li ng-click="remove_active" id="courrier" class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Courrier Imp.</span></li>
                         </a>
                         <a ng-show="show_add_op" href="#" ui-sref=".cpanel" ng-click="reset_all()" ui-sref-opts="{reload: true}">
                             <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Administrar Operaciones</span></li>

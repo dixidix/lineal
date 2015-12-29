@@ -2,7 +2,7 @@
   <div class="search">
     <div class="row form-inline">
         <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Fecha </button>
-          <input type="search" class="form-control search_box inp_date"  ng-model="impo_search_date | date: 'dd-MM-yyyy'" placeholder="Ingrese fecha: Ej. {{today | date:'dd/MM/yyyy'}}"/>
+          <input type="search" class="form-control search_box inp_date"  ng-model="impo_search_date" placeholder="Ingrese fecha: Ej. {{today | date:'dd/MM/yyyy'}}"/>
 
 
 
@@ -48,8 +48,8 @@
           <td class="col-xs-2">{{ import.arrival_date }}</td>
           <td class="col-xs-1">{{ import.release_date }}</td>
           <td>{{ import.lsl_bill }}</td>
-          <td><a><i class="glyphicon glyphicon-file"></i></a></td>
-          <td><a><i class="glyphicon glyphicon-file"></i></a></td>
+          <td><a download target="_self" href="{{import.file_pdf}}" ng-class="{disabled: !import.file_pdf}"><i class="glyphicon glyphicon-file"></i></a></td>
+          <td><a download target="_self" href="{{import.file_fcl}}" ng-class="{disabled: !import.file_fcl}"><i class="glyphicon glyphicon-file"></i></a></td>
         </tr>
       </tbody>
     </table>

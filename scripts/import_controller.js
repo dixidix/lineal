@@ -5,8 +5,8 @@ mylsl.controller('import_controller', function ($rootScope, $cookies, $scope, $h
 
   $scope.op_type = "2";
 
-  $scope.client_id = $cookies.get('client_id');
-
+  //$scope.client_id = $cookies.get('client_id');
+  $scope.client_id = localStorage.getItem('client_id');
 
   if ($rootScope.cp_operation != undefined) {
     $scope.op_type = $rootScope.cp_operation;

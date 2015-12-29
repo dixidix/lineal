@@ -6,7 +6,9 @@ $client_id = $_GET['client_id'];
 $optype = $_GET['op_type'];
 
 $res = MysqliDB::getInstance()->query("SELECT * from operation where clientId='". $client_id ."' and operationTypeId='". $optype ."' and deleted=0");
+
 $outp="";
+
 while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "") {$outp .= ",";}
     $shipment_origin = date("d-m-Y", strtotime($rs["shipment_origin"]));
@@ -17,6 +19,7 @@ while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
 
     $outp .= '{"ref_lsl":"'  . $rs["ref_lsl"].'",';
     $outp .= '"ref_client":"'   . $rs["ref_client"] .'",';
+    $outp .= '"client_id":"'   . $client_id .'",';
     $outp .= '"merchandise":"'   . $rs["merchandise"].'",';
     $outp .= '"transport":"'   . $rs["transport"].'",';
     $outp .= '"shipment":"'   . $shipment .'",';
@@ -27,6 +30,14 @@ while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     $outp .= '"arrival_date":"'   . $arrival_date .'",';
     $outp .= '"release_date":"'   . $release_date .'",';
     $outp .= '"opTypeId":"'   . $rs["operationTypeId"] .'",';
+    $ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='". $client_id ."'and operationTypeId='". $optype ."'and ref_lsl='". $rs["ref_lsl"] ."' and doc_type='pdf' and deleted=0");
+    while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
+    $outp .= '"file_pdf":"'   . $rss["document_path"].'",';
+    }
+    $ress = MysqliDB::getInstance()->query("SELECT * from document where clientId='". $client_id ."'and operationTypeId='". $optype ."'and ref_lsl='". $rs["ref_lsl"] ."' and doc_type='fcl' and deleted=0");
+    while($rss = $ress->fetch_array(MYSQLI_ASSOC)) {
+    $outp .= '"file_fcl":"'   . $rss["document_path"].'",';
+    }
     $outp .= '"lsl_bill":"'. $rs["lsl_bill"].'"}';
 }
 $outp ='{"operations":['.$outp.']}';

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.12
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-12-2015 a las 03:24:31
--- Versión del servidor: 5.6.25
--- Versión de PHP: 5.6.11
+-- Tiempo de generación: 29-12-2015 a las 22:09:49
+-- Versión del servidor: 10.1.8-MariaDB
+-- Versión de PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,10 +26,9 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `client`
 --
 
-CREATE TABLE IF NOT EXISTS `client` (
+CREATE TABLE `client` (
   `clientId` int(10) NOT NULL,
   `name_desc` varchar(65) NOT NULL,
-  `username` varchar(65) NOT NULL,
   `address` varchar(100) NOT NULL,
   `manager` varchar(65) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `tel` varchar(65) NOT NULL,
@@ -38,16 +37,17 @@ CREATE TABLE IF NOT EXISTS `client` (
   `clientLogoPath` varchar(150) NOT NULL,
   `cuit` varchar(20) NOT NULL,
   `deleted` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `client`
 --
 
-INSERT INTO `client` (`clientId`, `name_desc`, `username`, `address`, `manager`, `tel`, `fax`, `web`, `clientLogoPath`, `cuit`, `deleted`) VALUES
-(1, 'esco s.a', 'escosa', 'tabanera 3385', 'Nicolas Sigal', '4294555', '146542', 'www.google.com', 'logos/jas.jpg', '1012311231', 0),
-(2, 'cisco srl', 'ciscosrl', 'cadetes chilenos 173', 'Martin Martinez', '153013907', '42374541', 'www.ciscosrl.com.ar', 'logos/cisco.jpg', '123456789', 0),
-(3, 'Lineal Soluciones', 'linealsrl', 'calle falsa 123', 'Paula Rojas', '158459789', '123118015', 'www.linealsoluciones.com', 'logos/lineal.jpg', '54362181', 0);
+INSERT INTO `client` (`clientId`, `name_desc`, `address`, `manager`, `tel`, `fax`, `web`, `clientLogoPath`, `cuit`, `deleted`) VALUES
+(1, 'esco s.a', 'tabanera 3385', 'Nicolas Sigal', '4294555', '146542', 'www.google.com', 'logos/jas.jpg', '1012311231', 0),
+(2, 'cisco srl', 'cadetes chilenos 173', 'Martin Martinez', '153013907', '42374541', 'www.ciscosrl.com.ar', 'logos/cisco.jpg', '123456789', 0),
+(3, 'Lineal Soluciones', 'calle falsa 123', 'Paula Rojas', '158459789', '123118015', 'www.linealsoluciones.com', 'logos/lineal.jpg', '54362181', 0),
+(20, 'emp', 'dir', 'enc', 'tel', 'fax', 'web', 'logos/emp/10426766_10203886708669735_7062214750264119858_n.jpg', '23123', 0);
 
 -- --------------------------------------------------------
 
@@ -55,13 +55,13 @@ INSERT INTO `client` (`clientId`, `name_desc`, `username`, `address`, `manager`,
 -- Estructura de tabla para la tabla `client_email`
 --
 
-CREATE TABLE IF NOT EXISTS `client_email` (
+CREATE TABLE `client_email` (
   `emailId` int(10) NOT NULL,
   `clientId` int(10) NOT NULL,
   `email` varchar(100) NOT NULL,
   `name` varchar(45) NOT NULL,
   `deleted` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `client_email`
@@ -73,7 +73,9 @@ INSERT INTO `client_email` (`emailId`, `clientId`, `email`, `name`, `deleted`) V
 (4, 2, 'paul@martinez.com', 'Paula Martinez', 0),
 (8, 2, 'pedro.altrencio@escosa.com', 'pedro Altrencio', 0),
 (9, 2, 'Roberto.c@g.com', 'Roberto Carlos', 0),
-(10, 3, 'nicolas.gomez@uolsinectis.com', 'Nicolas Gomez', 0);
+(10, 3, 'nicolas.gomez@uolsinectis.com', 'Nicolas Gomez', 0),
+(11, 15, 'aabb@bbaa.com', 'Aa BB', 1),
+(12, 19, 'nsigal@pruebfinal.com', 'nico sigal', 1);
 
 -- --------------------------------------------------------
 
@@ -81,14 +83,36 @@ INSERT INTO `client_email` (`emailId`, `clientId`, `email`, `name`, `deleted`) V
 -- Estructura de tabla para la tabla `document`
 --
 
-CREATE TABLE IF NOT EXISTS `document` (
+CREATE TABLE `document` (
   `documentId` int(10) NOT NULL,
   `clientId` int(10) NOT NULL,
-  `ref_lsl` int(15) NOT NULL,
+  `operationTypeId` int(1) DEFAULT NULL,
+  `ref_lsl` int(15) DEFAULT NULL,
   `document_path` varchar(100) NOT NULL,
   `document_ext` int(100) NOT NULL,
-  `deleted` int(1) NOT NULL DEFAULT '0'
+  `deleted` int(1) NOT NULL DEFAULT '0',
+  `doc_type` varchar(45) NOT NULL,
+  `upload_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `document`
+--
+
+INSERT INTO `document` (`documentId`, `clientId`, `operationTypeId`, `ref_lsl`, `document_path`, `document_ext`, `deleted`, `doc_type`, `upload_date`) VALUES
+(59, 1, NULL, NULL, '/lineal/files/1/documents/seguimiento/arboles_de_decision.pdf', 0, 0, 'seguimiento', '2015-12-29 12:32:24'),
+(60, 1, NULL, NULL, '/lineal/files/1/documents/seguimiento/amexLogo.png', 0, 0, 'seguimiento', '2015-12-29 12:32:43'),
+(61, 1, NULL, NULL, '/lineal/files/1/documents/seguimiento/arboles_de_decision.pdf', 0, 0, 'seguimiento', '2015-12-29 12:50:13'),
+(62, 1, NULL, NULL, '/lineal/files/1/documents/seguimiento/bd_(9).xlsx', 0, 0, 'seguimiento', '2015-12-29 12:50:25'),
+(63, 1, NULL, NULL, '/lineal/files/1/documents/seguimiento/wireframe3.xlsx', 0, 0, 'seguimiento', '2015-12-29 13:00:05'),
+(64, 1, NULL, NULL, '/lineal/files/1/documents/reintegros/arboles_de_decision.pdf', 0, 0, 'reintegros', '2015-12-29 12:56:18'),
+(65, 1, NULL, NULL, '/lineal/files/1/documents/reintegros/amexLogo.png', 0, 0, 'reintegros', '2015-12-30 13:56:25'),
+(66, 1, NULL, NULL, '/lineal/files/1/documents/reintegros/134704-ubuntu-wallpaper-blue-desktop-wallpaper-1920x1200.jpg', 0, 0, 'reintegros', '2015-12-30 12:56:31'),
+(70, 1, NULL, NULL, '/lineal/files/1/documents/reintegros/10869672_10205318082813194_8794960290261265111_o.jpg', 0, 0, 'reintegros', '2015-12-30 14:07:41'),
+(82, 20, 2, 89, '/lineal/files/20/operations/2/OCTEST1/bd_(1).xlsx', 0, 0, 'pdf', NULL),
+(83, 20, 2, 89, '/lineal/files/20/operations/2/OCTEST1/SolicitudRNR.pdf', 0, 0, 'fcl', NULL),
+(84, 20, 1, 90, '/lineal/files/20/operations/1/ON-201/bd_(3).xlsx', 0, 0, 'pdf', NULL),
+(85, 20, 1, 90, '/lineal/files/20/operations/1/ON-201/wireframe3.pdf', 0, 0, 'fcl', NULL);
 
 -- --------------------------------------------------------
 
@@ -96,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `document` (
 -- Estructura de tabla para la tabla `operation`
 --
 
-CREATE TABLE IF NOT EXISTS `operation` (
+CREATE TABLE `operation` (
   `ref_lsl` int(10) NOT NULL,
   `ref_client` varchar(45) NOT NULL,
   `merchandise` varchar(45) NOT NULL,
@@ -112,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `operation` (
   `clientId` int(10) NOT NULL,
   `operationTypeId` int(1) NOT NULL,
   `deleted` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operation`
@@ -153,11 +177,19 @@ INSERT INTO `operation` (`ref_lsl`, `ref_client`, `merchandise`, `transport`, `s
 (54, 'test_dp_ref_cliente', 'test_dp_merch4', 'test_dp_transp', NULL, '2015-12-09', '2015-12-09', 'test_dp_doc', 'test_dp_docdjai', '2015-12-09', '2015-12-09', 'test_dp_factura', 1, 2, 0),
 (55, 'test1234', 'test123', 'test123', NULL, '2015-12-09', '2015-12-09', 'test123', 'test123', '2015-12-09', '2015-12-09', 'test123', 1, 2, 0),
 (56, 'OC SCHMIDT-9000', 'adasdasdasd', 'asdasdasdasd', NULL, '2015-12-25', '2015-12-25', 'adasdasd', 'asdasdasdas', '2015-12-25', '2015-12-25', 'ASDASDASD', 1, 2, 0),
-(57, 'TESTA', 'TESTA', NULL, '2015-12-25', NULL, NULL, 'TESTA', NULL, NULL, NULL, 'TESTA', 1, 1, 0),
-(58, 'asdasda', 'sdasdasd', NULL, '2015-12-25', NULL, NULL, 'asdasdas', NULL, NULL, NULL, 'asdasd', 1, 1, 0),
-(59, 'asadasd', 'asdasdsad', NULL, '2015-12-12', NULL, NULL, 'adadasd', NULL, NULL, NULL, 'asdadasd', 1, 1, 0),
-(60, 'lkssdjlj', 'j', NULL, '2015-12-12', NULL, NULL, 'kljlkjkl', NULL, NULL, NULL, 'jkkljklÃ±', 1, 1, 0),
-(61, 'asdasd', 'asdasda', NULL, '2015-12-07', NULL, NULL, 'sdasd', NULL, NULL, NULL, 'asasdasd', 1, 1, 0);
+(78, 'ON-3939', 'Merc', NULL, '2015-11-11', NULL, NULL, 'Doc', NULL, NULL, NULL, 'fac', 1, 1, 0),
+(79, 'ON-4040', 'Merc', NULL, '2015-11-11', NULL, NULL, 'ada', NULL, NULL, NULL, 'qasdasd', 1, 1, 0),
+(80, 'asd', 'asd', NULL, '2015-11-11', NULL, NULL, 'asd', NULL, NULL, NULL, 'asd', 1, 1, 0),
+(81, 'bbb', 'bbbbbbbbbbb', NULL, '2015-11-11', NULL, NULL, 'bbbb', NULL, NULL, NULL, 'bbbb', 1, 1, 0),
+(82, 'OM-111', 'asdasd', NULL, '2015-11-11', NULL, NULL, 'adsasd', NULL, NULL, NULL, 'asdasd', 2, 1, 0),
+(83, 'OC SCHMIDT-5443', 'OC SCHMIDT-5443', 'OC SCHMIDT-5443', NULL, '2015-11-11', '2015-11-11', 'OC SCHMIDT-5443', 'OC SCHMIDT-5443', '2015-11-11', '2015-11-11', 'OC SCHMIDT-5443', 1, 2, 0),
+(84, 'refTest', 'MerchTest', NULL, '2015-11-11', NULL, NULL, 'Doc', NULL, NULL, NULL, 'Fac', 15, 1, 1),
+(85, 'TEST1', 'Me', 'T', NULL, '2015-11-11', '2015-11-11', 'D', 'D', '2015-11-11', '2015-11-11', 'F', 15, 2, 1),
+(86, 'reftest1', 'M', NULL, '2015-11-11', NULL, NULL, 'D', NULL, NULL, NULL, 'F', 15, 1, 1),
+(87, 'ON-2020', 'Mercaderi', NULL, '2015-11-11', NULL, NULL, 'Doc', NULL, NULL, NULL, 'Fac', 19, 1, 0),
+(88, 'OC SCMIST-0998', 'MM', 'TRA', NULL, '2015-11-11', '2015-11-11', 'D', 'D', '2015-11-11', '2015-11-11', 'FAC', 19, 2, 0),
+(89, 'OCTEST1', 'mercaderia', 't', NULL, '2015-11-11', '2015-11-11', 'D', 'D', '2015-11-11', '2015-11-11', 'F', 20, 2, 0),
+(90, 'ON-201', 'mercaderia', NULL, '2015-11-11', NULL, NULL, 'Doc', NULL, NULL, NULL, 'Fac', 20, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -165,10 +197,10 @@ INSERT INTO `operation` (`ref_lsl`, `ref_client`, `merchandise`, `transport`, `s
 -- Estructura de tabla para la tabla `operation_type`
 --
 
-CREATE TABLE IF NOT EXISTS `operation_type` (
+CREATE TABLE `operation_type` (
   `operationTypeId` int(1) NOT NULL,
   `operation_desc` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `operation_type`
@@ -184,7 +216,7 @@ INSERT INTO `operation_type` (`operationTypeId`, `operation_desc`) VALUES
 -- Estructura de tabla para la tabla `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `userId` int(10) NOT NULL,
   `username` varchar(45) NOT NULL,
   `password` varchar(64) NOT NULL,
@@ -194,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `active` int(1) NOT NULL,
   `clientId` int(10) NOT NULL,
   `deleted` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `users`
@@ -203,9 +235,14 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`userId`, `username`, `password`, `name`, `role`, `tel`, `active`, `clientId`, `deleted`) VALUES
 (1, 'nicolas.sigal@escosa.com', '123456', 'Nicolas Sigal', '1, 2, 3, 4, 5', '4294555', 0, 1, 0),
 (2, 'joybelmonte@cisco.com', 'jowi', 'Johanna Belmonte', '1, 2, 3, 4', '4378622', 0, 2, 0),
-(3, 'admin', 'admin', 'Nicolas Sigal', '6', '153013907', 1, 3, 0),
+(3, 'admin', 'admin', 'Nicolas Sigal', '6', '153013907', 0, 3, 0),
 (5, 'juan@berdugo.com', 'juancho', 'Juan Berdugo', '1, 2', '132456', 0, 1, 0),
-(7, 'carchu', '123456', 'Carlos Alberto Guzman', '1, 2', '4753951', 0, 1, 0);
+(7, 'carchu', '123456', 'Carlos Alberto Guzman', '1, 2, 3, 4, 5', '4753951', 0, 1, 0),
+(8, 'pepe.hongo@aaa.com', '123456', 'Pepe Hongo', '1, 2, 3, 4, 5', '4294444', 0, 15, 1),
+(9, 'emp@prueba.com', '123456', 'Nicolas Sigal', '1, 2, 5', '132456', 0, 16, 1),
+(10, 'test@test', '123456', 'TEST TEST', '1', '45654645', 0, 17, 1),
+(12, 'test2@test', '123456', 'tes', '1', '123213', 0, 18, 1),
+(15, 'n@s', '132', 'nico sigal', '1, 2, 3, 4, 5', '4294555', 0, 20, 0);
 
 --
 -- Índices para tablas volcadas
@@ -215,8 +252,7 @@ INSERT INTO `users` (`userId`, `username`, `password`, `name`, `role`, `tel`, `a
 -- Indices de la tabla `client`
 --
 ALTER TABLE `client`
-  ADD PRIMARY KEY (`clientId`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`clientId`);
 
 --
 -- Indices de la tabla `client_email`
@@ -258,32 +294,32 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `client`
 --
 ALTER TABLE `client`
-  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `client_email`
 --
 ALTER TABLE `client_email`
-  MODIFY `emailId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `emailId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT de la tabla `document`
 --
 ALTER TABLE `document`
-  MODIFY `documentId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `documentId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- AUTO_INCREMENT de la tabla `operation`
 --
 ALTER TABLE `operation`
-  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=62;
+  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 --
 -- AUTO_INCREMENT de la tabla `operation_type`
 --
 ALTER TABLE `operation_type`
-  MODIFY `operationTypeId` int(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `operationTypeId` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
