@@ -1,26 +1,27 @@
 <div ng-controller="cpanel_controller">
   <div id="cpanel_top" ng-show="cp_header_active">
-    <h3>Administrar operaciones</h3>
-    <form class="form-inline">
+    <div class="bcrumb" style="top:13%;">
+      <a href="#" ui-sref="mylsl" ui-sref-opts="{reload: true}">My LSL > </a> <span class="bcrumb_active">Administrar operaciones </span>
+    </div>
+    <form class="form-inline" ng-submit="consultar()">
       <div class="form-group">
-      <label>Seleccione Cliente: </label>
-      <select id="select_client" ng-model="select_client" class="form-control header_controls" ng-change="reset_operation()">
-        <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name_desc }}</option>
-      </select>
-
-        </div>
-      <div class="form-group">
-      <label>Seleccione operación: </label>
-      <select id="select_operation" ng-model="select_operation" class="form-control header_controls">
-        <option ng-repeat="op_type in operation_types" value="{{op_type.id}}">{{ op_type.desc }}</option>
-      </select>
-        <button class="btn btn-primary" ng-click="consultar()"><i class="glyphicon glyphicon-search"></i> Consultar </button>
+        <label>Cliente: </label>
+        <select ng-disabled="loadClients" id="select_client" ng-model="select_client" class="form-control header_controls" ng-change="getOperationType()" required>
+          <option selected="selected" disabled="disabled" value="">Selecciona un cliente</option>
+          <option ng-repeat="client in clients" ng-if="client.id != '1'" value="{{client.id}}">{{ client.name_desc }}</option>
+        </select>
       </div>
-
+      <div class="form-group">
+        <label>Operación: </label>
+        <select  ng-disabled="loadOperations" id="select_operation" ng-model="select_operation" class="form-control header_controls" required>
+          <option selected="selected" disabled="disabled" value="">Selecciona una operación</option>
+          <option ng-repeat="op_type in operation_types" value="{{op_type.id_section}}">{{ op_type.section_desc }}</option>
+        </select>
+        <input class="btn search_btn" type="submit" value="Consultar">
+      </div>
     </form>
   </div>
   <div id="cpanel_content" >
-
     <div ui-view="cp_content">
     </div>
   </div>

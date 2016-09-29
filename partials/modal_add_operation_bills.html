@@ -1,0 +1,90 @@
+<div class="spinner" ng-show="loading">
+  <h1 style="margin-left: 33%;margin-top:8%;color: #cd6702; text-shadow: 1px 1px 2px #2e2e2e;">ENVIANDO...</h1>
+<div class="progress" style="width:90%;margin:5%;">
+  <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+  </div>
+</div>
+</div>
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
+</div>
+<div class="modal-body">
+  <form name="add_op_bills" role="form" class="" ng-submit="add_op_bills.$valid && create_bills()" autocomplete="off">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>responsable: </span>
+          <select  ng-disabled="loadOwner" id="select_owner" ng-model="select_owner" class="form-control header_controls" required>
+            <option selected="selected" disabled="disabled" value="">Selecciona un responsable</option>
+            <option ng-repeat="user in users" value="{{user.userId}}">{{ user.name }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Mercadería: </span>
+          <input type="text" class="form-control" ng-model="operation_bills.merchandise" placeholder="Ingrese la mercaderia a transportar" />
+        </div>
+      </div>
+    </div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="form-group">
+        <span>Factura LSL: </span>
+          <input id="bills_ref_lsl" type="text" class="form-control" ng-blur="check_ref_lsl()" ng-model="operation_bills.lsl_bill" placeholder="Ingrese el número de factura de LSL"/>
+            <p class="validate_error">{{validate_ref_lsl}}</p>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="form-group">
+      <label>
+        <div class="btn search_btn"><input type="file" name="bills_pdf" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_bills.bills_pdf"/>Selecciona un archivo de PDF</div>
+        <p id="file_pdf_msg">{{bills_pdf_title}}</p>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="form-group">
+      <label>
+        <div class="btn search_btn"><input type="file" name="bills_fcl" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_bills.bills_fcl"/>Selecciona un archivo de FCL</div>
+        <p id="file_fcl_msg">{{bills_fcl_title}}</p>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="form-group">
+      <label>
+        <div class="btn search_btn"><input type="file" name="bills_simi" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_bills.bills_simi"/>Selecciona un archivo de SIMI</div>
+        <p id="file_simi_msg">{{bills_simi_title}}</p>
+      </label>
+    </div>
+  </div>
+</div>
+<div class="row" ng-show="isEditing">
+  <div class="col-xs-12">
+    <div class="form-group">
+    <span>Estado de la operación: </span>
+    <select id="select_op_state" ng-model="operation_bills.op_state" class="form-control header_controls">
+      <option selected="selected" disabled="disabled" value="">Selecciona un estado</option>
+      <option value="0" selected>En Curso</option>
+      <option value="1">Terminado</option>
+    </select>
+  </div>
+</div>
+</div>
+    <div class="modal-footer">
+      <input id="submit_bills" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+    </div>
+  </form>
+</div>

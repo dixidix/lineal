@@ -1,89 +1,146 @@
+<div class="spinner" ng-show="loading">
+  <h1 style="margin-left: 33%;margin-top:8%;color: #cd6702; text-shadow: 1px 1px 2px #2e2e2e;">ENVIANDO...</h1>
+
+<div class="progress" style="width:90%;margin:5%;">
+  <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+  </div>
+</div>
+
+</div>
 <div class="modal-content">
-<div class="modal-header">
-  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
-</div>
-  <form name="newclient" role="form" ng-submit="create_client()" autocomplete="off">
-<div class="modal-body" style="padding:2% 5% 1% 5%;">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="form-group">
-      <span>Nombre de la Empresa: </span>
-      <input id="clientname" type="text" class="form-control" ng-model="client.name_desc" ng-blur="check_clientname()" placeholder="Ingrese el nombre de la Empresa" />
-      <p style="font-size:0.8vw;color:red;">{{validate_clientname}}</p>
-    </div>
-    </div>
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
   </div>
-  <div class="row">
-<div class="col-xs-12">
-    <div class="form-group">
-      <span>Dirección: </span>
-      <input type="text" class="form-control" ng-model="client.address"  placeholder="Ingrese la Dirección" />
+  <form name="newclient" role="form" ng-submit="newclient.$valid && create_client()" autocomplete="off">
+    <div class="modal-body" style="padding:2% 5% 1% 5%;">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <span>Nombre de la Empresa: </span>
+            <input id="clientname" type="text" class="form-control" ng-model="client.name_desc" ng-blur="check_clientname()" placeholder="Ingrese el nombre de la Empresa" required/>
+            <p class="validate_error">{{validate_clientname}}</p>
+          </div>
+        </div>
       </div>
-</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <span>Secciones: </span>  
+            <select class="form-control multiselect search_btn" multiple="multiple">
+              <optgroup label="Consultas">
+               <option value="1">Exportaciones</option>
+               <option value="2">Importaciones</option>
+               <option value="3">Importaciones Temp.</option>
+               <option value="4">Facturas</option>                
+               <option value="8">Tarifas</option>
+               <option value="26">Videos</option>
+             </optgroup>
+             <optgroup label="Descargas">
+               <option value="5">Courrier Imp.</option>
+               <option value="6">Courrier Exp.</option>
+               <option value="7">Honorarios</option>
+               <option value="9">Seguimiento</option>
+               <option value="10">Reintegros</option>
+               <option value="11">LNA ARCORE</option>
+               <option value="12">LNA FAPERSA</option>
+               <option value="13">DJAI LNA</option>
+               <option value="14">EXCEP LCM</option>
+               <option value="15">Tarifas Imp.</option>
+               <option value="16">Tarifas Exp.</option>
+               <option value="17">Cargas</option>
+               <option value="18">Otros</option>
+               <option value="19">LNA Imp.</option>
+               <option value="20">Desc. Tarifa</option>
+             </optgroup>    
+           </select>
+         </div>
+       </div>
+       <p class="validate_error">{{sectionError}}</p>
+     </div>
+     <div class="row">
+      <div class="col-xs-12">
         <div class="form-group">
-      <span>Encargado: </span>
-      <input type="text" class="form-control" ng-model="client.manager"  placeholder="Ingrese el nombre del Encargado" />
+          <span>Dirección: </span>
+          <input  type="text" class="form-control" ng-model="client.address"  placeholder="Ingrese la Dirección" required/>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12">
         <div class="form-group">
-      <span>Teléfono: </span>
-      <input type="text" class="form-control" ng-model="client.tel" placeholder="Ingrese el Teléfono" />
+          <span>Encargado: </span>
+          <input type="text" class="form-control" ng-model="client.manager"  placeholder="Ingrese el nombre del Encargado" required/>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12">
         <div class="form-group">
-      <span>Fax: </span>
-      <input type="text" class="form-control" ng-model="client.fax"  placeholder="Ingrese el Fax" />
+          <span>Teléfono: </span>
+          <input type="text" class="form-control" ng-model="client.tel" placeholder="Ingrese el Teléfono" required/>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
+    <div class="row">
+      <div class="col-xs-12">
         <div class="form-group">
-      <span>Web: </span>
-      <input type="text" class="form-control" ng-model="client.web" placeholder="Ingrese la página web de la empresa" />
+          <span>Fax: </span>
+          <input type="text" class="form-control" ng-model="client.fax"  placeholder="Ingrese el Fax"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Web: </span>
+          <input type="url" class="form-control" ng-model="client.web" placeholder="Ingrese la página web de la empresa" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label>
+            <div class="btn search_btn"><input type="file" name="img_client" onchange="angular.element(this).scope().get_filename()" uploader-model="client.logo"/>Selecciona una Imagen</div>
+            <p id="file_img_msg">{{img_title}}</p>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Cuit: </span>
+          <input id="cuit" type="text" class="form-control" ng-model="client.cuit" ng-blur="check_cuit()" placeholder="Ingrese el cuit" required/>
+          <p class="validate_error">{{validate_cuit}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer" style="padding-right:5%;">
+    <div class="row">
+      <div class="col-xs-12">
+        <input id="submit_client" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+        <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="form-group">
-        <label>
-          <span class="PropertylabelText">Archivo: </span>
-          <div class="btn btn-primary"><input type="file" name="logo" uploader-model="client.logo"/>Selecciona una Imagen</div>
-        </label>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-        <div class="form-group">
-      <span>Cuit: </span>
-      <input id="cuit" type="text" class="form-control" ng-model="client.cuit" ng-blur="check_cuit()" placeholder="Ingrese el cuit" />
-      <p style="font-size:0.8vw;color:red;">{{validate_cuit}}</p>
-    </div>
-    </div>
-  </div>
+</form>
 </div>
-
-<div class="modal-footer" style="padding-right:5%;">
-  <div class="row">
-    <div class="col-xs-12">
-      <input type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
-      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
-    </div>
-  </div>
-</div>
-
-  </form>
-</div>
+<script>
+  $(document).ready(function(){
+    $('.multiselect').multiselect({
+      maxHeight: 200,
+      nonSelectedText: 'Selecciona una sección',
+      nSelectedText: 'Seleccionados',
+      allSelectedText: 'Todos Seleccionados',
+      enableCollapsibleOptGroups: false,
+      enableClickableOptGroups: false
+    });
+  });
+</script>

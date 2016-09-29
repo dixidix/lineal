@@ -1,0 +1,11 @@
+{
+  "host":"ftp.linealsoluciones.com",
+  "port":"21",
+  "secure":false,
+  "user":"linealso",
+  "password":"G2DQTDdzhJZp",
+  "connTimeout":10000,
+  "pasvTimeout":10000,
+  "keepalive":10000,
+  "path":"/public_html/mylsl"
+}

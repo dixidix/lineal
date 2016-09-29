@@ -1,0 +1,67 @@
+<div class="export fares"  ng-controller="fares_controller"  ng-show="Content_active">
+	<div class="bcrumb" style="top:2%;">
+		<a href="#" ui-sref="mylsl" ui-sref-opts="{reload: true}">My LSL > </a>  <a  href="#" ui-sref="mylsl.cpanel"  ui-sref-opts="{reload: true}">Administrar operaciones > </a><span class="bcrumb_active">{{client.name_desc | uppercase }}</span>
+	</div>
+	<div class="search">
+		<div class="row form-inline">
+			<button class="btn search_btn" style="margin-right: 3%;" ng-click="enableSearch()"><i ng-class="search_icon" style="font-size:12px;margin-right:4px;"></i>{{search_text}}</button>
+			<span ng-show="search_enable">
+				<button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Desde </button>
+				<input type="search" class="form-control search_box inp_date"  ng-model="fares_start" placeholder="Escriba aquí la tarifa 'Desde' a buscar"/>
+
+				<button class="btn search_btn search_op"><i class="glyphicon glyphicon-search"></i> Hasta </button>
+				<input type="search" class="form-control search_box inp_op"  ng-model="fares_end" placeholder="Escriba aquí la tarifa 'Hasta' a buscar"/>
+				<button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Tarifa </button>
+				<input type="search" class="form-control search_box inp_doc"  ng-model="fares_fare" placeholder="Escriba aquí la tarifa a buscar"/>
+			</span>
+			<button class="btn  add_operation" ng-click="add_operation()"><i class="glyphicon glyphicon-plus"></i>Tarifas</button>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<div class="operation_state setWhite">
+		</div>
+		<table class="table table-striped table-curved table-condensed table-hover">
+			<thead>
+				<tr>
+					<th style="border-radius: 5px 5px 0px 0px;" colspan="12">HONORARIOS: {{client.name_desc | uppercase }}</th>
+				</tr>
+				<tr>
+					<th>Desde</th>
+					<th>Hasta</th>
+					<th>Tarifa</th>
+					<th class="col-xs-1">Accciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="fare in  filtered = operations_fares | filter : paginate | filter : fares_start | filter : fares_end | filter : fares_fare | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
+					<td>{{ fare.start}}</td>
+					<td>{{ fare.end }}</td>
+					<td>{{ fare.fare }}</td>
+					<td class="col-xs-1"><a tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyFare(fare)" style="color:#000;cursor:pointer;text-decoration: none;"><i class="glyphicon glyphicon-edit"></i></a> <a ng-click="deleteFare(fare)" style="color:red;cursor:pointer;text-decoration: none;" tooltip="Eliminar" tooltip-trigger tooltip-placement="top"><i class="glyphicon glyphicon-remove"></i></a></td>
+				</tr>
+				<tr>
+					<th style="border-radius:0px" colspan="4">Tarifas expresadas en d&oacute;lares estaunidenses.</th>
+				</tr>
+				<tr>
+					<th style="border-radius:0px;" colspan="4">Los presentes costos no incluyen gastos bancarios ni inpuestos.</th>
+				</tr>
+				<tr>
+					<th style="border-radius: 0px 0px 5px 5px;" colspan="4">El presente sitio s&oacute;lo brinda informaci&oacute;n referencial</th>
+				</tr>
+			</tbody>
+		</table>
+		<pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" previous-text="Anterior" next-text="Siguiente" first-text="Primero" last-text="&Uacute;ltimo" boundary-links="true"></pagination>
+	</div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+  Cargando...
+  </div>
+</div>
+<div class="progress sending">
+  <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+  Enviando...
+  </div>
+</div>

@@ -1,54 +1,43 @@
-<div ng-controller="mylsl_controller">
-
-    <div class="container-fluid">
-        <div class="row">
-            <div id="mnleft" class="col-xs-2 menu-left">
-                <div class="client_logo_container" style="padding:15% 15% 0% 15%">
-                    <img ng-src="{{client_logo_path}}">
-                </div>
-                <div style="margin-top:30%">
-                    <ul class="menu">
-
-                        <a ng-show="show_import" href="#" ui-sref=".import" ui-sref-opts="{reload: true}">
-                            <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Importaciones</span></li>
-                        </a>
-                        <a ng-show="show_export" href="#" ui-sref=".export" ui-sref-opts="{reload: true}">
-                            <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Exportaciones</span></li>
-                        </a>
-                        <a download ng-show="show_following" target="_self" href="{{files.seguimiento}}" ng-class="{disabled: !files.seguimiento}" ui-sref-opts="{reload: true}">
-                            <li ng-click="remove_active" id="seguimiento" class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Seguimiento</span></li>
-                        </a>
-                        <a download ng-show="show_refund" target="_self" href="{{files.reintegro}}" ng-class="{disabled: !files.reintegro}" ui-sref-opts="{reload: true}">
-                            <li ng-click="remove_active" id="reintegro" class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Reintegros</span></li>
-                        </a>
-                        <a download ng-show="show_courrier" target="_self" href="{{files.courrier_imp}}" ng-class="{disabled: !files.courrier_imp}" ui-sref-opts="{reload: true}">
-                            <li ng-click="remove_active" id="courrier" class="list-item"><i class="glyphicon glyphicon-download-alt"></i><span>Courrier Imp.</span></li>
-                        </a>
-                        <a ng-show="show_add_op" href="#" ui-sref=".cpanel" ng-click="reset_all()" ui-sref-opts="{reload: true}">
-                            <li class="list-item"><i class="glyphicon glyphicon-list-alt"></i><span>Administrar Operaciones</span></li>
-                        </a>
-                        <a ng-show="show_add_op" href="#" ui-sref=".cpanel_users" ui-sref-opts="{reload: true}">
-                            <li class="list-item"><i class="glyphicon glyphicon-user"></i><span>Administrar Usuarios</span></li>
-                        </a>
-                        <a ng-show="show_add_op" href="#" ui-sref=".cpanel_clients" ui-sref-opts="{reload: true}">
-                            <li class="list-item"><i class="glyphicon glyphicon-briefcase"></i><span>Administrar Clientes</span></li>
-                        </a>
-                        <a ng-show="show_add_op" href="#" ui-sref=".cpanel_emails" ui-sref-opts="{reload: true}">
-                            <li class="list-item"><i class="glyphicon glyphicon-envelope"></i><span>Administrar E-Mails</span></li>
-                        </a>
-                        <a ng-click="logout()">
-                            <li class="list-item"><i class="glyphicon glyphicon-log-out"></i><span>Salir</span></li>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-            <div id="content" class="col-xs-10 content">
-                <div ui-view="content"></div>
-
-            </div>
-            <div class="footer"><span>Bienvenido/a {{name}} a My LSL, su portal en donde podrá gerenciar sus operaciones de Logística y Comercio Exterior.</span>
-                <br>
-                <span>Teléfono 54 11 4326-3315 (líneas rotativas). </span></div>
-    </div>
-</div>
-</div>
+<div ng-controller="mylsl_controller">
+  <div class="container-fluid">
+    <div class="row">
+      <div id="mnleft" class="col-xs-2 menu-left">
+        <div class="client_logo_container" style="padding: 15% 15% 10% 17%;">
+          <img ng-src="{{client_logo_path}}">
+        </div>
+        <ul class="menu">
+
+          <a href="#"  ng-repeat="section in sections" id="{{section.sectionId}}" data-ui-sref-active="active" ng-click="navigate(section)">
+            <li class="list-item"><i class="glyphicon glyphicon-{{section.icon}}"></i><span>{{section.sectionDesc}}</span></li>
+          </a>
+          <a ng-hide="noOldSite" ng-click="consultOldSite()">
+           <li id="consultOldSite" class="list-item">
+             <i class="glyphicon glyphicon-globe"></i><span>Consultar sitio anterior</span>
+           </li>
+         </a>
+         <a ng-click="logout()">
+          <li class="list-item"><i class="glyphicon glyphicon-log-out"></i><span>Salir</span></li>
+        </a>
+      </ul>
+      <div  style="padding:15% 15% 0% 15%">
+        <img class="mylsl_logo" ng-src="./logos/mylsl.jpg">
+      </div>
+    </div>
+    <div id="content" class="col-xs-10 content">
+      <!--         <img ng-show="show_add_op" class="lineal_logo" ng-src="./logos/lineal.jpg"> -->
+      <div ui-view="content">
+      </div>
+
+    </div>
+    <div class="footer"><span>Bienvenido/a {{name}} a My LSL, su portal en donde podrá gerenciar sus operaciones de Logística y Comercio Exterior.</span>
+      <br>
+      <span>Teléfono 54 11 4326-3315 (líneas rotativas). </span></div>
+    </div>
+  </div>
+</div>
+<div class="progress" style="display:none;">
+  <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+  Cargando...
+</div>
+</div>

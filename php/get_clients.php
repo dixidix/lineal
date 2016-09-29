@@ -9,7 +9,11 @@ $outp="";
 
 while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "") {$outp .= ",";}
-
+    $outpm ="";
+    $sectionsString = "";
+    $sectionIdString = "";
+    $sectionDesc = array();
+    $sectionId = array();
     $outpm ="";
     $outp .= '{"id":"'  . $rs["clientId"].'",';
     $outp .= '"name_desc":"'   . $rs["name_desc"] .'",';
@@ -24,9 +28,19 @@ while($rs = $res->fetch_array(MYSQLI_ASSOC)) {
       if ($outpm != "") {$outpm .= ",";}
       $outpm .= '{"id":"'   . $rss["emailId"].'",';
       $outpm .= '"email":"'   . $rss["email"].'"}';
-    }
-    $outp .='"emails":['.$outpm.'],';
-    $outp .= '"cuit":"'   . $rs["cuit"].'"}';
+  }
+  $outp .='"emails":['.$outpm.'],';
+  $unname = MysqliDB::getInstance()->query("SELECT client_section.id_section, section.section_desc FROM client_section LEFT JOIN section ON client_section.id_section=section.id_section WHERE client_section.id_client = '".$rs["clientId"]."' ORDER BY client_section.id_section");
+  while($rsss = $unname->fetch_array(MYSQLI_ASSOC)) {
+   if ($outpm != "") {$outpm .= ",";}
+   $sectionId[] = $rsss["id_section"];
+   $sectionDesc[] = $rsss["section_desc"];
+}
+ $sectionsString = implode(", ", $sectionDesc);
+ $sectionIdString = implode(",", $sectionId);
+ $outp .= '"sectionId":"'   . $sectionIdString. '",';
+ $outp .= '"sectionDesc":"'   . $sectionsString. '",';
+$outp .= '"cuit":"'   . $rs["cuit"].'"}';
 
 }
 $outp ='{"clients":['.$outp.']}';

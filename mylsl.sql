@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-12-2015 a las 22:09:49
+-- Tiempo de generación: 30-12-2015 a las 18:19:07
 -- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -44,10 +44,7 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`clientId`, `name_desc`, `address`, `manager`, `tel`, `fax`, `web`, `clientLogoPath`, `cuit`, `deleted`) VALUES
-(1, 'esco s.a', 'tabanera 3385', 'Nicolas Sigal', '4294555', '146542', 'www.google.com', 'logos/jas.jpg', '1012311231', 0),
-(2, 'cisco srl', 'cadetes chilenos 173', 'Martin Martinez', '153013907', '42374541', 'www.ciscosrl.com.ar', 'logos/cisco.jpg', '123456789', 0),
-(3, 'Lineal Soluciones', 'calle falsa 123', 'Paula Rojas', '158459789', '123118015', 'www.linealsoluciones.com', 'logos/lineal.jpg', '54362181', 0),
-(20, 'emp', 'dir', 'enc', 'tel', 'fax', 'web', 'logos/emp/10426766_10203886708669735_7062214750264119858_n.jpg', '23123', 0);
+(1, 'Lineal Soluciones', 'Roque Saenz Peña 917 Floor 2 - CABA - Argentina', 'Santiago Lloret', '+54 11 4326 3315', '', 'http://www.linealsoluciones.com/', 'logos/lineal.jpg', '1-789456-0', 0);
 
 -- --------------------------------------------------------
 
@@ -62,20 +59,6 @@ CREATE TABLE `client_email` (
   `name` varchar(45) NOT NULL,
   `deleted` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `client_email`
---
-
-INSERT INTO `client_email` (`emailId`, `clientId`, `email`, `name`, `deleted`) VALUES
-(1, 1, 'nicolas.sigal@gmail.com', 'Nicolas Sigal', 0),
-(3, 1, 'joys@sigal.com', 'Johanna Robbinson', 0),
-(4, 2, 'paul@martinez.com', 'Paula Martinez', 0),
-(8, 2, 'pedro.altrencio@escosa.com', 'pedro Altrencio', 0),
-(9, 2, 'Roberto.c@g.com', 'Roberto Carlos', 0),
-(10, 3, 'nicolas.gomez@uolsinectis.com', 'Nicolas Gomez', 0),
-(11, 15, 'aabb@bbaa.com', 'Aa BB', 1),
-(12, 19, 'nsigal@pruebfinal.com', 'nico sigal', 1);
 
 -- --------------------------------------------------------
 
@@ -94,25 +77,6 @@ CREATE TABLE `document` (
   `doc_type` varchar(45) NOT NULL,
   `upload_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `document`
---
-
-INSERT INTO `document` (`documentId`, `clientId`, `operationTypeId`, `ref_lsl`, `document_path`, `document_ext`, `deleted`, `doc_type`, `upload_date`) VALUES
-(59, 1, NULL, NULL, '/lineal/files/1/documents/seguimiento/arboles_de_decision.pdf', 0, 0, 'seguimiento', '2015-12-29 12:32:24'),
-(60, 1, NULL, NULL, '/lineal/files/1/documents/seguimiento/amexLogo.png', 0, 0, 'seguimiento', '2015-12-29 12:32:43'),
-(61, 1, NULL, NULL, '/lineal/files/1/documents/seguimiento/arboles_de_decision.pdf', 0, 0, 'seguimiento', '2015-12-29 12:50:13'),
-(62, 1, NULL, NULL, '/lineal/files/1/documents/seguimiento/bd_(9).xlsx', 0, 0, 'seguimiento', '2015-12-29 12:50:25'),
-(63, 1, NULL, NULL, '/lineal/files/1/documents/seguimiento/wireframe3.xlsx', 0, 0, 'seguimiento', '2015-12-29 13:00:05'),
-(64, 1, NULL, NULL, '/lineal/files/1/documents/reintegros/arboles_de_decision.pdf', 0, 0, 'reintegros', '2015-12-29 12:56:18'),
-(65, 1, NULL, NULL, '/lineal/files/1/documents/reintegros/amexLogo.png', 0, 0, 'reintegros', '2015-12-30 13:56:25'),
-(66, 1, NULL, NULL, '/lineal/files/1/documents/reintegros/134704-ubuntu-wallpaper-blue-desktop-wallpaper-1920x1200.jpg', 0, 0, 'reintegros', '2015-12-30 12:56:31'),
-(70, 1, NULL, NULL, '/lineal/files/1/documents/reintegros/10869672_10205318082813194_8794960290261265111_o.jpg', 0, 0, 'reintegros', '2015-12-30 14:07:41'),
-(82, 20, 2, 89, '/lineal/files/20/operations/2/OCTEST1/bd_(1).xlsx', 0, 0, 'pdf', NULL),
-(83, 20, 2, 89, '/lineal/files/20/operations/2/OCTEST1/SolicitudRNR.pdf', 0, 0, 'fcl', NULL),
-(84, 20, 1, 90, '/lineal/files/20/operations/1/ON-201/bd_(3).xlsx', 0, 0, 'pdf', NULL),
-(85, 20, 1, 90, '/lineal/files/20/operations/1/ON-201/wireframe3.pdf', 0, 0, 'fcl', NULL);
 
 -- --------------------------------------------------------
 
@@ -188,8 +152,9 @@ INSERT INTO `operation` (`ref_lsl`, `ref_client`, `merchandise`, `transport`, `s
 (86, 'reftest1', 'M', NULL, '2015-11-11', NULL, NULL, 'D', NULL, NULL, NULL, 'F', 15, 1, 1),
 (87, 'ON-2020', 'Mercaderi', NULL, '2015-11-11', NULL, NULL, 'Doc', NULL, NULL, NULL, 'Fac', 19, 1, 0),
 (88, 'OC SCMIST-0998', 'MM', 'TRA', NULL, '2015-11-11', '2015-11-11', 'D', 'D', '2015-11-11', '2015-11-11', 'FAC', 19, 2, 0),
-(89, 'OCTEST1', 'mercaderia', 't', NULL, '2015-11-11', '2015-11-11', 'D', 'D', '2015-11-11', '2015-11-11', 'F', 20, 2, 0),
-(90, 'ON-201', 'mercaderia', NULL, '2015-11-11', NULL, NULL, 'Doc', NULL, NULL, NULL, 'Fac', 20, 1, 0);
+(89, 'OCTEST1_deleted', 'mercaderia', 't', NULL, '2015-11-11', '2015-11-11', 'D', 'D', '2015-11-11', '2015-11-11', 'F', 20, 2, 1),
+(90, 'deleted_ON-201_deleted', 'mercaderia', NULL, '2015-11-11', NULL, NULL, 'Doc', NULL, NULL, NULL, 'Fac', 20, 1, 1),
+(92, 'ON-201_deleted', 'Merc', NULL, '2015-11-11', NULL, NULL, 'Doc', NULL, NULL, NULL, 'F', 20, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -233,16 +198,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userId`, `username`, `password`, `name`, `role`, `tel`, `active`, `clientId`, `deleted`) VALUES
-(1, 'nicolas.sigal@escosa.com', '123456', 'Nicolas Sigal', '1, 2, 3, 4, 5', '4294555', 0, 1, 0),
-(2, 'joybelmonte@cisco.com', 'jowi', 'Johanna Belmonte', '1, 2, 3, 4', '4378622', 0, 2, 0),
-(3, 'admin', 'admin', 'Nicolas Sigal', '6', '153013907', 0, 3, 0),
-(5, 'juan@berdugo.com', 'juancho', 'Juan Berdugo', '1, 2', '132456', 0, 1, 0),
-(7, 'carchu', '123456', 'Carlos Alberto Guzman', '1, 2, 3, 4, 5', '4753951', 0, 1, 0),
-(8, 'pepe.hongo@aaa.com', '123456', 'Pepe Hongo', '1, 2, 3, 4, 5', '4294444', 0, 15, 1),
-(9, 'emp@prueba.com', '123456', 'Nicolas Sigal', '1, 2, 5', '132456', 0, 16, 1),
-(10, 'test@test', '123456', 'TEST TEST', '1', '45654645', 0, 17, 1),
-(12, 'test2@test', '123456', 'tes', '1', '123213', 0, 18, 1),
-(15, 'n@s', '132', 'nico sigal', '1, 2, 3, 4, 5', '4294555', 0, 20, 0);
+(1, 'admin', 'admin', 'Nicolas Sigal', '6', '153013907', 0, 1, 0);
 
 --
 -- Índices para tablas volcadas
@@ -294,22 +250,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `client`
 --
 ALTER TABLE `client`
-  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `clientId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `client_email`
 --
 ALTER TABLE `client_email`
-  MODIFY `emailId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `emailId` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `document`
 --
 ALTER TABLE `document`
-  MODIFY `documentId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `documentId` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `operation`
 --
 ALTER TABLE `operation`
-  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `ref_lsl` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 --
 -- AUTO_INCREMENT de la tabla `operation_type`
 --
@@ -319,7 +275,7 @@ ALTER TABLE `operation_type`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `userId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

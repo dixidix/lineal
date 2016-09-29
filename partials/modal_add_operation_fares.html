@@ -1,0 +1,48 @@
+<div class="spinner" ng-show="loading">
+  <h1 style="margin-left: 33%;margin-top:8%;color: #cd6702; text-shadow: 1px 1px 2px #2e2e2e;">ENVIANDO...</h1>
+
+<div class="progress" style="width:90%;margin:5%;">
+  <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+  </div>
+</div>
+
+</div>
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
+</div>
+<div class="modal-body">
+  <form name="add_op_fares" role="form" class="" ng-submit="add_op_fares.$valid && create_fare()" autocomplete="off" novalidate>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Desde: </span>
+          <input  type="text" class="form-control" ng-model="operation_fares.start" placeholder="Ingrese la tarifa 'Desde'"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Hasta: </span>
+          <input id="bills_ref_lsl" type="text" class="form-control" ng-blur="check_ref_lsl()" ng-model="operation_fares.end" placeholder="Ingrese la tarifa 'hasta'" required/>
+          <p class="validate_error">{{validate_ref_lsl}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+        <span>Tarifa: </span>
+          <input id="bills_ref_lsl" type="text" class="form-control" ng-blur="check_ref_lsl()" ng-model="operation_fares.fare" placeholder="Ingrese la tarifa" required/>
+          <p class="validate_error">{{validate_ref_lsl}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <input id="submit_bills" ng-disabled="add_op_fares.$invalid" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+    </div>
+  </form>
+</div>

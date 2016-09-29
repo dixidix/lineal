@@ -1,69 +1,49 @@
-<?php
+<?php 
 require 'db.php';
-
 //$_POST = json_decode(file_get_contents('php://input'), true);
 $errors = array();
-
-if (empty($_POST['client_id'])){
-	$errors['refClientError'] = "ref Cliente inválida.";
+if (empty($_POST['clientId'])){
+	$errors['clientIdError'] = "Ingrese un id de cliente";
 }
-
-if (empty($_POST['doc_type'])){
-	$errors['doc_typeError'] = "tipo de documento inválido.";
+if (empty($_POST['fileTypeId'])){
+	$errors['fileTypeIdError'] = "Ingrese un tipo de archivo";
 }
-
-
-if (empty($_POST['upload_date'])){
-	$errors['upload_dateError'] = "Fecha inválida.";
+if (empty($_POST['uploadDate'])){
+	$errors['uploadDateError'] = "ingrese una fecha de subida";
 }
-
+if (empty($_POST['timeStamp'])){
+	$errors['timeStampError'] = "ingrese una fecha de subida";
+}
 if (empty($_FILES['client_file'])){
-	$errors['client_fileError'] = "Archivo inválido.";
+	$errors['clientFileError'] = "Archivo vacio";
 }
-
-
 if (empty($errors)){
-
-
-	$file_name = $_FILES['client_file']['name'];
-	$file_name = str_replace(' ', '_', $file_name);
-	$file_size =$_FILES['client_file']['size'];
+	$clientId = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['clientId']));
+	$fileTypeId = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['fileTypeId']));
+	$uploadDate = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['uploadDate']));
+	$filename = $_FILES['client_file']['name'];
+	$ext = pathinfo($filename, PATHINFO_EXTENSION);
+	$timestamp = MysqliDB::double_scape(MysqliDB::getInstance()->mysql_real_escape_string($_POST['timeStamp']));
+	$fileSystemname = $filename . $timestamp;
+	$fileSystemname = hash('sha256', $fileSystemname);
+	$fileSystemname = "$fileSystemname.$ext";
 	$file_tmp = $_FILES['client_file']['tmp_name'];
-	$file_type =$_FILES['client_file']['type'];
-	$file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-
-  $date = $_POST['upload_date'];
-
-  $client_id = $_POST['client_id'];
-  $doc_type = $_POST['doc_type'];
-
-
-	$tmp_path= "../files/".$client_id."/documents/".$doc_type."/".$file_name;
-
-	$path = "/lineal/files/".$client_id."/documents/".$doc_type."/".$file_name;
-
-
-	if(!file_exists("../files/".$client_id."/documents/".$doc_type."/")){
-		mkdir("../files/".$client_id."/documents/".$doc_type."/");
-		if(!empty($_FILES['client_file'])){
-
-		move_uploaded_file($file_tmp, "$tmp_path");
-
+	$tmp_path= "../files/".$fileSystemname;	
+	if(!file_exists("../files/")){
+		mkdir("../files/");	
+		if(!empty($_FILES['client_file'])){	
+			move_uploaded_file($file_tmp, "$tmp_path");
 		}
-	}else{
+	}else{	
 		if(!empty($_FILES['client_file'])){
-
-		move_uploaded_file($file_tmp, "$tmp_path");
+			move_uploaded_file($file_tmp, "$tmp_path");
 		}
 	}
-
-if(!empty($_FILES['client_file'])){
-	MysqliDB::getInstance()->query("INSERT INTO `document`( `clientId`, `document_path`, `document_ext`, `doc_type`, `upload_date`) VALUES ('" . $client_id . "','" . $path . "','" . $file_ext . "','".$doc_type."','".$date."')");
-	echo MysqliDB::getInstance()->error();
-}
-
-
-}else{
+	if(!empty($_FILES['client_file'])){	
+		MysqliDB::getInstance()->query("INSERT INTO `files`(`clientId`, `operationId`, `fileTypeId`, `filename`, `fileSystemname`, `uploadDate`, `extension`, `deleted`) VALUES  ('".$clientId."',NULL,'".$fileTypeId."','".$filename."','".$fileSystemname."','".$uploadDate."','".$ext."', 0)");
+		echo MysqliDB::getInstance()->error();
+	}
+}else{	
 	print_r($errors);
 }
 ?>

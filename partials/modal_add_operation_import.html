@@ -1,147 +1,452 @@
+<div class="spinner" ng-show="loading">
+
+  <h1 style="margin-left: 33%;margin-top:8%;color: #cd6702; text-shadow: 1px 1px 2px #2e2e2e;">ENVIANDO...</h1>
+
+
+
+  <div class="progress" style="width:90%;margin:5%;">
+
+    <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"
+
+    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+
+  </div>
+
+</div>
+
+
+
+</div>
+
 <div class="modal-header">
+
   <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
   <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
+
 </div>
+
 <div class="modal-body">
-  <form name="newuser" role="form" class="" ng-submit="create_import()" autocomplete="off">
 
-<div class="row">
-  <div class="col-xs-12">
-    <div class="form-group">
-      <span>referencia del cliente: </span>
-        <input id="new_ref_client" type="text" class="form-control"  ng-model="operation_import.ref_client" placeholder="Ingrese la referencia de cliente" />
-    </div>
-  </div>
-</div>
-
+  <form name="add_op_import" role="form" ng-submit="add_op_import.$valid && create_import()" autocomplete="off">
 
     <div class="row">
+
       <div class="col-xs-12">
+
         <div class="form-group">
+
+          <span>responsable: </span>
+
+          <select ng-disabled="loadOwner" id="select_owner" name="owner" ng-model="select_owner" class="form-control header_controls" required>
+
+            <option selected="selected" disabled="disabled" value="">Selecciona un responsable</option>
+
+            <option ng-repeat="user in users" value="{{user.userId}}">{{ user.name }}</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <span>referencia del cliente: </span>
+
+          <input  id="imp_ref_client" name="refCliente" type="text" class="form-control"  ng-blur="check_ref_client()" ng-model="operation_import.ref_client" placeholder="Ingrese la referencia de cliente" required/>
+
+          <p class="validate_error">{{validate_ref_client}}</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <span>N&uacute;mero de operaci&oacute;n: </span>
+
+          <input id="imp_operation_number" type="text" class="form-control"  ng-model="operation_import.operation_number" placeholder="Ingrese el número de operación" required/>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
           <span>Mercadería: </span>
-          <input type="text" class="form-control" ng-model="operation_import.merchandise" placeholder="Ingrese la mercaderia a transportar" />
+
+          <input  type="text" name="merchandise" class="form-control" ng-model="operation_import.merchandise" placeholder="Ingrese la mercaderia a transportar" />
+
         </div>
+
       </div>
+
     </div>
 
     <div class="row">
+
       <div class="col-xs-12">
+
         <div class="form-group">
-            <span>Transporte: </span>
-            <input type="text" class="form-control" ng-model="operation_import.transport"  placeholder="Ingrese el método de transporte" />
+
+          <span>Transporte: </span>
+
+          <input type="text" name="transport" class="form-control" ng-model="operation_import.transport"  placeholder="Ingrese el método de transporte" />
+
         </div>
+
       </div>
-    </div>
 
-
-
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-            <span>Embarque origen: </span>
-              <div class="input-group">
-                <input class="date_day form-control" ng-model="operation_import.shipment_origin_day" type="number" id="date_day" min="1" max="31" placeholder="día">
-                <input class="date_month form-control" ng-model="operation_import.shipment_origin_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
-                <input class="date_year form-control" ng-model="operation_import.shipment_origin_year" type="number" id="date_year" min="1970" placeholder="año">
-              </div>
-        </div>
-      </div>
-    </div>
-
-
-<div class="row">
-  <div class="col-xs-12">
-    <div class="form-group">
-        <span>Arribo Estimado: </span>
-        <div class="input-group">
-          <input class="date_day form-control" ng-model="operation_import.estimated_arrival_day" type="number" id="date_day" min="1" max="31" placeholder="día">
-          <input class="date_month form-control" ng-model="operation_import.estimated_arrival_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
-          <input class="date_year form-control" ng-model="operation_import.estimated_arrival_year" type="number" id="date_year" min="1970" placeholder="año">
-        </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-xs-12">
-    <div class="form-group">
-      <span>Documento Aduanero: </span>
-      <input type="text" class="form-control" ng-model="operation_import.custom_document" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese la descripción del doc. aduanero" />
-    </div>
-  </div>
-</div>
-
-
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-            <span>Documento DJAI: </span>
-            <input type="text" class="form-control" ng-model="operation_import.custom_document_djai" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese la descripción del doc. DJAI"/>
-        </div>
-      </div>
     </div>
 
     <div class="row">
+
       <div class="col-xs-12">
+
         <div class="form-group">
-            <span>Fecha de Arribo: </span>
-            <div class="input-group">
-              <input class="date_day form-control" ng-model="operation_import.arrival_date_day" type="number" id="date_day" min="1" max="31" placeholder="día">
-              <input class="date_month form-control" ng-model="operation_import.arrival_date_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
-              <input class="date_year form-control" ng-model="operation_import.arrival_date_year" type="number" id="date_year" min="1970" placeholder="año">
+
+          <span>Embarque origen: </span>
+
+          <div class="input-group">
+
+            <input  name="shipment_origin_day" class="date_day form-control" ng-model="operation_import.shipment_origin_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+
+            <input name="shipment_origin_month" class="date_month form-control" ng-model="operation_import.shipment_origin_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+
+            <input name="shipment_origin_year" class="date_year form-control" ng-model="operation_import.shipment_origin_year" type="number" id="date_year" min="1970" placeholder="año">
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <span>Arribo Estimado: </span>
+
+          <div class="input-group">
+
+            <input name="estimated_arrival_day" class="date_day form-control" ng-model="operation_import.estimated_arrival_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+
+            <input name="estimated_arrival_month" class="date_month form-control" ng-model="operation_import.estimated_arrival_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+
+            <input name="estimated_arrival_year" class="date_year form-control" ng-model="operation_import.estimated_arrival_year" type="number" id="date_year" min="1970" placeholder="año">
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <span>Documento Aduanero: </span>
+
+          <input name="custom_document" type="text" class="form-control" ng-model="operation_import.custom_document" placeholder="Ingrese la descripción del doc. aduanero" />
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <span>Documento SIMI: </span>
+
+          <input name="custom_document_djai" type="text" class="form-control" ng-model="operation_import.custom_document_djai" placeholder="Ingrese la descripción del doc. DJAI"/>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <span>Fecha de Arribo: </span>
+
+          <div class="input-group">
+
+            <input name="arrival_date_day" class="date_day form-control" ng-model="operation_import.arrival_date_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+
+            <input name="arrival_date_month" class="date_month form-control" ng-model="operation_import.arrival_date_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+
+            <input name="arrival_date_year" class="date_year form-control" ng-model="operation_import.arrival_date_year" type="number" id="date_year" min="1970" placeholder="año">
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <span>Fecha de liberación: </span>
+
+          <div class="input-group">
+
+            <input name="release_date_day" class="date_day form-control" ng-model="operation_import.release_date_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+
+            <input name="release_date_month" class="date_month form-control" ng-model="operation_import.release_date_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+
+            <input name="release_date_year" class="date_year form-control" ng-model="operation_import.release_date_year" type="number" id="date_year" min="1970" placeholder="año">
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <span>Fecha de Solicitud de fondos: </span>
+
+          <div class="input-group">
+
+            <input name="request_funding_day" class="date_day form-control" ng-model="operation_import.request_funding_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+
+            <input name="request_funding_month" class="date_month form-control" ng-model="operation_import.request_funding_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+
+            <input name="request_funding_year" class="date_year form-control" ng-model="operation_import.request_funding_year" type="number" id="date_year" min="1970" placeholder="año">
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <span>Fecha de recepción de fondos: </span>
+
+          <div class="input-group">
+
+            <input name="recived_funds_day" class="date_day form-control" ng-model="operation_import.recived_funds_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+
+            <input name="recived_funds_month" class="date_month form-control" ng-model="operation_import.recived_funds_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+
+            <input name="recived_funds_year" class="date_year form-control" ng-model="operation_import.recived_funds_year" type="number" id="date_year" min="1970" placeholder="año">
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <span>Factura LSL: </span>
+
+          <input name="lsl_bill" id="imp_ref_lsl" type="text" class="form-control" ng-blur="check_ref_lsl()" ng-model="operation_import.lsl_bill" placeholder="Ingrese el número de factura de LSL"/>
+
+          <p class="validate_error">{{validate_ref_lsl}}</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <label>
+            <div ng-if="operation_import.imp_pdf">
+              <div class="btn search_btn" style="background:green;"><input type="file" name="imp_pdf" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_pdf"/>Selecciona un archivo de PDF</div>
+              <a style="margin-left: 25px;" href="{{operation_import.imp_pdf}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+              <p id="file_pdf_msg">{{imp_pdf_title}}</p>
             </div>
+            <div ng-if="!operation_import.imp_pdf">
+              <div class="btn search_btn"><input type="file" name="imp_pdf" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_pdf"/>Selecciona un archivo de PDF</div>
+
+              <p id="file_pdf_msg">{{imp_pdf_title}}</p>
+            </div>
+
+
+          </label>
+
         </div>
+
       </div>
+
     </div>
 
-<div class="row">
-  <div class="col-xs-12">
-    <div class="form-group">
-      <span>Fecha de liberación: </span>
-      <div class="input-group">
-        <input class="date_day form-control" ng-model="operation_import.release_date_day" type="number" id="date_day" min="1" max="31" placeholder="día">
-        <input class="date_month form-control" ng-model="operation_import.release_date_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
-        <input class="date_year form-control" ng-model="operation_import.release_date_year" type="number" id="date_year" min="1970" placeholder="año">
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div class="form-group">
+
+          <label>
+            <div ng-if="operation_import.imp_fcl">
+             <div class="btn search_btn" style="background:green;"><input type="file" name="imp_fcl" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_fcl"/>Selecciona un archivo de FCL</div>
+             <a style="margin-left: 25px;" href="{{operation_import.imp_fcl}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+             <p id="file_fcl_msg">{{imp_fcl_title}}</p>
+           </div>
+           <div ng-if="!operation_import.imp_fcl">
+            <div class="btn search_btn"><input type="file" name="imp_fcl" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_fcl"/>Selecciona un archivo de FCL</div>
+
+            <p id="file_fcl_msg">{{imp_fcl_title}}</p>
+          </div>
+        </label>
+
       </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-xs-12">
+
+      <div class="form-group">
+
+        <label>
+          <div ng-if="operation_import.imp_simi">
+            <div class="btn search_btn" style="background:green;"><input type="file" name="imp_simi" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_simi"/>Selecciona un archivo de SIMI</div>
+            <a style="margin-left: 25px;" href="{{operation_import.imp_simi}}" target="_blank"><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+            <p id="file_simi_msg">{{imp_simi_title}}</p>
+          </div>
+          <div ng-if="!operation_import.imp_simi">
+            <div class="btn search_btn"><input type="file" name="imp_simi" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_simi"/>Selecciona un archivo de SIMI</div>
+
+            <p id="file_simi_msg">{{imp_simi_title}}</p>
+          </div>
+        </label>
+
       </div>
-    </div>
-  </div>
 
-<div class="row">
-  <div class="col-xs-12">
-    <div class="form-group">
-        <span>Factura LSL: </span>
-          <input type="text" class="form-control" ng-model="operation_import.lsl_bill" style="height: 30px; width:564px; border-radius: 0px;" placeholder="Ingrese el número de factura de LSL"/>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <div class="form-group">
-      <label>
-        <span class="PropertylabelText">Archivo: </span>
-        <div class="btn btn-primary"><input type="file" name="imp_pdf" uploader-model="operation_import.imp_pdf"/>Selecciona un archivo de PDF</div>
-      </label>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-12">
-    <div class="form-group">
-      <label>
-        <span class="PropertylabelText">Archivo: </span>
-        <div class="btn btn-primary"><input type="file" name="imp_fcl" uploader-model="operation_import.imp_fcl"/>Selecciona un archivo de FCL</div>
-      </label>
-    </div>
-  </div>
-</div>
-
-    <div class="modal-footer">
-      <input type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
-      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
     </div>
 
-  </form>
+  </div>
+
+  <div class="row">
+
+    <div class="col-xs-12">
+
+      <div class="form-group">
+
+        <label>
+          <div ng-if="operation_import.imp_reqfound">
+            <div class="btn search_btn"  style="background:green;"><input type="file" name="imp_reqfound" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_reqfound"/>Selecciona un archivo de REQ. FONDOS</div>
+            <a style="margin-left: 25px;" href="{{operation_import.imp_reqfound}}" target="_blank" ><i class="glyphicon glyphicon-search"></i> Ver Archivo</a>
+            <p id="file_imp_reqfound_msg">{{imp_reqfound_title}}</p>
+          </div>
+          <div ng-if="!operation_import.imp_reqfound">
+            <div class="btn search_btn"><input type="file" name="imp_reqfound" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_import.imp_reqfound"/>Selecciona un archivo de REQ. FONDOS</div>
+
+            <p id="file_imp_reqfound_msg">{{imp_reqfound_title}}</p>
+          </div>
+        </label>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row" ng-show="isEditing">
+
+    <div class="col-xs-12">
+
+      <div class="form-group">
+
+        <span>Estado de la operación: </span>
+
+        <select id="select_op_state" name="op_state" ng-model="operation_import.op_state" class="form-control header_controls">
+
+          <option selected="selected" disabled="disabled" value="">Selecciona un estado</option>
+
+          <option value="0" selected>En Curso</option>
+
+          <option value="1">Terminado</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+
+    <input id="submit_imp"  type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+
+    <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+
+  </div>
+
+</form>
+
 </div>
+

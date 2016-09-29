@@ -1,18 +1,18 @@
-<div class="clients" ng-controller="emails_controller">
-
+<div id="cpanel_emails" class="export email" ng-controller="emails_controller">
+  <div class="bcrumb" style="top:3%;">
+  <a href="#" ui-sref="mylsl" ui-sref-opts="{reload: true}">My LSL > </a> <span  class="bcrumb_active">Administrar E-Mails </span>
+</div>
   <div class="search">
     <div class="row form-inline">
+      <button class="btn search_btn" style="margin-right: 3%;" ng-click="enableSearch()"><i ng-class="search_icon" style="font-size:12px;margin-right:4px;"></i>{{search_text}}</button>
+      <span ng-show="search_enable">
         <button class="btn search_btn search_date"><i class="glyphicon glyphicon-search"></i> Empresa </button>
           <input type="search" class="form-control search_box inp_date"  ng-model="client_search" placeholder="Escriba aquí la empresa a buscar"/>
-
-
-
           <button class="btn search_btn search_op"><i class="glyphicon glyphicon-search"></i> Nom./Apellido </button>
         <input type="search" class="form-control search_box inp_op"  ng-model="client_search" placeholder="Escriba aquí el Nom./apellido a buscar"/>
-
-
       <button class="btn search_btn search_doc"><i class="glyphicon glyphicon-search"></i> Email </button>
       <input type="search" class="form-control search_box inp_doc"  ng-model="client_search" placeholder="Escriba aquí el email a buscar"/>
+    </span>
       <button class="btn  add_operation" ng-click="add_email()"><i class="glyphicon glyphicon-plus"></i>E-Mail</button>
   </div>
   </div>
@@ -26,20 +26,19 @@
         <th class="col-xs-1">Acciones</th>
       </tr>
     </thead>
-
     <tbody>
       <tr ng-repeat="email in  filtered = emails| filter : paginate | filter : client_search| startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">
         <td>{{ email.company_name }}</td>
         <td>{{ email.name }}</td>
         <td>{{ email.email }}</td>
         <td class="col-xs-1">
-          <a data-toggle="tooltip" title="Enviar Mail" data-placement="top" ng-click="mail" href="mailto:{{email.email}}" style="color:#000;cursor:pointer;margin-right:5px;">
+          <a tooltip="Enviar Mail" tooltip-trigger tooltip-placement="top" ng-click="mail" href="mailto:{{email.email}}" style="color:#000;cursor:pointer;margin-right:5px;text-decoration: none;">
             <i class="glyphicon glyphicon-envelope"></i>
           </a>
-          <a tooltip="Editar" tooltip-placement="top" ng-click="modifyEmail(email, $index)" style="color:#000;cursor:pointer;margin-right:5px;">
+          <a tooltip="Editar" tooltip-trigger tooltip-placement="top" ng-click="modifyEmail(email, $index)" style="color:#000;cursor:pointer;margin-right:5px;text-decoration: none;">
             <i class="glyphicon glyphicon-edit"></i>
           </a>
-           <a ng-click="deleteEmail(email, $index)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-placement="top" style="cursor:pointer;margin-right:5px;">
+           <a ng-click="deleteEmail(email, $index)" style="color:red;cursor:pointer;" tooltip="Eliminar" tooltip-trigger tooltip-placement="top" style="cursor:pointer;margin-right:5px;text-decoration: none;">
              <i class="glyphicon glyphicon-remove"></i>
            </a>
          </td>
@@ -47,6 +46,18 @@
       </tr>
     </tbody>
   </table>
-  <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit"></pagination>
+  <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit" previous-text="Anterior" next-text="Siguiente" first-text="Primero" last-text="&Uacute;ltimo" boundary-links="true"></pagination>
 </div>
+</div>
+<div class="progress">
+  <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+  Cargando...
+  </div>
+</div>
+<div class="progress sending">
+  <div class="progress-bar progress-bar-primary progress-bar-striped progress-bar-lineal active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+  Enviando...
+  </div>
 </div>

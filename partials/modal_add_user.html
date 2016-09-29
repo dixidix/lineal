@@ -1,75 +1,96 @@
-
-<div class="modal-header">
-  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
-</div>
-<form name="newuser" role="form" class="" ng-submit="create_user()" autocomplete="off">
-
-<div class="modal-body">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="form-group">
-    <span>Nombre y Apellido: </span>
-    <input id="new_ref_client" type="text" class="form-control" ng-model="user.name" placeholder="Ingrese el Nombre" />
-  </div>
-</div>
-</div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-    <span>Usuario: </span>
-    <input id="username" type="text" class="form-control" ng-model="user.username" ng-blur="check_username()"  placeholder="Ingrese el Usuario" />
-    <p style="font-size:0.8vw;color:red;">{{validate_username}}</p>
-  </div>
-</div>
-</div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-    <div id="password" ng-hide="editing_user">
-    <span>Contraseña: </span>
-    <input type="password" class="form-control" ng-model="user.password" placeholder="Ingrese la Contraseña" />
-    </div>
-  </div>
-</div>
-</div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-    <span>Teléfono: </span>
-    <input type="text" class="form-control" ng-model="user.tel" placeholder="Ingrese el Teléfono" />
-  </div>
-</div>
-</div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-    <span>Roles: </span></br>
-    <p>{{roleError}}</p>
-    <input  type="checkbox" ng-model="user.export"/><label>Exportación</label></br>
-    <input  type="checkbox" ng-model="user.import"/><label>Importación</label></br>
-    <input  type="checkbox" ng-model="user.seguimiento"/><label>Seguimiento</label></br>
-    <input  type="checkbox" ng-model="user.reintegro"/><label>Reintegros</label></br>
-    <input  type="checkbox" ng-model="user.courrier"/><label>Courrier Imp.</label></br>
-    <input  type="checkbox" ng-model="user.admin"/><label>Administrador</label></br>
-  </div>
-</div>
-</div>
-
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-        <span>Cliente: </span>
-        <select id="select_client_users" ng-model="select_client_users" class="form-control header_controls">
-          <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name_desc }}</option>
-        </select>
-      </div>
-    </div>
-  </div>
-      </div>
-    <div class="modal-footer">
-      <input type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
-      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
-    </div>
-
-  </form>
+<div class="spinner" ng-show="loading">
+  <h1 style="margin-left: 33%;margin-top:8%;color: #cd6702; text-shadow: 1px 1px 2px #2e2e2e;">ENVIANDO...</h1>
+  <div class="progress" style="width:90%;margin:5%;">
+    <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"
+    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+  </div>
+</div>
+</div>
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
+</div>
+<form name="newuser" role="form" class="" ng-submit="newuser.$valid && create_user()" autocomplete="off">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Cliente: </span>
+          <select name="clients" ng-disabled="loadClient" id="select_client_users" ng-change="getRoles()" ng-model="select_client_users"  class="form-control header_controls" required>
+            <option selected="selected" disabled="disabled" value="">Selecciona un cliente</option>
+            <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name_desc }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-show="clientSelected">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Roles: </span></br>
+          <select class="form-control multiselect search_btn" id="multiselectbox" ng-model="roleSelection" ng-options="section as section.sectionDesc for section in sections track by section.sectionId" multiple="multiple" multiselect-dropdown>
+          </select>
+        </div>
+      </div>
+      <p class="validate_error">{{roleError}}</p>
+    </div> 
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Nombre y Apellido: </span>
+          <input  pattern="[A-Za-z0-9 _]+" id="new_ref_client" type="text" class="form-control" ng-model="user.name" placeholder="Ingrese el Nombre y Apellido" required/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Usuario: </span>
+          <input id="username" type="text" class="form-control" ng-model="user.username" ng-blur="check_username()"  placeholder="Ingrese el Usuario" required/>
+          <p class="validate_error">{{validate_username}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-show="editing_user">
+      <div class="col-xs-12">
+        <div class="form-group">
+        <span>Cambiar Contraseña: </span>
+          <input name="changePassword" id="password" type="password" class="form-control" ng-model="user.password" placeholder="Ingrese contraseña nueva"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <div id="password" ng-hide="editing_user">
+            <span>Contraseña: </span>
+            <input type="password" class="form-control" ng-model="user.password" placeholder="Ingrese la Contraseña"/>
+          </div>
+        </div>
+        <p class="validate_error">{{passwordError}}</p>
+      </div>      
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Teléfono: </span>
+          <input type="text" class="form-control" ng-model="user.tel" placeholder="Ingrese el Teléfono"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <input id="submit_user" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+    <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+  </div>
+</form>
+<script>
+  $(document).ready(function(){
+    $('.multiselect').multiselect({
+      maxHeight: 200,
+      nonSelectedText: 'Selecciona los roles',
+      nSelectedText: 'Seleccionados',
+      allSelectedText: 'Todos Seleccionados',
+      enableCollapsibleOptGroups: true
+    });
+  });
+</script>

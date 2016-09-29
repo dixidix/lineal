@@ -1,0 +1,96 @@
+<div class="spinner" ng-show="loading">
+  <h1 style="margin-left: 33%;margin-top:8%;color: #cd6702; text-shadow: 1px 1px 2px #2e2e2e;">ENVIANDO...</h1>
+
+<div class="progress" style="width:90%;margin:5%;">
+  <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+  </div>
+</div>
+
+</div>
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
+</div>
+<div class="modal-body">
+  <form name="add_op_lineal" role="form" class="" ng-submit="add_op_lineal.$valid &&  create_lineal()" autocomplete="off">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>responsable: </span>
+          <select ng-disabled="loadResponsable" id="select_owner" ng-model="select_owner" class="form-control header_controls" required>
+            <option selected="selected" disabled="disabled" value="">Selecciona un responsable</option>
+            <option ng-repeat="user in users" value="{{user.userId}}">{{ user.name }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>fecha de liberaci&oacute;n: </span>
+          <div class="input-group">
+            <input class="date_day form-control" ng-model="operation_lineal.release_date_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+            <input class="date_month form-control" ng-model="operation_lineal.release_date_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+            <input class="date_year form-control" ng-model="operation_lineal.release_date_year" type="number" id="date_year" min="1970" placeholder="año">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+        <span>fecha de Embarque</span>
+          <div class="input-group">
+            <input class="date_day form-control" ng-model="operation_lineal.shipment_day" type="number" id="date_day" min="1" max="31" placeholder="día">
+            <input class="date_month form-control" ng-model="operation_lineal.shipment_month" type="number" id="date_month" min="1" max="12" placeholder="mes">
+            <input class="date_year form-control" ng-model="operation_lineal.shipment_year" type="number" id="date_year" min="1970" placeholder="año">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Cliente: </span>
+          <select ng-disabled="loadClient" id="select_client" ng-model="select_client" class="form-control header_controls" required>
+            <option selected="selected" disabled="disabled" value="">Selecciona un cliente</option>
+            <option ng-repeat="client in clients" value="{{client.id}}">{{ client.name_desc }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Documento Aduanero: </span>
+          <input type="text" class="form-control" ng-model="operation_lineal.custom_document" placeholder="Ingrese la descripción del doc. aduanero"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Documento SIMI: </span>
+          <input type="text" class="form-control" ng-model="operation_lineal.simi_document" placeholder="Ingrese la descripción del doc. SIMI" />
+        </div>
+      </div>
+    </div>
+    <div class="row" ng-show="isEditing">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Estado de la operación: </span>
+          <select id="select_op_state" ng-model="operation_lineal.op_state" class="form-control header_controls">
+            <option selected="selected" disabled="disabled" value="">Selecciona un estado</option>
+            <option value="0" selected>En Curso</option>
+            <option value="1">Terminado</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <input id="submit_lineal" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+    </div>
+  </form>
+</div>

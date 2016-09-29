@@ -1,0 +1,48 @@
+<div class="spinner" ng-show="loading">
+  <h1 style="margin-left: 33%;margin-top:8%;color: #cd6702; text-shadow: 1px 1px 2px #2e2e2e;">ENVIANDO...</h1>
+
+<div class="progress" style="width:90%;margin:5%;">
+  <div class="progress-bar progress-bar-primary progress-bar-striped active" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+  </div>
+</div>
+
+</div>
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$dismiss()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="myModalLabel">{{actionTitle}}</h4>
+</div>
+<div class="modal-body">
+  <form name="add_op_video" role="form" class="" ng-submit="add_op_video.$valid && create_video()" autocomplete="off" novalidate>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>t&iacute;tulo: </span>
+          <input type="text" class="form-control" ng-model="operation_videos.fileTitle" placeholder="Ingrese el t&iacute;tulo del video" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <span>Descripci&oacute;n: </span>
+          <input id="bills_ref_lsl" type="text" class="form-control" ng-model="operation_videos.fileDesc" placeholder="Ingrese la descripci&oacute;n del video" required/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label>
+            <div class="btn search_btn"><input type="file" name="clientVideo" onchange="angular.element(this).scope().get_filename()" uploader-model="operation_videos.clientVideo"/>Selecciona un video a subir</div>
+            <p id="file_video_msg">{{video_title}}</p>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <input id="submit_videos" ng-disabled="add_op_video.$invalid" type="submit" style="width:200px" class="btn btn-primary" value="{{action}}">
+      <button type="button" style="width:200px" class="btn btn-warning" ng-click="$dismiss()">Cancelar</button>
+    </div>
+  </form>
+</div>
